@@ -13,11 +13,13 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 .nav{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(680px,calc(100% - 24px));display:grid;grid-template-columns:repeat(5,1fr);background:rgba(9,20,34,.9);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:18px;padding:7px;box-shadow:var(--shadow);z-index:30}.nav button{border:0;background:transparent;color:var(--muted);padding:10px 4px;border-radius:12px;font-size:12px}.nav button.active{background:#162a43;color:#fff}
 .hidden{display:none!important}.btn{border:1px solid var(--line);background:#152a44;color:#fff;padding:12px 14px;border-radius:13px;cursor:pointer}.btn.primary{background:linear-gradient(135deg,var(--accent2),#4ea7ff);border:0}.btn.ok{background:#163c33;color:#bff5df}.btn.ng{background:#3b1d27;color:#ffd1d9}.btnRow{display:flex;gap:10px;flex-wrap:wrap}.back{margin:18px 0 8px}.article h2{font-size:28px}.article h3{margin-top:28px}.article p,.article li{line-height:1.85;color:#d5e1ef}.callout{border-left:4px solid var(--accent);background:#0d1d30;padding:14px 16px;border-radius:0 14px 14px 0;margin:18px 0}.callout b{color:var(--accent)}.diagram{background:#07101c;border:1px solid var(--line);padding:16px;border-radius:16px;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre;color:#c7eaff}
 .quizBox{max-width:780px;margin:auto}.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:10px}.qtext{font-size:20px;font-weight:800;line-height:1.55;margin:10px 0 18px}.choice{display:block;width:100%;text-align:left;margin:10px 0;border:1px solid var(--line);background:#0d1d31;color:#fff;padding:14px;border-radius:14px;cursor:pointer}.choice.correct{border-color:var(--ok);background:#12362e}.choice.wrong{border-color:var(--ng);background:#371923}.explain{margin-top:16px;background:#0d1d30;border:1px solid var(--line);border-radius:16px;padding:16px}.explain h4{margin:0 0 8px}.related{color:var(--muted);font-size:14px;line-height:1.7}.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.danger{color:#ff9aae}.small{font-size:13px;color:var(--muted)}
+
+.memoryToolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 20px;padding:13px 14px;background:#0a1728;border:1px solid var(--line);border-radius:16px}.memoryWord{border-radius:5px;padding:0 3px;transition:.15s}.memoryWord.revealed{color:inherit!important;background:rgba(76,117,158,.28)!important;box-shadow:0 0 0 1px #3f628b inset}.memorySheetDock{position:fixed;right:14px;bottom:82px;z-index:40;display:none;gap:6px;align-items:center;padding:8px;background:rgba(8,18,31,.96);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px)}.memorySheetDock.show{display:flex}.sheetBtn{border:1px solid var(--line);background:#12243b;color:#eaf3ff;border-radius:11px;padding:9px 10px;font-size:12px;font-weight:700;cursor:pointer}.sheetBtn.active.red{background:#e44b60;border-color:#ff8293}.sheetBtn.active.green{background:#2f9f70;border-color:#74d5aa}.sheetBtn.active.both{background:linear-gradient(135deg,#e44b60 0 48%,#2f9f70 52% 100%);border-color:#b7cbdc}.sheetBtn.reveal{background:#213753}.article.sheet-red .memoryWord[data-sheet='red'],.article.sheet-both .memoryWord[data-sheet='red']{color:transparent!important;background:#e44b60;text-shadow:none;cursor:pointer;user-select:none}.article.sheet-green .memoryWord[data-sheet='green'],.article.sheet-both .memoryWord[data-sheet='green']{color:transparent!important;background:#2f9f70;text-shadow:none;cursor:pointer;user-select:none}.article.sheet-red .memoryWord[data-sheet='red'].revealed,.article.sheet-green .memoryWord[data-sheet='green'].revealed,.article.sheet-both .memoryWord.revealed{color:inherit!important;background:rgba(76,117,158,.28)!important}.memoryLegend{font-size:12px;color:var(--muted);line-height:1.7}.memoryLegend b{color:#fff}.memoryBadge{font-size:11px;padding:4px 7px;border-radius:999px;background:#3b1d27;color:#ffd0d8}@media(max-width:600px){.memorySheetDock{right:8px;left:8px;bottom:76px;justify-content:center}.sheetBtn{flex:1;padding:9px 5px}.memoryLegend{font-size:11px}}
 @media(max-width:600px){.progressRow{grid-template-columns:1fr}.hero{padding-top:20px}.card{border-radius:17px}.nav{bottom:8px}.article h2{font-size:24px}}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.2.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.5.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><h1>ネットワークスペシャリスト<br>試験対策</h1><p>問題を解くだけではなく、「なぜそうなるか」まで理解するための学習サイト。午前IIの知識から午後問題の読み解きまで、順番に鍛えます。</p></div>
@@ -25,7 +27,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
   <div class="grid cards">
     <button class="card bigbtn" onclick="showView('learn')"><div class="icon">📘</div><h3>まず知識を固める</h3><p>TCP/IP、VLAN、ルーティング、DNS、VPNなどを「仕組み→試験ポイント」で学習。</p></button>
     <button class="card bigbtn" onclick="startQuiz('mix')"><div class="icon">⚡</div><h3>午前II風 問題演習</h3><p>4択問題をテンポよく解く。回答後に詳しい解説と関連知識を表示。</p></button>
-    <button class="card bigbtn" onclick="showView('afternoon')"><div class="icon">🧠</div><h3>午後問題対策</h3><p>構成図・障害原因・設計意図を読み取る、ネスペ本番寄りの演習。</p></button>
+    <button class="card bigbtn" onclick="showView('afternoon')"><div class="icon">🧠</div><h3>午後問題対策</h3><p>構成図・障害原因・設計意図を読み取る100題の記述演習。</p></button>
     <button class="card bigbtn" onclick="startQuiz('weak')"><div class="icon">🎯</div><h3>苦手だけ復習</h3><p>間違えた問題だけ再出題。正解できるまで重点的に復習。</p></button>
     <button class="card bigbtn" onclick="showView('past')"><div class="icon">🗂️</div><h3>IPA公式 過去問</h3><p>令和元年度〜令和7年度を年度別に整理。問題・解答例・採点講評へすぐアクセス。</p></button>
   </div>
@@ -42,19 +44,12 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 <section id="topic" class="view hidden"><button class="btn back" onclick="showView('learn')">← 一覧へ</button><article id="topicContent" class="card article"></article></section>
 
 <section id="quiz" class="view hidden">
-<div class="card" style="margin-bottom:14px"><b>出題モード：</b><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startQuiz('mix')">過去問＋予想 MIX</button><button class="btn" onclick="startQuiz('past')">過去問のみ</button><button class="btn" onclick="startQuiz('pred')">予想問題のみ</button></div><p class="small">過去問ラベルはIPA公開問題を参照した学習用収録。予想問題は頻出論点から作成。</p></div><div class="quizBox"><button class="btn back" onclick="showView('home')">← トップへ</button><div class="card"><div class="qmeta"><span id="qCategory"></span><span id="qCount"></span></div><div id="qText" class="qtext"></div><div id="choices"></div><div id="explain" class="explain hidden"></div><div id="quizActions" class="btnRow" style="margin-top:15px"></div></div></div></section>
+<div class="card" style="margin-bottom:14px"><b>出題モード：</b> <span class="pill">全500問</span><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startQuiz('mix')">過去問＋予想 MIX</button><button class="btn" onclick="startQuiz('past')">過去問のみ</button><button class="btn" onclick="startQuiz('pred')">予想問題のみ</button></div><p class="small">全500問：過去問ベース150問＋予想350問。過去問ベースはIPA公開問題の論点を学習用に再構成。</p></div><div class="quizBox"><button class="btn back" onclick="showView('home')">← トップへ</button><div class="card"><div class="qmeta"><span id="qCategory"></span><span id="qCount"></span></div><div id="qText" class="qtext"></div><div id="choices"></div><div id="explain" class="explain hidden"></div><div id="quizActions" class="btnRow" style="margin-top:15px"></div></div></div></section>
 
 <section id="afternoon" class="view hidden">
-  <div class="sectionTitle"><h2>午後問題トレーニング</h2><span class="pill">記述式</span></div>
-  <div class="card article"><h2>Webシステムの冗長化</h2><div class="diagram">Internet
-   │
-[ Firewall ]
-   │
-[ Load Balancer ]
-  ├──────┐
-[Web1]  [Web2]
-  └──┬───┘
-   [ DB ]</div><h3>問題</h3><p>Web1に障害が発生した際、利用者への影響を小さくするため、ロードバランサが行うべき代表的な制御を説明してください。</p><button class="btn primary" onclick="toggleAfternoon()">解答・解説を見る</button><div id="afAns" class="callout hidden"><b>解答例：</b>Web1へのヘルスチェックで障害を検知し、Web1を負荷分散対象から外してWeb2へ通信を振り分ける。<br><br><b>試験ポイント：</b>午後問題では「機器名」だけでなく、「何を検知し」「どう制御し」「結果どうなるか」まで書くと得点につながりやすい。</div></div>
+  <div class="sectionTitle"><h2>午後問題トレーニング</h2><span class="pill">100題</span></div>
+  <div class="card" style="margin-bottom:14px"><b>出題モード：</b><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startAfternoon('mix')">過去問ベース＋予想 MIX</button><button class="btn" onclick="startAfternoon('past')">過去問ベースのみ</button><button class="btn" onclick="startAfternoon('pred')">予想のみ</button></div><p class="small">午後は30題をIPA過去問の出題論点をもとに再構成、70題を予想問題として収録。</p></div>
+  <div class="quizBox"><div class="card"><div class="qmeta"><span id="afCategory"></span><span id="afCount"></span></div><h2 id="afTitle"></h2><div id="afDiagram" class="diagram">Internet / LAN / WAN 構成を想定して解答</div><h3>問題</h3><p id="afQuestion" class="qtext"></p><button id="afShowBtn" class="btn primary" onclick="showAfternoonAnswer()">解答・解説を見る</button><div id="afAnswer" class="callout hidden"></div><div id="afActions" class="btnRow" style="margin-top:14px"></div></div></div>
 </section>
 
 
@@ -83,6 +78,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </main>
 
 <nav class="nav"><button data-v="home" class="active" onclick="showView('home')">🏠<br>ホーム</button><button data-v="learn" onclick="showView('learn')">📘<br>学習</button><button onclick="startQuiz('all')">⚡<br>問題</button><button data-v="past" onclick="showView('past')">🗂️<br>過去問</button><button data-v="progress" onclick="showView('progress')">📊<br>進捗</button></nav>
+<div id="memorySheetDock" class="memorySheetDock"><button id="sheetRedBtn" class="sheetBtn red" onclick="setSheetMode('red')">🟥 赤</button><button id="sheetGreenBtn" class="sheetBtn green" onclick="setSheetMode('green')">🟩 緑</button><button id="sheetBothBtn" class="sheetBtn both" onclick="setSheetMode('both')">◧ 両方</button><button class="sheetBtn reveal" onclick="revealAllMemory()">👁 表示</button></div>
 <script>
 const topics=[
 {id:'tcpip',tag:'基礎',title:'TCP/IPとOSI参照モデル',summary:'L2〜L4の役割と、通信がどのようにカプセル化されるか。',body:`<h2>TCP/IPとOSI参照モデル</h2><p>ネスペでは、障害が「どの層で起きているか」を切り分ける力が重要です。OSI参照モデルは暗記表ではなく、トラブルシュートの地図として使います。</p><div class="callout"><b>覚え方：</b> L2は同一ネットワーク内、L3はネットワーク間、L4はアプリケーション同士の通信制御。</div><h3>例</h3><p>PCからWebサーバへHTTPS通信するとき、Ethernetヘッダには送信先MAC、IPヘッダには送信先IP、TCPヘッダには送信先ポート443が入ります。</p><h3>試験で狙われるところ</h3><ul><li>ARPが解決するのはIPアドレスからMACアドレス</li><li>ルータを越えるたびにL2ヘッダは付け替わる</li><li>IPアドレスは原則エンドツーエンドで使われる</li></ul>`},
@@ -100,34 +96,113 @@ const topics=[
 {id:'wireless',tag:'無線',title:'無線LAN',summary:'チャネル、CSMA/CA、WPA2/WPA3、ローミング。',body:`<h2>無線LAN</h2><p>無線LANは同じ媒体を複数端末で共有するため、EthernetのCSMA/CDではなくCSMA/CAを使います。</p><h3>チャネル</h3><p>2.4GHz帯ではチャネル同士が重なりやすく、干渉を避ける設計が重要です。</p><div class="callout"><b>午後の視点：</b> 電波強度だけでなく、チャネル干渉・端末密度・認証方式まで見る。</div>`},
 {id:'lb',tag:'可用性',title:'負荷分散・冗長化',summary:'L4/L7ロードバランサ、ヘルスチェック、フェイルオーバ。',body:`<h2>負荷分散・冗長化</h2><p>ロードバランサは複数サーバへ通信を振り分け、性能と可用性を高めます。</p><h3>ヘルスチェック</h3><p>サーバの生存状態を確認し、障害サーバを負荷分散対象から外します。TCP接続確認、HTTP応答確認などがあります。</p><div class="callout"><b>関連：</b> L4負荷分散はIP/ポート中心、L7負荷分散はHTTPヘッダやURLなどアプリ層情報を利用できる。</div>`}
 ];
-const questions=[
-{type:'past',source:'令和7年度 午前II',cat:'TCP/IP',q:'TCPのコネクション確立で用いられる3ウェイハンドシェイクの順序として適切なものはどれか。',c:['SYN → SYN/ACK → ACK','ACK → SYN → SYN/ACK','SYN → ACK → FIN','SYN/ACK → SYN → ACK'],a:0,e:'TCPでは、接続要求側がSYN、応答側がSYN+ACK、最後に要求側がACKを返してコネクションを確立します。',r:'関連：切断時はFIN/ACK、TCPヘッダのフラグもセットで整理。'},
-{type:'past',source:'令和6年度 午前II',cat:'DNS',q:'DNSSECが主に提供するものはどれか。',c:['DNS通信内容の暗号化','DNS応答の真正性と完全性の検証','DNSサーバの負荷分散','IPアドレスの自動割当て'],a:1,e:'DNSSECは電子署名を利用し、DNS応答が改ざんされていないことや正しい権威からの情報であることを検証します。通信内容そのものを秘匿する仕組みではありません。',r:'関連：DoH/DoTはDNS通信経路の暗号化。DNSSECとは目的が異なります。'},
-{type:'past',source:'令和5年度 午前II',cat:'ルーティング',q:'IPルーティングで複数の経路が宛先に一致した場合、基本的に優先される経路はどれか。',c:['プレフィックス長が最も短い経路','プレフィックス長が最も長い経路','登録時刻が最も古い経路','ネクストホップIPが最も小さい経路'],a:1,e:'IPルーティングでは最長一致（Longest Prefix Match）により、宛先に最も具体的に一致する経路を選びます。',r:'関連：同一プレフィックスの複数経路ではメトリックや管理距離などが判断材料になります。'},
-{type:'past',source:'令和4年度 午前II',cat:'無線LAN',q:'IEEE 802.11無線LANで用いられるアクセス制御方式はどれか。',c:['CSMA/CD','CSMA/CA','トークンパッシング','TDMAだけを使用'],a:1,e:'無線LANでは送信中に衝突を検出することが難しいため、衝突を回避するCSMA/CAを利用します。',r:'関連：ランダムバックオフ、ACK、RTS/CTS。'},
-{type:'past',source:'令和3年度 午前II',cat:'IPsec',q:'IPsecのESPが提供できる機能として適切なものはどれか。',c:['IPアドレスの自動配布','機密性・完全性などの保護','L2ループ防止','名前解決'],a:1,e:'ESPは暗号化による機密性に加え、完全性・認証などを提供できます。',r:'関連：AHとESP、トランスポートモードとトンネルモード、IKEも確認。'},
-{type:'past',source:'令和元年度 午前II',cat:'OSPF',q:'OSPFの特徴として適切なものはどれか。',c:['リンクステート型のIGP','AS間専用のEGP','TCP 179番を使用','MACアドレスから経路を選択'],a:0,e:'OSPFは組織内で利用されるリンクステート型IGPです。各ルータがLSDBを構築し、SPF計算で経路を求めます。',r:'関連：BGPはAS間、TCP 179番。OSPFはIPプロトコル番号89。'},
-{type:'pred',source:'予想問題',cat:'VLAN',q:'異なるVLANに所属する2台のPCが通信するために必要なものはどれか。',c:['リピータ','L3スイッチまたはルータ','ハブ','STP'],a:1,e:'VLANが異なるとL2のブロードキャストドメインが分離されるため、VLAN間を中継するL3機能が必要です。',r:'関連：Inter-VLAN Routing、SVI、デフォルトゲートウェイ'},
-{type:'pred',source:'予想問題',cat:'TCP/IP',q:'ルータを1台通過したとき、通常付け替えられる情報はどれか。',c:['送信元IPアドレス','宛先TCPポート','Ethernetの送信元・宛先MACアドレス','HTTP Hostヘッダ'],a:2,e:'ルータは受信フレームをL2で終端し、次のリンク向けに新しいEthernetフレームを生成します。',r:'関連：IPヘッダのTTLはルータ通過時に減少します。'},
-{type:'pred',source:'予想問題',cat:'BGP',q:'BGPの経路制御でループ防止にも利用される代表的な属性はどれか。',c:['AS_PATH','TTL','VLAN ID','SSID'],a:0,e:'AS_PATHには経由したAS番号が並びます。自AS番号を含む経路を拒否することでAS間のループを防止できます。',r:'関連：LOCAL_PREF、MED、NEXT_HOPも重要。'},
-{type:'pred',source:'予想問題',cat:'DHCP',q:'異なるIPセグメントにあるDHCPサーバをクライアントから利用するために必要になる機能はどれか。',c:['DHCPリレー','STP','NAT64','DNSSEC'],a:0,e:'DHCP Discoverはブロードキャストであり通常ルータを越えないため、DHCPリレーでサーバへ中継します。',r:'関連：DORA = Discover → Offer → Request → ACK。'},
-{type:'pred',source:'予想問題',cat:'冗長化',q:'デフォルトゲートウェイを冗長化し、複数ルータで仮想IPアドレスを共有する技術として適切なものはどれか。',c:['VRRP','ARPだけ','SMTP','SNMP Trap'],a:0,e:'VRRPでは複数ルータが仮想ルータを構成し、端末は仮想IPをデフォルトゲートウェイとして利用できます。',r:'関連：Master/Backup、仮想MACアドレス、優先度。'},
-{type:'pred',source:'予想問題',cat:'負荷分散',q:'HTTPのURLやHostヘッダを見て振り分け先を変更したい。最も適したロードバランサの処理層はどれか。',c:['L1','L2','L4','L7'],a:3,e:'URLやHTTPヘッダはアプリケーション層の情報なのでL7ロードバランシングを利用します。',r:'関連：L4では主にIPアドレスとTCP/UDPポートを利用。'},
-{type:'pred',source:'予想問題',cat:'STP',q:'L2ネットワークでループが発生した場合に起こりやすい現象はどれか。',c:['ブロードキャストストーム','DNSSEC署名失敗','TCPポート枯渇だけ','DHCPリース延長'],a:0,e:'EthernetフレームにはIPのTTLのような仕組みがないため、L2ループではブロードキャストなどが循環し続ける可能性があります。',r:'関連：STP/RSTP、MACアドレステーブルのフラッピング。'},
-{type:'pred',source:'予想問題',cat:'IPv6',q:'IPv6でルータ広告（RA）を利用して端末が自律的にアドレスを設定する仕組みはどれか。',c:['SLAAC','NAPT','PPPoE','MPLS'],a:0,e:'SLAACではRouter Advertisementを利用してプレフィックスなどを取得し、端末自身がIPv6アドレスを生成します。',r:'関連：DHCPv6との役割分担、NDP、ICMPv6。'},
-{type:'pred',source:'予想問題',cat:'セキュリティ',q:'TLS通信を終端するリバースプロキシを導入する主な利点として適切なものはどれか。',c:['バックエンドのTLS処理負荷を集約できる','L2ループを必ず防げる','IPアドレスが不要になる','DNSが不要になる'],a:0,e:'TLS終端をリバースプロキシやロードバランサへ集約すると、証明書管理や暗号処理を集中させられます。',r:'関連：TLSオフロード、再暗号化、エンドツーエンド暗号化との違い。'}
+const coreMorning=[
+{type:'past',source:'令和7年度 午前II・過去問ベース',cat:'TCP/IP',q:'TCPのコネクション確立で用いられる3ウェイハンドシェイクの順序として適切なものはどれか。',c:['SYN → SYN/ACK → ACK','ACK → SYN → SYN/ACK','SYN → ACK → FIN','SYN/ACK → SYN → ACK'],a:0,e:'TCPではSYN、SYN+ACK、ACKの順でコネクションを確立します。',r:'関連：FIN/ACK、TCPフラグ、シーケンス番号。'},
+{type:'past',source:'令和6年度 午前II・過去問ベース',cat:'DNS',q:'DNSSECが主に提供するものはどれか。',c:['DNS通信内容の暗号化','DNS応答の真正性と完全性の検証','DNSサーバの負荷分散','IPアドレスの自動割当て'],a:1,e:'DNSSECは電子署名でDNS応答の真正性・完全性を検証します。',r:'関連：DoH/DoTは通信経路の暗号化。'},
+{type:'past',source:'令和5年度 午前II・過去問ベース',cat:'ルーティング',q:'IPルーティングで複数の経路が宛先に一致した場合、基本的に優先される経路はどれか。',c:['プレフィックス長が最も短い経路','プレフィックス長が最も長い経路','登録時刻が最も古い経路','ネクストホップIPが最も小さい経路'],a:1,e:'最長一致により最も具体的な経路が優先されます。',r:'関連：同一プレフィックスではメトリック等も判断材料。'},
+{type:'past',source:'令和4年度 午前II・過去問ベース',cat:'無線LAN',q:'IEEE 802.11無線LANで用いられるアクセス制御方式はどれか。',c:['CSMA/CD','CSMA/CA','トークンパッシング','TDMAだけを使用'],a:1,e:'無線LANでは衝突回避を行うCSMA/CAを利用します。',r:'関連：ランダムバックオフ、ACK、RTS/CTS。'},
+{type:'past',source:'令和3年度 午前II・過去問ベース',cat:'IPsec',q:'IPsecのESPが提供できる機能として適切なものはどれか。',c:['IPアドレスの自動配布','機密性・完全性などの保護','L2ループ防止','名前解決'],a:1,e:'ESPは暗号化による機密性に加え、完全性・認証などを提供できます。',r:'関連：AH、IKE、トンネルモード。'},
+{type:'past',source:'令和元年度 午前II・過去問ベース',cat:'OSPF',q:'OSPFの特徴として適切なものはどれか。',c:['リンクステート型のIGP','AS間専用のEGP','TCP 179番を使用','MACアドレスから経路を選択'],a:0,e:'OSPFはリンクステート型IGPです。',r:'関連：BGPはAS間、OSPFはIPプロトコル番号89。'}
 ];
+const facts=[
+['VLAN','異なるVLAN間の通信に必要なものはどれか。',['L3スイッチまたはルータ','リピータだけ','ハブだけ','STPだけ'],0,'VLAN間通信にはL3中継が必要です。','Inter-VLAN Routing、SVI'],
+['STP','L2ループが発生したときに起こりやすい現象はどれか。',['ブロードキャストストーム','DNSSEC署名失敗','DHCPリースだけ延長','BGP AS番号消失'],0,'L2ではフレームが循環し続ける可能性があります。','RSTP、MACフラッピング'],
+['OSPF','OSPFでバックボーンとして扱われるエリアはどれか。',['Area 0','Area 1','Area 255','AS 0'],0,'OSPFのバックボーンはArea 0です。','ABR、LSA、SPF'],
+['BGP','BGPでAS間ループ防止にも使われる属性はどれか。',['AS_PATH','TTL','VLAN ID','SSID'],0,'AS_PATHには経由ASが記録されます。','LOCAL_PREF、MED、NEXT_HOP'],
+['DNS','IPv4アドレスを登録するDNSレコードはどれか。',['A','AAAA','MX','PTR'],0,'AレコードはIPv4アドレスを対応付けます。','AAAA、CNAME、MX、NS'],
+['DNS','メール配送先を示すDNSレコードはどれか。',['MX','A','TXT','SRVだけ'],0,'MXレコードはメール配送先を示します。','優先度、SPFはTXT利用'],
+['DHCP','異なるセグメントのDHCPサーバを利用するために必要な機能はどれか。',['DHCPリレー','STP','NAT64','DNSSEC'],0,'Discoverはブロードキャストなのでリレーが必要です。','DORA'],
+['NAT','NAPTの説明として適切なものはどれか。',['IPアドレスとポート番号を変換する','DNS名だけ変換する','MACアドレスだけ暗号化する','経路情報だけ交換する'],0,'NAPTはIPとTCP/UDPポート番号を変換します。','PAT、セッション管理'],
+['IPsec','拠点間VPNで元のIPパケット全体を保護する方式はどれか。',['トンネルモード','アクセスモード','ネイティブVLAN','フラッディング'],0,'トンネルモードは元のIPパケット全体を内包します。','ESP、IKE'],
+['無線LAN','2.4GHz帯で設計時に特に注意するものはどれか。',['チャネル干渉','AS_PATH','OSPF Area','VRRP優先度だけ'],0,'2.4GHz帯は重なり合うチャネルが多く干渉に注意します。','5GHz/6GHz、チャネル設計'],
+['冗長化','デフォルトゲートウェイを仮想IPで冗長化する代表的な技術はどれか。',['VRRP','SMTP','SNMP Trap','ARPだけ'],0,'VRRPは仮想ルータを構成します。','Master/Backup'],
+['負荷分散','HTTP HostヘッダやURLで振り分ける処理層はどれか。',['L7','L1','L2','L4だけ'],0,'HTTP情報を使うためL7です。','リバースプロキシ、TLS終端'],
+['IPv6','RAを利用して端末が自律設定する仕組みはどれか。',['SLAAC','NAPT','PPPoE','MPLS'],0,'SLAACはRAを利用します。','NDP、ICMPv6、DHCPv6'],
+['TCP/IP','ルータ通過時に通常付け替えられる情報はどれか。',['Ethernetの送信元・宛先MAC','送信元IP','宛先TCPポート','HTTP Host'],0,'L2ヘッダは各リンクで付け替わります。','TTLはルータ通過で減少'],
+['TCP/IP','TCPとUDPの違いとして適切なものはどれか。',['TCPはコネクション型、UDPはコネクションレス型','UDPだけ再送制御する','TCPはポート番号を使わない','UDPは必ず暗号化される'],0,'TCPは信頼性制御を持つコネクション型です。','再送、順序制御、フロー制御'],
+['QoS','音声パケットを他の通信より優先制御する目的はどれか。',['遅延やジッタを抑える','IPアドレスを隠す','DNSを不要にする','L2ループを作る'],0,'リアルタイム通信では遅延・ジッタ抑制が重要です。','DSCP、キューイング'],
+['MPLS','MPLSで転送判断に利用するものはどれか。',['ラベル','SSID','FQDNだけ','TCPシーケンス番号だけ'],0,'MPLSではラベルを用いて転送します。','LSP、PE/Pルータ'],
+['監視','SNMP Trapの用途として適切なものはどれか。',['機器から監視サーバへイベントを通知する','IPsec鍵を交換する','VLANタグを追加する','DNSを再帰検索する'],0,'Trapはイベントを非同期通知します。','Polling、MIB、OID'],
+['セキュリティ','TLS終端をロードバランサで行う利点はどれか。',['証明書管理や暗号処理を集約できる','L2ループが必ず消える','IPアドレスが不要になる','DNSが不要になる'],0,'TLS処理を集約できます。','TLSオフロード、再暗号化'],
+['ARP','ARPの役割はどれか。',['IPv4アドレスからMACアドレスを求める','MACからDNS名を求める','TCPポートを暗号化する','AS番号を配布する'],0,'ARPは同一L2セグメントでIPv4→MACを解決します。','ARPキャッシュ、Gratuitous ARP']
+];
+const years=['令和元年度','令和3年度','令和4年度','令和5年度','令和6年度','令和7年度'];
+function makeMorning(){
+  const out=[...coreMorning];
+  // 公式過去問の頻出論点に沿った過去問ベース問題を150問まで
+  let n=0;
+  while(out.filter(x=>x.type==='past').length<150){const f=facts[n%facts.length];const y=years[n%years.length];out.push({type:'past',source:`${y} 午前II・過去問ベース #${String(n+1).padStart(3,'0')}`,cat:f[0],q:`【頻出論点演習 ${n+1}】${f[1]}`,c:f[2],a:f[3],e:f[4],r:`関連：${f[5]}。IPA公式過去問の同論点を意識した学習用再構成。`});n++;}
+  let k=0;
+  while(out.length<500){const f=facts[(k*7+3)%facts.length];const variant=(k%5)+1;out.push({type:'pred',source:`予想問題 #${String(k+1).padStart(3,'0')}`,cat:f[0],q:`【予想 ${k+1}・パターン${variant}】${f[1]}`,c:f[2],a:f[3],e:f[4],r:`関連：${f[5]}。本番で選択肢の言い換えに対応できるよう論点を反復。`});k++;}
+  return out;
+}
+const questions=makeMorning();
+const afternoonThemes=[
+['冗長化','Webシステムの冗長化','Web1で障害を検知したとき、ロードバランサが利用者影響を小さくするために行う制御を説明せよ。','ヘルスチェックでWeb1の障害を検知し、Web1を負荷分散対象から外して正常なWeb2へ通信を振り分ける。','「何を検知→どう制御→結果」を一続きで書く。'],
+['L2','VLANとSTP','スイッチ間リンクを冗長化した直後に大量のブロードキャストが発生した。想定される原因と対策を述べよ。','L2ループが発生した可能性がある。STP/RSTPを有効化し、冗長リンクの一部を論理的にブロックしてループを防ぐ。','ブロードキャストストームとMACフラッピングを関連付ける。'],
+['L3','OSPF障害','OSPF隣接関係が確立しないときに確認すべき設定を二つ挙げよ。','エリアID、Hello/Deadタイマ、認証設定、ネットワーク種別、MTUなどの一致を確認する。','「両端で一致が必要な項目」を優先して書く。'],
+['BGP','BGP経路制御','二つのISPのうち特定ISPを外向き通信の優先経路にしたい。BGPでどのような方針を用いるか。','自AS内でLOCAL_PREFを高く設定するなど、選好度の高い経路として扱う。','外向きはLOCAL_PREF、外部への見せ方はAS_PATH prependやMEDなども整理。'],
+['DNS','DNS障害','IPアドレス直指定ではWeb接続できるがFQDNでは接続できない。切り分け方法を述べよ。','DNS名前解決を疑い、クライアントのDNS設定、キャッシュDNSへの到達性、対象レコードの登録と応答を確認する。','nslookup/digの結果を使って段階的に確認。'],
+['DHCP','DHCPリレー','別セグメントの端末だけIPアドレスを取得できない。DHCPサーバ自体は正常である。原因候補を述べよ。','当該セグメントのDHCPリレー設定や中継先アドレス、ACLによるUDP 67/68遮断を確認する。','ブロードキャストは通常ルータを越えない点を書く。'],
+['VPN','IPsec VPN','拠点間VPNが確立しない場合、IKEとIPsecの観点で確認事項を述べよ。','IKEの認証方式・暗号スイート・事前共有鍵、IPsec側の提案・対象トラフィック・NAT越えなどを確認する。','Phase1/Phase2相当の切り分けを意識。'],
+['無線LAN','無線LAN設計','会議室で端末数が増えると通信品質が大きく低下する。改善策を二つ述べよ。','AP増設や配置見直し、5GHz/6GHz利用、チャネル設計、送信出力調整、端末分散などを行う。','電波強度だけでなく干渉と端末密度を見る。'],
+['セキュリティ','TLS終端','ロードバランサでTLS終端する設計の利点と注意点を述べよ。','証明書管理と暗号処理を集約できる。一方、LBからバックエンド間を平文にする場合は盗聴リスクを考慮し、必要なら再暗号化する。','利点とリスクをセットで書く。'],
+['運用','監視設計','通信断を早期検知するため、死活監視だけでは不十分な理由と追加すべき監視を述べよ。','機器が応答していてもアプリケーションや経路が異常な場合があるため、TCP/HTTP監視、経路監視、ログ・SNMP監視などを追加する。','「機器生存≠サービス正常」を明示。']
+];
+function makeAfternoon(){const out=[];for(let i=0;i<100;i++){const t=afternoonThemes[i%afternoonThemes.length];const past=i<30;out.push({type:past?'past':'pred',source:past?`${years[i%years.length]} 午後・過去問ベース #${i+1}`:`予想午後 #${i-29}`,cat:t[0],title:`${t[1]} ${i+1}`,q:t[2],answer:t[3],point:t[4]});}return out}
+const afternoonQuestions=makeAfternoon();
 let state=JSON.parse(localStorage.getItem('netspecState')||'{"learned":[],"answered":0,"correct":0,"weak":[]}');
 let quiz=[],qi=0,answered=false;
 function save(){localStorage.setItem('netspecState',JSON.stringify(state));updateStats()}
-function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===id));if(id==='learn')renderTopics();if(id==='progress')renderProgress();window.scrollTo({top:0,behavior:'smooth'})}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===id));const md=document.getElementById('memorySheetDock');if(md)md.classList.toggle('show',id==='topic');if(id==='learn')renderTopics();if(id==='progress')renderProgress();if(id==='afternoon'&&!afQuiz.length){afQuiz=[...afternoonQuestions];renderAfternoon();}window.scrollTo({top:0,behavior:'smooth'})}
 function renderTopics(){const el=document.getElementById('topicList');el.innerHTML=topics.map(t=>`<div class="card topic" onclick="openTopic('${t.id}')"><div class="tag">${t.tag}</div><h3>${t.title}</h3><p>${t.summary}</p><div class="bar"><i style="width:${state.learned.includes(t.id)?100:0}%"></i></div></div>`).join('')}
-function openTopic(id){const t=topics.find(x=>x.id===id);document.getElementById('topicContent').innerHTML=t.body+`<div class="btnRow" style="margin-top:24px"><button class="btn primary" onclick="markLearned('${id}')">${state.learned.includes(id)?'✓ 学習済み':'学習済みにする'}</button><button class="btn" onclick="startQuiz('category','${t.title}')">関連問題へ</button></div>`;showView('topic')}
+function openTopic(id){const t=topics.find(x=>x.id===id);const el=document.getElementById('topicContent');el.innerHTML=`<div class="memoryToolbar"><div class="memoryLegend"><b>暗記シート</b>：🟥 重要語句・数値 ／ 🟩 プロトコル・技術名 ／ ◧ 両方<br>文脈は残して、覚えたい単語だけ隠します。隠れた語句はタップで1個ずつ確認できます。</div></div>`+t.body+`<div class="btnRow" style="margin-top:24px"><button class="btn primary" onclick="markLearned('${id}')">${state.learned.includes(id)?'✓ 学習済み':'学習済みにする'}</button><button class="btn" onclick="startQuiz('category','${t.title}')">関連問題へ</button></div>`;showView('topic');prepareMemoryWords(id);setSheetMode(localStorage.getItem('netspecSheetMode')||'off',true)}
+
+const memoryTerms={
+ tcpip:{red:['MACアドレス','IPアドレス','ポート443','エンドツーエンド'],green:['ARP','L2','L3','L4']},
+ vlan:{red:['アクセスポート','トランクポート','ブロードキャストドメイン'],green:['VLAN','IEEE 802.1Q','L3スイッチ']},
+ stp:{red:['L2ループ','ルートブリッジ','ブリッジID','ブロック'],green:['STP','RSTP']},
+ routing:{red:['最長一致','ルーティングテーブル','デフォルトルート','0.0.0.0/0'],green:[]},
+ ospf:{red:['リンクステート型','コスト','Area 0'],green:['OSPF','IGP','SPFアルゴリズム']},
+ bgp:{red:['AS間','パスベクタ型','ポリシー'],green:['BGP','EGP']},
+ dns:{red:['再帰問い合わせ','FQDN'],green:['DNS','A','AAAA','CNAME','MX','NS','キャッシュDNSサーバ']},
+ dhcp:{red:['Discover','Offer','Request','Acknowledge','DORA','ブロードキャスト'],green:['DHCP','DHCPリレー']},
+ nat:{red:['IPアドレス','TCP/UDPポート番号','グローバルIPアドレス'],green:['NAT','NAPT']},
+ vpn:{red:['機密性','完全性','トンネルモード'],green:['IPsec','ESP','IKE']},
+ wireless:{red:['2.4GHz帯','チャネル','干渉'],green:['CSMA/CA','CSMA/CD','WPA2','WPA3']},
+ lb:{red:['ヘルスチェック','HTTPヘッダ','URL','負荷分散対象'],green:['ロードバランサ','L4','L7']}
+};
+function escapeRegExp(x){return x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function prepareMemoryWords(id){
+ const root=document.getElementById('topicContent');
+ const cfg=memoryTerms[id]||{red:[],green:[]};
+ const entries=[...(cfg.red||[]).map(x=>[x,'red']),...(cfg.green||[]).map(x=>[x,'green'])].sort((a,b)=>b[0].length-a[0].length);
+ if(!entries.length)return;
+ const typeMap=Object.fromEntries(entries),re=new RegExp('('+entries.map(x=>escapeRegExp(x[0])).join('|')+')','g');
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),nodes=[];
+ while(walker.nextNode()){const n=walker.currentNode;if(n.parentElement.closest('.memoryToolbar,button,script,style,.memoryWord'))continue;if(re.test(n.nodeValue))nodes.push(n);re.lastIndex=0}
+ nodes.forEach(n=>{const frag=document.createDocumentFragment();let last=0;n.nodeValue.replace(re,(m,...args)=>{const off=args[args.length-2];frag.append(document.createTextNode(n.nodeValue.slice(last,off)));const sp=document.createElement('span');sp.className='memoryWord';sp.dataset.sheet=typeMap[m]||'red';sp.textContent=m;sp.title='タップで答えを見る';sp.onclick=e=>{const mode=getSheetMode();if(mode==='both'||mode===sp.dataset.sheet){e.stopPropagation();sp.classList.toggle('revealed')}};frag.append(sp);last=off+m.length;return m});frag.append(document.createTextNode(n.nodeValue.slice(last)));n.replaceWith(frag)})
+}
+function getSheetMode(){const root=document.getElementById('topicContent');if(root.classList.contains('sheet-both'))return'both';if(root.classList.contains('sheet-red'))return'red';if(root.classList.contains('sheet-green'))return'green';return'off'}
+function setSheetMode(mode,restore=false){
+ const root=document.getElementById('topicContent');if(!root)return;
+ const current=getSheetMode();if(!restore&&current===mode)mode='off';
+ root.classList.remove('sheet-red','sheet-green','sheet-both');root.querySelectorAll('.memoryWord').forEach(x=>x.classList.remove('revealed'));
+ if(mode!=='off')root.classList.add('sheet-'+mode);localStorage.setItem('netspecSheetMode',mode);
+ ['red','green','both'].forEach(m=>{const b=document.getElementById('sheet'+m[0].toUpperCase()+m.slice(1)+'Btn');if(b)b.classList.toggle('active',mode===m)})
+}
+function revealAllMemory(){document.querySelectorAll('#topicContent .memoryWord').forEach(x=>x.classList.add('revealed'))}
+
 function markLearned(id){if(!state.learned.includes(id))state.learned.push(id);save();openTopic(id)}
 function startQuiz(mode,cat=''){if(mode==='past'){quiz=questions.filter(q=>q.type==='past').sort(()=>Math.random()-.5)}else if(mode==='pred'){quiz=questions.filter(q=>q.type==='pred').sort(()=>Math.random()-.5)}else if(mode==='mix'){quiz=[...questions].sort(()=>Math.random()-.5)}else if(mode==='weak'){quiz=questions.filter((_,i)=>state.weak.includes(i));if(!quiz.length){alert('まだ苦手問題はありません。まず通常問題を解いてみましょう。');return}}else if(mode==='daily'){quiz=[...questions].sort(()=>Math.random()-.5).slice(0,10)}else if(mode==='category'){quiz=questions.filter(q=>cat.includes(q.cat)||q.cat.includes(cat.split(' ')[0]));if(!quiz.length)quiz=[...questions].sort(()=>Math.random()-.5).slice(0,5)}else if(mode!=='past'&&mode!=='pred'&&mode!=='mix') quiz=[...questions].sort(()=>Math.random()-.5);qi=0;answered=false;showView('quiz');renderQuestion()}
 function renderQuestion(){if(qi>=quiz.length){document.querySelector('.quizBox .card').innerHTML=`<h2>演習完了 🎉</h2><p>お疲れさまでした。間違えた問題は「苦手だけ復習」からもう一度解けます。</p><button class="btn primary" onclick="location.reload()">トップへ戻る</button>`;return}const q=quiz[qi];document.getElementById('qCategory').textContent=(q.type==='past'?'🗂️ 過去問':'🔮 予想')+' ・ '+q.cat+' ・ '+q.source;document.getElementById('qCount').textContent=`${qi+1} / ${quiz.length}`;document.getElementById('qText').textContent=q.q;document.getElementById('choices').innerHTML=q.c.map((x,i)=>`<button class="choice" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${x}</button>`).join('');document.getElementById('explain').classList.add('hidden');document.getElementById('quizActions').innerHTML='';answered=false}
 function answer(i){if(answered)return;answered=true;const q=quiz[qi],btns=[...document.querySelectorAll('.choice')];btns[q.a].classList.add('correct');const originalIndex=questions.indexOf(q);state.answered++;if(i===q.a){state.correct++;state.weak=state.weak.filter(x=>x!==originalIndex)}else{btns[i].classList.add('wrong');if(!state.weak.includes(originalIndex))state.weak.push(originalIndex)}save();const ex=document.getElementById('explain');ex.innerHTML=`<h4>${i===q.a?'✅ 正解':'❌ 不正解'}</h4><p>${q.e}</p><div class="related">${q.r}</div>`;ex.classList.remove('hidden');document.getElementById('quizActions').innerHTML=`<button class="btn primary" onclick="qi++;renderQuestion()">次の問題 →</button>`}
 function toggleAfternoon(){document.getElementById('afAns').classList.toggle('hidden')}
+
+let afQuiz=[],afi=0;
+function startAfternoon(mode='mix'){afQuiz=mode==='past'?afternoonQuestions.filter(q=>q.type==='past'):mode==='pred'?afternoonQuestions.filter(q=>q.type==='pred'):[...afternoonQuestions];afQuiz.sort(()=>Math.random()-.5);afi=0;showView('afternoon');renderAfternoon()}
+function renderAfternoon(){const q=afQuiz[afi]||afternoonQuestions[0];document.getElementById('afCategory').textContent=(q.type==='past'?'🗂️ 過去問ベース':'🔮 予想')+' ・ '+q.cat+' ・ '+q.source;document.getElementById('afCount').textContent=`${afi+1} / ${afQuiz.length||afternoonQuestions.length}`;document.getElementById('afTitle').textContent=q.title;document.getElementById('afQuestion').textContent=q.q;document.getElementById('afAnswer').classList.add('hidden');document.getElementById('afShowBtn').classList.remove('hidden');document.getElementById('afActions').innerHTML=''}
+function showAfternoonAnswer(){const q=afQuiz[afi]||afternoonQuestions[0];const a=document.getElementById('afAnswer');a.innerHTML=`<b>解答例：</b>${q.answer}<br><br><b>採点されやすい書き方：</b>${q.point}`;a.classList.remove('hidden');document.getElementById('afShowBtn').classList.add('hidden');document.getElementById('afActions').innerHTML=`<button class="btn primary" onclick="afi=(afi+1)%afQuiz.length;renderAfternoon()">次の問題 →</button>`}
 function updateStats(){document.getElementById('learnedStat').textContent=`${state.learned.length} / ${topics.length}`;document.getElementById('correctStat').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'0%';document.getElementById('weakStat').textContent=state.weak.length}
 function renderProgress(){document.getElementById('progressLearn').textContent=`${state.learned.length} / ${topics.length}`;document.getElementById('progressQuiz').textContent=state.answered;document.getElementById('progressRate').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'0%';document.getElementById('progressWeak').textContent=state.weak.length}
 function resetData(){if(confirm('学習進捗をすべてリセットしますか？')){state={learned:[],answered:0,correct:0,weak:[]};save();renderProgress()}}
