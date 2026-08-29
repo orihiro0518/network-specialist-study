@@ -21,7 +21,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 </head>
 <body>
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.9.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.9.1</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><h1>ネットワークスペシャリスト<br>試験対策</h1><p>問題を解くだけではなく、「なぜそうなるか」まで理解するための学習サイト。午前IIの知識から午後問題の読み解きまで、順番に鍛えます。</p></div>
@@ -57,7 +57,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 
 
 <section id="questionList" class="view hidden">
-  <div class="sectionTitle"><h2>午前 全問題一覧</h2><span class="pill">500問</span></div><p class="small">Ver 1.9.0では、疑問文でない設問・答えをほぼ言っている設問・不自然な自動生成表現を重点的に見直しました。</p>
+  <div class="sectionTitle"><h2>午前 全問題一覧</h2><span class="pill">500問</span></div><p class="small">Ver 1.9.1では、疑問文でない設問・答えをほぼ言っている設問・不自然な自動生成表現を重点的に見直しました。</p>
   <div class="card">
     <p class="small">問題内容の確認用一覧です。前回の結果は、この端末のブラウザに保存されます。</p>
     <div class="qListControls">
@@ -66,7 +66,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
       <select id="qStatusFilter" onchange="renderQuestionList()"><option value="all">全ステータス</option><option value="correct">前回正解</option><option value="wrong">前回不正解</option><option value="unanswered">未回答</option><option value="weak">苦手のみ</option></select>
     </div>
     <div id="qListSummary" class="small" style="margin-bottom:10px"></div>
-    <div class="qTableWrap"><table class="qTable"><thead><tr><th>No.</th><th>種別</th><th>分野</th><th>問題</th><th>前回</th><th>回数</th><th></th></tr></thead><tbody id="qListBody"></tbody></table></div>
+    <div class="qTableWrap"><table class="qTable"><thead><tr><th>No.</th><th>種別</th><th>分野</th><th>問題</th><th>回答</th><th>前回</th><th>回数</th><th></th></tr></thead><tbody id="qListBody"></tbody></table></div>
   </div>
 </section>
 
@@ -282,7 +282,7 @@ function renderQuestion(){if(qi>=quiz.length){document.querySelector('.quizBox .
 function questionIndex(q){return questions.indexOf(q)}
 function questionStatus(idx){const h=state.history?.[idx];if(!h)return 'unanswered';return h.lastCorrect?'correct':'wrong'}
 function answer(i){if(answered)return;answered=true;const q=quiz[qi],btns=[...document.querySelectorAll('.choice')];btns[q.a].classList.add('correct');const originalIndex=questionIndex(q);state.answered++;const isCorrect=i===q.a;if(isCorrect){state.correct++;state.weak=state.weak.filter(x=>x!==originalIndex)}else{btns[i].classList.add('wrong');if(!state.weak.includes(originalIndex))state.weak.push(originalIndex)}if(originalIndex>=0){const prev=state.history[originalIndex]||{attempts:0,correctCount:0};state.history[originalIndex]={attempts:(prev.attempts||0)+1,correctCount:(prev.correctCount||0)+(isCorrect?1:0),lastCorrect:isCorrect,lastChoice:i,updatedAt:Date.now()}}save();const ex=document.getElementById('explain');const optionRows=q.c.map((text,j)=>{const cls=j===q.a?'isCorrect':'isWrong';let reason;if(j===q.a){reason=`正解。${q.e}`}else{reason=`不正解。この選択肢「${text}」は、この問題で問われている「${q.c[q.a]}」の役割・条件とは一致しません。`;}return `<div class="${cls}"><b>${String.fromCharCode(65+j)}. ${text}</b><br>${reason}</div>`}).join('');ex.innerHTML=`<h4>${isCorrect?'✅ 正解':'❌ 不正解'}</h4><p>${q.e}</p><div class="related"><b>関連知識：</b> ${q.r}</div><div class="optionReview"><b>各選択肢の確認</b>${optionRows}</div>`;ex.classList.remove('hidden');document.getElementById('quizActions').innerHTML=`<button class="btn primary" onclick="qi++;renderQuestion()">次の問題 →</button><button class="btn" onclick="showView('questionList')">問題一覧</button>`}
-function renderQuestionList(){const body=document.getElementById('qListBody');if(!body)return;const term=(document.getElementById('qSearch')?.value||'').trim().toLowerCase(),type=document.getElementById('qTypeFilter')?.value||'all',status=document.getElementById('qStatusFilter')?.value||'all';let rows=questions.map((q,idx)=>({q,idx})).filter(({q,idx})=>{if(type!=='all'&&q.type!==type)return false;const st=questionStatus(idx);if(status==='correct'&&st!=='correct')return false;if(status==='wrong'&&st!=='wrong')return false;if(status==='unanswered'&&st!=='unanswered')return false;if(status==='weak'&&!state.weak.includes(idx))return false;if(term&&!(`${q.cat} ${q.q} ${q.source}`.toLowerCase().includes(term)))return false;return true});document.getElementById('qListSummary').textContent=`表示 ${rows.length} / ${questions.length}問　｜　前回正解 ${Object.values(state.history).filter(x=>x.lastCorrect).length}問　｜　前回不正解 ${Object.values(state.history).filter(x=>x&&!x.lastCorrect).length}問`;body.innerHTML=rows.map(({q,idx})=>{const h=state.history[idx],st=questionStatus(idx),badge=st==='correct'?'<span class="statusBadge ok">○ 正解</span>':st==='wrong'?'<span class="statusBadge ng">× 不正解</span>':'<span class="statusBadge none">— 未回答</span>';return `<tr><td>${idx+1}</td><td>${q.type==='past'?'🗂️ 過去問':'🔮 予想'}</td><td>${q.cat}</td><td>${q.q}</td><td>${badge}</td><td>${h?.attempts||0}</td><td><button class="miniBtn" onclick="startSingleQuestion(${idx})">解く</button></td></tr>`}).join('')}
+function renderQuestionList(){const body=document.getElementById('qListBody');if(!body)return;const term=(document.getElementById('qSearch')?.value||'').trim().toLowerCase(),type=document.getElementById('qTypeFilter')?.value||'all',status=document.getElementById('qStatusFilter')?.value||'all';let rows=questions.map((q,idx)=>({q,idx})).filter(({q,idx})=>{if(type!=='all'&&q.type!==type)return false;const st=questionStatus(idx);if(status==='correct'&&st!=='correct')return false;if(status==='wrong'&&st!=='wrong')return false;if(status==='unanswered'&&st!=='unanswered')return false;if(status==='weak'&&!state.weak.includes(idx))return false;if(term&&!(`${q.cat} ${q.q} ${q.source}`.toLowerCase().includes(term)))return false;return true});document.getElementById('qListSummary').textContent=`表示 ${rows.length} / ${questions.length}問　｜　前回正解 ${Object.values(state.history).filter(x=>x.lastCorrect).length}問　｜　前回不正解 ${Object.values(state.history).filter(x=>x&&!x.lastCorrect).length}問`;body.innerHTML=rows.map(({q,idx})=>{const h=state.history[idx],st=questionStatus(idx),badge=st==='correct'?'<span class="statusBadge ok">○ 正解</span>':st==='wrong'?'<span class="statusBadge ng">× 不正解</span>':'<span class="statusBadge none">— 未回答</span>';const ansLabel=String.fromCharCode(65+q.a);const ansText=q.c[q.a];return `<tr><td>${idx+1}</td><td>${q.type==='past'?'🗂️ 過去問':'🔮 予想'}</td><td>${q.cat}</td><td>${q.q}</td><td><b>${ansLabel}.</b> ${ansText}</td><td>${badge}</td><td>${h?.attempts||0}</td><td><button class="miniBtn" onclick="startSingleQuestion(${idx})">解く</button></td></tr>`}).join('')}
 function startSingleQuestion(idx){quiz=[questions[idx]];qi=0;answered=false;showView('quiz');renderQuestion()}
 function toggleAfternoon(){document.getElementById('afAns').classList.toggle('hidden')}
 
