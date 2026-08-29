@@ -15,11 +15,13 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 .quizBox{max-width:780px;margin:auto}.qmeta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:10px}.qtext{font-size:20px;font-weight:800;line-height:1.55;margin:10px 0 18px}.choice{display:block;width:100%;text-align:left;margin:10px 0;border:1px solid var(--line);background:#0d1d31;color:#fff;padding:14px;border-radius:14px;cursor:pointer}.choice.correct{border-color:var(--ok);background:#12362e}.choice.wrong{border-color:var(--ng);background:#371923}.explain{margin-top:16px;background:#0d1d30;border:1px solid var(--line);border-radius:16px;padding:16px}.explain h4{margin:0 0 8px}.related{color:var(--muted);font-size:14px;line-height:1.7}.dashboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.danger{color:#ff9aae}.small{font-size:13px;color:var(--muted)}
 
 .memoryToolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 20px;padding:13px 14px;background:#0a1728;border:1px solid var(--line);border-radius:16px}.memoryWord{border-radius:5px;padding:0 3px;transition:.15s}.memoryWord.revealed{color:inherit!important;background:rgba(76,117,158,.28)!important;box-shadow:0 0 0 1px #3f628b inset}.memorySheetDock{position:fixed;right:14px;bottom:82px;z-index:40;display:none;gap:6px;align-items:center;padding:8px;background:rgba(8,18,31,.96);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px)}.memorySheetDock.show{display:flex}.sheetBtn{border:1px solid var(--line);background:#12243b;color:#eaf3ff;border-radius:11px;padding:9px 10px;font-size:12px;font-weight:700;cursor:pointer}.sheetBtn.active.red{background:#e44b60;border-color:#ff8293}.sheetBtn.active.green{background:#2f9f70;border-color:#74d5aa}.sheetBtn.active.both{background:linear-gradient(135deg,#e44b60 0 48%,#2f9f70 52% 100%);border-color:#b7cbdc}.sheetBtn.reveal{background:#213753}.article.sheet-red .memoryWord[data-sheet='red'],.article.sheet-both .memoryWord[data-sheet='red']{color:transparent!important;background:#e44b60;text-shadow:none;cursor:pointer;user-select:none}.article.sheet-green .memoryWord[data-sheet='green'],.article.sheet-both .memoryWord[data-sheet='green']{color:transparent!important;background:#2f9f70;text-shadow:none;cursor:pointer;user-select:none}.article.sheet-red .memoryWord[data-sheet='red'].revealed,.article.sheet-green .memoryWord[data-sheet='green'].revealed,.article.sheet-both .memoryWord.revealed{color:inherit!important;background:rgba(76,117,158,.28)!important}.memoryLegend{font-size:12px;color:var(--muted);line-height:1.7}.memoryLegend b{color:#fff}.memoryBadge{font-size:11px;padding:4px 7px;border-radius:999px;background:#3b1d27;color:#ffd0d8}@media(max-width:600px){.memorySheetDock{right:8px;left:8px;bottom:76px;justify-content:center}.sheetBtn{flex:1;padding:9px 5px}.memoryLegend{font-size:11px}}
+
+.qListControls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.qListControls input,.qListControls select{background:#0d1d31;color:#fff;border:1px solid var(--line);border-radius:12px;padding:11px}.qTableWrap{overflow:auto;border:1px solid var(--line);border-radius:16px}.qTable{width:100%;border-collapse:collapse;min-width:760px;background:#0b1829}.qTable th,.qTable td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}.qTable th{position:sticky;top:0;background:#12243b;z-index:1}.statusBadge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}.statusBadge.ok{background:#163c33;color:#bff5df}.statusBadge.ng{background:#3b1d27;color:#ffd1d9}.statusBadge.none{background:#17283d;color:#9fb2cc}.miniBtn{border:1px solid var(--line);background:#152a44;color:#fff;padding:7px 9px;border-radius:9px;cursor:pointer;font-size:12px}.optionReview{margin-top:12px;display:grid;gap:8px}.optionReview div{padding:10px 12px;border-radius:12px;background:#0a1728;border:1px solid var(--line);font-size:13px;line-height:1.6}.optionReview .isCorrect{border-color:#2e8569;background:#103027}.optionReview .isWrong{border-color:#57303a}.questionJump{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.questionJump input{width:90px;background:#0d1d31;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}
 @media(max-width:600px){.progressRow{grid-template-columns:1fr}.hero{padding-top:20px}.card{border-radius:17px}.nav{bottom:8px}.article h2{font-size:24px}}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.5.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.7.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><h1>ネットワークスペシャリスト<br>試験対策</h1><p>問題を解くだけではなく、「なぜそうなるか」まで理解するための学習サイト。午前IIの知識から午後問題の読み解きまで、順番に鍛えます。</p></div>
@@ -29,6 +31,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
     <button class="card bigbtn" onclick="startQuiz('mix')"><div class="icon">⚡</div><h3>午前II風 問題演習</h3><p>4択問題をテンポよく解く。回答後に詳しい解説と関連知識を表示。</p></button>
     <button class="card bigbtn" onclick="showView('afternoon')"><div class="icon">🧠</div><h3>午後問題対策</h3><p>構成図・障害原因・設計意図を読み取る100題の記述演習。</p></button>
     <button class="card bigbtn" onclick="startQuiz('weak')"><div class="icon">🎯</div><h3>苦手だけ復習</h3><p>間違えた問題だけ再出題。正解できるまで重点的に復習。</p></button>
+    <button class="card bigbtn" onclick="showView('questionList')"><div class="icon">📋</div><h3>全問題一覧</h3><p>午前500問を一覧表示。前回の正誤・解答回数・苦手状態まで確認。</p></button>
     <button class="card bigbtn" onclick="showView('past')"><div class="icon">🗂️</div><h3>IPA公式 過去問</h3><p>令和元年度〜令和7年度を年度別に整理。問題・解答例・採点講評へすぐアクセス。</p></button>
   </div>
   <div class="sectionTitle"><h2>今日のおすすめ</h2><span class="pill">10〜20分</span></div>
@@ -53,6 +56,20 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </section>
 
 
+<section id="questionList" class="view hidden">
+  <div class="sectionTitle"><h2>午前 全問題一覧</h2><span class="pill">500問</span></div>
+  <div class="card">
+    <p class="small">問題内容の確認用一覧です。前回の結果は、この端末のブラウザに保存されます。</p>
+    <div class="qListControls">
+      <input id="qSearch" type="search" placeholder="問題文・分野で検索" oninput="renderQuestionList()">
+      <select id="qTypeFilter" onchange="renderQuestionList()"><option value="all">過去問＋予想</option><option value="past">過去問ベースのみ</option><option value="pred">予想のみ</option></select>
+      <select id="qStatusFilter" onchange="renderQuestionList()"><option value="all">全ステータス</option><option value="correct">前回正解</option><option value="wrong">前回不正解</option><option value="unanswered">未回答</option><option value="weak">苦手のみ</option></select>
+    </div>
+    <div id="qListSummary" class="small" style="margin-bottom:10px"></div>
+    <div class="qTableWrap"><table class="qTable"><thead><tr><th>No.</th><th>種別</th><th>分野</th><th>問題</th><th>前回</th><th>回数</th><th></th></tr></thead><tbody id="qListBody"></tbody></table></div>
+  </div>
+</section>
+
 <section id="past" class="view hidden">
   <div class="sectionTitle"><h2>IPA公式 過去問アーカイブ</h2><span class="pill">令和元年度〜令和7年度</span></div>
   <div class="card article">
@@ -73,7 +90,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 
 <section id="progress" class="view hidden">
   <div class="sectionTitle"><h2>学習進捗</h2><button class="btn ng" onclick="resetData()">進捗をリセット</button></div>
-  <div class="dashboard"><div class="card"><h3>学習テーマ</h3><div id="progressLearn" style="font-size:30px;font-weight:900"></div><p>12テーマ中</p></div><div class="card"><h3>問題演習</h3><div id="progressQuiz" style="font-size:30px;font-weight:900"></div><p>累計解答数</p></div><div class="card"><h3>正答率</h3><div id="progressRate" style="font-size:30px;font-weight:900"></div><p>累計</p></div><div class="card"><h3>苦手</h3><div id="progressWeak" class="danger" style="font-size:30px;font-weight:900"></div><p>復習対象</p></div></div>
+  <div class="dashboard"><div class="card"><h3>学習テーマ</h3><div id="progressLearn" style="font-size:30px;font-weight:900"></div><p>12テーマ中</p></div><div class="card"><h3>問題演習</h3><div id="progressQuiz" style="font-size:30px;font-weight:900"></div><p>累計解答数</p></div><div class="card"><h3>解いた問題</h3><div id="progressUnique" style="font-size:30px;font-weight:900"></div><p>500問中</p></div><div class="card"><h3>正答率</h3><div id="progressRate" style="font-size:30px;font-weight:900"></div><p>累計</p></div><div class="card"><h3>苦手</h3><div id="progressWeak" class="danger" style="font-size:30px;font-weight:900"></div><p>復習対象</p></div></div><div class="btnRow" style="margin-top:14px"><button class="btn" onclick="showView('questionList')">📋 全問題一覧を見る</button></div>
 </section>
 </main>
 
@@ -129,13 +146,37 @@ const facts=[
 const years=['令和元年度','令和3年度','令和4年度','令和5年度','令和6年度','令和7年度'];
 function makeMorning(){
   const out=[...coreMorning];
-  // 公式過去問の頻出論点に沿った過去問ベース問題を150問まで
-  let n=0;
-  while(out.filter(x=>x.type==='past').length<150){const f=facts[n%facts.length];const y=years[n%years.length];out.push({type:'past',source:`${y} 午前II・過去問ベース #${String(n+1).padStart(3,'0')}`,cat:f[0],q:`【頻出論点演習 ${n+1}】${f[1]}`,c:f[2],a:f[3],e:f[4],r:`関連：${f[5]}。IPA公式過去問の同論点を意識した学習用再構成。`});n++;}
-  let k=0;
-  while(out.length<500){const f=facts[(k*7+3)%facts.length];const variant=(k%5)+1;out.push({type:'pred',source:`予想問題 #${String(k+1).padStart(3,'0')}`,cat:f[0],q:`【予想 ${k+1}・パターン${variant}】${f[1]}`,c:f[2],a:f[3],e:f[4],r:`関連：${f[5]}。本番で選択肢の言い換えに対応できるよう論点を反復。`});k++;}
-  return out;
+  const seen=new Set(out.map(x=>normalizeQuestion(x.q,x.c)));
+  const scenarios=['本社LANの更改','拠点追加','障害切り分け','クラウド接続','データセンター移行','ゼロトラスト導入','無線LAN更改','冗長化設計','監視強化','IPv6移行'];
+  const asks=['最も適切な説明','最初に確認すべき事項','設計上の目的','障害原因として考えやすいもの','採用すべき技術','誤解しやすい点','運用時の確認事項','セキュリティ上の要点'];
+  function addUnique(item){
+    const key=normalizeQuestion(item.q,item.c);
+    if(seen.has(key)) return false;
+    seen.add(key); out.push(item); return true;
+  }
+  // 過去問ベース150問：同じ論点でも状況・問い方を変え、完全重複を排除
+  let n=0,guard=0;
+  while(out.filter(x=>x.type==='past').length<150 && guard++<3000){
+    const f=facts[n%facts.length], y=years[n%years.length];
+    const sc=scenarios[Math.floor(n/facts.length)%scenarios.length];
+    const ask=asks[Math.floor(n/(facts.length*scenarios.length))%asks.length];
+    const item={type:'past',source:`${y} 午前II・過去問ベース #${String(n+1).padStart(3,'0')}`,cat:f[0],q:`${sc}を想定する。${f[1]}（観点：${ask}）`,c:rotateChoices(f[2],n),a:rotatedAnswer(f[3],f[2].length,n),e:f[4],r:`関連：${f[5]}。IPA公式過去問の頻出論点を学習用に再構成。`};
+    addUnique(item); n++;
+  }
+  // 予想350問：シナリオ×問い方×選択肢順を組み合わせて重複を抑制
+  let k=0; guard=0;
+  while(out.length<500 && guard++<10000){
+    const f=facts[(k*7+3)%facts.length];
+    const sc=scenarios[(k*3+Math.floor(k/facts.length))%scenarios.length];
+    const ask=asks[(k*5+Math.floor(k/scenarios.length))%asks.length];
+    const item={type:'pred',source:`予想問題 #${String(k+1).padStart(3,'0')}`,cat:f[0],q:`${sc}の担当者として判断する。${f[1]}（${ask}を問う）`,c:rotateChoices(f[2],k+2),a:rotatedAnswer(f[3],f[2].length,k+2),e:f[4],r:`関連：${f[5]}。同一文面の重複を除外し、状況と問い方を変えて反復できるようにした問題。`};
+    addUnique(item); k++;
+  }
+  return out.slice(0,500);
 }
+function normalizeQuestion(q,c){return (q+'|'+c.join('|')).replace(/【[^】]*】/g,'').replace(/\s+/g,'').toLowerCase();}
+function rotateChoices(arr,seed){const n=seed%arr.length;return arr.slice(n).concat(arr.slice(0,n));}
+function rotatedAnswer(ans,len,seed){const n=seed%len;return (ans-n+len)%len;}
 const questions=makeMorning();
 const afternoonThemes=[
 ['冗長化','Webシステムの冗長化','Web1で障害を検知したとき、ロードバランサが利用者影響を小さくするために行う制御を説明せよ。','ヘルスチェックでWeb1の障害を検知し、Web1を負荷分散対象から外して正常なWeb2へ通信を振り分ける。','「何を検知→どう制御→結果」を一続きで書く。'],
@@ -151,10 +192,11 @@ const afternoonThemes=[
 ];
 function makeAfternoon(){const out=[];for(let i=0;i<100;i++){const t=afternoonThemes[i%afternoonThemes.length];const past=i<30;out.push({type:past?'past':'pred',source:past?`${years[i%years.length]} 午後・過去問ベース #${i+1}`:`予想午後 #${i-29}`,cat:t[0],title:`${t[1]} ${i+1}`,q:t[2],answer:t[3],point:t[4]});}return out}
 const afternoonQuestions=makeAfternoon();
-let state=JSON.parse(localStorage.getItem('netspecState')||'{"learned":[],"answered":0,"correct":0,"weak":[]}');
+let state=JSON.parse(localStorage.getItem('netspecState')||'{"learned":[],"answered":0,"correct":0,"weak":[],"history":{}}');
+if(!state.history)state.history={};if(!state.weak)state.weak=[];if(!state.learned)state.learned=[];
 let quiz=[],qi=0,answered=false;
 function save(){localStorage.setItem('netspecState',JSON.stringify(state));updateStats()}
-function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===id));const md=document.getElementById('memorySheetDock');if(md)md.classList.toggle('show',id==='topic');if(id==='learn')renderTopics();if(id==='progress')renderProgress();if(id==='afternoon'&&!afQuiz.length){afQuiz=[...afternoonQuestions];renderAfternoon();}window.scrollTo({top:0,behavior:'smooth'})}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===id));const md=document.getElementById('memorySheetDock');if(md)md.classList.toggle('show',id==='topic');if(id==='learn')renderTopics();if(id==='progress')renderProgress();if(id==='questionList')renderQuestionList();if(id==='afternoon'&&!afQuiz.length){afQuiz=[...afternoonQuestions];renderAfternoon();}window.scrollTo({top:0,behavior:'smooth'})}
 function renderTopics(){const el=document.getElementById('topicList');el.innerHTML=topics.map(t=>`<div class="card topic" onclick="openTopic('${t.id}')"><div class="tag">${t.tag}</div><h3>${t.title}</h3><p>${t.summary}</p><div class="bar"><i style="width:${state.learned.includes(t.id)?100:0}%"></i></div></div>`).join('')}
 function openTopic(id){const t=topics.find(x=>x.id===id);const el=document.getElementById('topicContent');el.innerHTML=`<div class="memoryToolbar"><div class="memoryLegend"><b>暗記シート</b>：🟥 重要語句・数値 ／ 🟩 プロトコル・技術名 ／ ◧ 両方<br>文脈は残して、覚えたい単語だけ隠します。隠れた語句はタップで1個ずつ確認できます。</div></div>`+t.body+`<div class="btnRow" style="margin-top:24px"><button class="btn primary" onclick="markLearned('${id}')">${state.learned.includes(id)?'✓ 学習済み':'学習済みにする'}</button><button class="btn" onclick="startQuiz('category','${t.title}')">関連問題へ</button></div>`;showView('topic');prepareMemoryWords(id);setSheetMode(localStorage.getItem('netspecSheetMode')||'off',true)}
 
@@ -196,7 +238,11 @@ function revealAllMemory(){document.querySelectorAll('#topicContent .memoryWord'
 function markLearned(id){if(!state.learned.includes(id))state.learned.push(id);save();openTopic(id)}
 function startQuiz(mode,cat=''){if(mode==='past'){quiz=questions.filter(q=>q.type==='past').sort(()=>Math.random()-.5)}else if(mode==='pred'){quiz=questions.filter(q=>q.type==='pred').sort(()=>Math.random()-.5)}else if(mode==='mix'){quiz=[...questions].sort(()=>Math.random()-.5)}else if(mode==='weak'){quiz=questions.filter((_,i)=>state.weak.includes(i));if(!quiz.length){alert('まだ苦手問題はありません。まず通常問題を解いてみましょう。');return}}else if(mode==='daily'){quiz=[...questions].sort(()=>Math.random()-.5).slice(0,10)}else if(mode==='category'){quiz=questions.filter(q=>cat.includes(q.cat)||q.cat.includes(cat.split(' ')[0]));if(!quiz.length)quiz=[...questions].sort(()=>Math.random()-.5).slice(0,5)}else if(mode!=='past'&&mode!=='pred'&&mode!=='mix') quiz=[...questions].sort(()=>Math.random()-.5);qi=0;answered=false;showView('quiz');renderQuestion()}
 function renderQuestion(){if(qi>=quiz.length){document.querySelector('.quizBox .card').innerHTML=`<h2>演習完了 🎉</h2><p>お疲れさまでした。間違えた問題は「苦手だけ復習」からもう一度解けます。</p><button class="btn primary" onclick="location.reload()">トップへ戻る</button>`;return}const q=quiz[qi];document.getElementById('qCategory').textContent=(q.type==='past'?'🗂️ 過去問':'🔮 予想')+' ・ '+q.cat+' ・ '+q.source;document.getElementById('qCount').textContent=`${qi+1} / ${quiz.length}`;document.getElementById('qText').textContent=q.q;document.getElementById('choices').innerHTML=q.c.map((x,i)=>`<button class="choice" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${x}</button>`).join('');document.getElementById('explain').classList.add('hidden');document.getElementById('quizActions').innerHTML='';answered=false}
-function answer(i){if(answered)return;answered=true;const q=quiz[qi],btns=[...document.querySelectorAll('.choice')];btns[q.a].classList.add('correct');const originalIndex=questions.indexOf(q);state.answered++;if(i===q.a){state.correct++;state.weak=state.weak.filter(x=>x!==originalIndex)}else{btns[i].classList.add('wrong');if(!state.weak.includes(originalIndex))state.weak.push(originalIndex)}save();const ex=document.getElementById('explain');ex.innerHTML=`<h4>${i===q.a?'✅ 正解':'❌ 不正解'}</h4><p>${q.e}</p><div class="related">${q.r}</div>`;ex.classList.remove('hidden');document.getElementById('quizActions').innerHTML=`<button class="btn primary" onclick="qi++;renderQuestion()">次の問題 →</button>`}
+function questionIndex(q){return questions.indexOf(q)}
+function questionStatus(idx){const h=state.history?.[idx];if(!h)return 'unanswered';return h.lastCorrect?'correct':'wrong'}
+function answer(i){if(answered)return;answered=true;const q=quiz[qi],btns=[...document.querySelectorAll('.choice')];btns[q.a].classList.add('correct');const originalIndex=questionIndex(q);state.answered++;const isCorrect=i===q.a;if(isCorrect){state.correct++;state.weak=state.weak.filter(x=>x!==originalIndex)}else{btns[i].classList.add('wrong');if(!state.weak.includes(originalIndex))state.weak.push(originalIndex)}if(originalIndex>=0){const prev=state.history[originalIndex]||{attempts:0,correctCount:0};state.history[originalIndex]={attempts:(prev.attempts||0)+1,correctCount:(prev.correctCount||0)+(isCorrect?1:0),lastCorrect:isCorrect,lastChoice:i,updatedAt:Date.now()}}save();const ex=document.getElementById('explain');const optionRows=q.c.map((text,j)=>{const cls=j===q.a?'isCorrect':'isWrong';let reason;if(j===q.a){reason=`正解。${q.e}`}else{reason=`不正解。この選択肢「${text}」は、この問題で問われている「${q.c[q.a]}」の役割・条件とは一致しません。`;}return `<div class="${cls}"><b>${String.fromCharCode(65+j)}. ${text}</b><br>${reason}</div>`}).join('');ex.innerHTML=`<h4>${isCorrect?'✅ 正解':'❌ 不正解'}</h4><p>${q.e}</p><div class="related"><b>関連知識：</b> ${q.r}</div><div class="optionReview"><b>各選択肢の確認</b>${optionRows}</div>`;ex.classList.remove('hidden');document.getElementById('quizActions').innerHTML=`<button class="btn primary" onclick="qi++;renderQuestion()">次の問題 →</button><button class="btn" onclick="showView('questionList')">問題一覧</button>`}
+function renderQuestionList(){const body=document.getElementById('qListBody');if(!body)return;const term=(document.getElementById('qSearch')?.value||'').trim().toLowerCase(),type=document.getElementById('qTypeFilter')?.value||'all',status=document.getElementById('qStatusFilter')?.value||'all';let rows=questions.map((q,idx)=>({q,idx})).filter(({q,idx})=>{if(type!=='all'&&q.type!==type)return false;const st=questionStatus(idx);if(status==='correct'&&st!=='correct')return false;if(status==='wrong'&&st!=='wrong')return false;if(status==='unanswered'&&st!=='unanswered')return false;if(status==='weak'&&!state.weak.includes(idx))return false;if(term&&!(`${q.cat} ${q.q} ${q.source}`.toLowerCase().includes(term)))return false;return true});document.getElementById('qListSummary').textContent=`表示 ${rows.length} / ${questions.length}問　｜　前回正解 ${Object.values(state.history).filter(x=>x.lastCorrect).length}問　｜　前回不正解 ${Object.values(state.history).filter(x=>x&&!x.lastCorrect).length}問`;body.innerHTML=rows.map(({q,idx})=>{const h=state.history[idx],st=questionStatus(idx),badge=st==='correct'?'<span class="statusBadge ok">○ 正解</span>':st==='wrong'?'<span class="statusBadge ng">× 不正解</span>':'<span class="statusBadge none">— 未回答</span>';return `<tr><td>${idx+1}</td><td>${q.type==='past'?'🗂️ 過去問':'🔮 予想'}</td><td>${q.cat}</td><td>${q.q}</td><td>${badge}</td><td>${h?.attempts||0}</td><td><button class="miniBtn" onclick="startSingleQuestion(${idx})">解く</button></td></tr>`}).join('')}
+function startSingleQuestion(idx){quiz=[questions[idx]];qi=0;answered=false;showView('quiz');renderQuestion()}
 function toggleAfternoon(){document.getElementById('afAns').classList.toggle('hidden')}
 
 let afQuiz=[],afi=0;
@@ -204,8 +250,8 @@ function startAfternoon(mode='mix'){afQuiz=mode==='past'?afternoonQuestions.filt
 function renderAfternoon(){const q=afQuiz[afi]||afternoonQuestions[0];document.getElementById('afCategory').textContent=(q.type==='past'?'🗂️ 過去問ベース':'🔮 予想')+' ・ '+q.cat+' ・ '+q.source;document.getElementById('afCount').textContent=`${afi+1} / ${afQuiz.length||afternoonQuestions.length}`;document.getElementById('afTitle').textContent=q.title;document.getElementById('afQuestion').textContent=q.q;document.getElementById('afAnswer').classList.add('hidden');document.getElementById('afShowBtn').classList.remove('hidden');document.getElementById('afActions').innerHTML=''}
 function showAfternoonAnswer(){const q=afQuiz[afi]||afternoonQuestions[0];const a=document.getElementById('afAnswer');a.innerHTML=`<b>解答例：</b>${q.answer}<br><br><b>採点されやすい書き方：</b>${q.point}`;a.classList.remove('hidden');document.getElementById('afShowBtn').classList.add('hidden');document.getElementById('afActions').innerHTML=`<button class="btn primary" onclick="afi=(afi+1)%afQuiz.length;renderAfternoon()">次の問題 →</button>`}
 function updateStats(){document.getElementById('learnedStat').textContent=`${state.learned.length} / ${topics.length}`;document.getElementById('correctStat').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'0%';document.getElementById('weakStat').textContent=state.weak.length}
-function renderProgress(){document.getElementById('progressLearn').textContent=`${state.learned.length} / ${topics.length}`;document.getElementById('progressQuiz').textContent=state.answered;document.getElementById('progressRate').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'0%';document.getElementById('progressWeak').textContent=state.weak.length}
-function resetData(){if(confirm('学習進捗をすべてリセットしますか？')){state={learned:[],answered:0,correct:0,weak:[]};save();renderProgress()}}
+function renderProgress(){document.getElementById('progressLearn').textContent=`${state.learned.length} / ${topics.length}`;document.getElementById('progressQuiz').textContent=state.answered;document.getElementById('progressUnique').textContent=Object.keys(state.history||{}).length;document.getElementById('progressRate').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'0%';document.getElementById('progressWeak').textContent=state.weak.length}
+function resetData(){if(confirm('学習進捗をすべてリセットしますか？')){state={learned:[],answered:0,correct:0,weak:[],history:{}};save();renderProgress()}}
 renderTopics();updateStats();
 </script>
 </body>
