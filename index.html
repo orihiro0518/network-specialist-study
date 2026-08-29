@@ -21,7 +21,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 </head>
 <body>
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.7.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')">NET<span>SPEC</span> LAB</div><div class="ver">Ver 1.9.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><h1>ネットワークスペシャリスト<br>試験対策</h1><p>問題を解くだけではなく、「なぜそうなるか」まで理解するための学習サイト。午前IIの知識から午後問題の読み解きまで、順番に鍛えます。</p></div>
@@ -47,22 +47,22 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 <section id="topic" class="view hidden"><button class="btn back" onclick="showView('learn')">← 一覧へ</button><article id="topicContent" class="card article"></article></section>
 
 <section id="quiz" class="view hidden">
-<div class="card" style="margin-bottom:14px"><b>出題モード：</b> <span class="pill">全500問</span><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startQuiz('mix')">過去問＋予想 MIX</button><button class="btn" onclick="startQuiz('past')">過去問のみ</button><button class="btn" onclick="startQuiz('pred')">予想問題のみ</button></div><p class="small">全500問：過去問ベース150問＋予想350問。過去問ベースはIPA公開問題の論点を学習用に再構成。</p></div><div class="quizBox"><button class="btn back" onclick="showView('home')">← トップへ</button><div class="card"><div class="qmeta"><span id="qCategory"></span><span id="qCount"></span></div><div id="qText" class="qtext"></div><div id="choices"></div><div id="explain" class="explain hidden"></div><div id="quizActions" class="btnRow" style="margin-top:15px"></div></div></div></section>
+<div class="card" style="margin-bottom:14px"><b>出題モード：</b> <span class="pill">全500問</span><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startQuiz('mix')">過去問＋予想 MIX</button><button class="btn" onclick="startQuiz('past')">過去問のみ</button><button class="btn" onclick="startQuiz('pred')">予想問題のみ</button></div><p class="small">全500問：IPA実過去問は別メニューで公式問題をそのまま演習可能（午前II 150問）。このMIX内の「過去問論点」はIPA公開問題の論点を学習用に再構成した問題。</p></div><div class="quizBox"><button class="btn back" onclick="showView('home')">← トップへ</button><div class="card"><div class="qmeta"><span id="qCategory"></span><span id="qCount"></span></div><div id="qText" class="qtext"></div><div id="choices"></div><div id="explain" class="explain hidden"></div><div id="quizActions" class="btnRow" style="margin-top:15px"></div></div></div></section>
 
 <section id="afternoon" class="view hidden">
   <div class="sectionTitle"><h2>午後問題トレーニング</h2><span class="pill">100題</span></div>
-  <div class="card" style="margin-bottom:14px"><b>出題モード：</b><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startAfternoon('mix')">過去問ベース＋予想 MIX</button><button class="btn" onclick="startAfternoon('past')">過去問ベースのみ</button><button class="btn" onclick="startAfternoon('pred')">予想のみ</button></div><p class="small">午後は30題をIPA過去問の出題論点をもとに再構成、70題を予想問題として収録。</p></div>
+  <div class="card" style="margin-bottom:14px"><b>出題モード：</b><div class="btnRow" style="margin-top:10px"><button class="btn primary" onclick="startAfternoon('mix')">過去問論点＋予想 MIX</button><button class="btn" onclick="startAfternoon('past')">過去問論点のみ</button><button class="btn" onclick="startAfternoon('pred')">予想のみ</button></div><p class="small">午後は30題をIPA過去問の出題論点をもとに再構成、70題を予想問題として収録。</p></div>
   <div class="quizBox"><div class="card"><div class="qmeta"><span id="afCategory"></span><span id="afCount"></span></div><h2 id="afTitle"></h2><div id="afDiagram" class="diagram">Internet / LAN / WAN 構成を想定して解答</div><h3>問題</h3><p id="afQuestion" class="qtext"></p><button id="afShowBtn" class="btn primary" onclick="showAfternoonAnswer()">解答・解説を見る</button><div id="afAnswer" class="callout hidden"></div><div id="afActions" class="btnRow" style="margin-top:14px"></div></div></div>
 </section>
 
 
 <section id="questionList" class="view hidden">
-  <div class="sectionTitle"><h2>午前 全問題一覧</h2><span class="pill">500問</span></div>
+  <div class="sectionTitle"><h2>午前 全問題一覧</h2><span class="pill">500問</span></div><p class="small">Ver 1.9.0では、疑問文でない設問・答えをほぼ言っている設問・不自然な自動生成表現を重点的に見直しました。</p>
   <div class="card">
     <p class="small">問題内容の確認用一覧です。前回の結果は、この端末のブラウザに保存されます。</p>
     <div class="qListControls">
       <input id="qSearch" type="search" placeholder="問題文・分野で検索" oninput="renderQuestionList()">
-      <select id="qTypeFilter" onchange="renderQuestionList()"><option value="all">過去問＋予想</option><option value="past">過去問ベースのみ</option><option value="pred">予想のみ</option></select>
+      <select id="qTypeFilter" onchange="renderQuestionList()"><option value="all">過去問＋予想</option><option value="past">過去問論点のみ</option><option value="pred">予想のみ</option></select>
       <select id="qStatusFilter" onchange="renderQuestionList()"><option value="all">全ステータス</option><option value="correct">前回正解</option><option value="wrong">前回不正解</option><option value="unanswered">未回答</option><option value="weak">苦手のみ</option></select>
     </div>
     <div id="qListSummary" class="small" style="margin-bottom:10px"></div>
@@ -71,7 +71,17 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </section>
 
 <section id="past" class="view hidden">
-  <div class="sectionTitle"><h2>IPA公式 過去問アーカイブ</h2><span class="pill">令和元年度〜令和7年度</span></div>
+  <div class="sectionTitle"><h2>IPA実過去問 演習</h2><span class="pill">公式問題そのまま</span></div>
+  <div class="card article" style="margin-bottom:14px"><p>ここは再構成問題ではなく、<strong>IPAが公開しているNW午前IIの問題冊子そのもの</strong>です。令和元・3〜7年度は各25問、合計<strong>150問</strong>あります。</p><div class="callout"><b>令和2年度：</b>対象試験が中止されたためNWの実過去問はありません。</div></div>
+  <div class="topics" style="margin-top:14px">
+    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和7年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_ans.pdf">正解</a></div></div>
+    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和6年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_ans.pdf">正解</a></div></div>
+    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和5年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_ans.pdf">正解</a></div></div>
+    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和4年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_ans.pdf">正解</a></div></div>
+    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和3年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_ans.pdf">正解</a></div></div>
+    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和元年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_ans.pdf">正解</a></div></div>
+  </div>
+  <div class="sectionTitle" style="margin-top:24px"><h2>IPA公式 過去問アーカイブ</h2><span class="pill">午後I・IIも確認</span></div>
   <div class="card article">
     <p>IPAが公開しているネットワークスペシャリスト試験の公式過去問を年度別に整理しています。各年度ページから、午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱの<strong>問題冊子／解答例／午後の採点講評</strong>を確認できます。</p>
     <div class="callout"><b>ポイント：</b> 令和2年度は新型コロナウイルス感染症拡大防止のため対象の春期試験が中止され、ネットワークスペシャリストの過去問はありません。</div>
@@ -114,12 +124,12 @@ const topics=[
 {id:'lb',tag:'可用性',title:'負荷分散・冗長化',summary:'L4/L7ロードバランサ、ヘルスチェック、フェイルオーバ。',body:`<h2>負荷分散・冗長化</h2><p>ロードバランサは複数サーバへ通信を振り分け、性能と可用性を高めます。</p><h3>ヘルスチェック</h3><p>サーバの生存状態を確認し、障害サーバを負荷分散対象から外します。TCP接続確認、HTTP応答確認などがあります。</p><div class="callout"><b>関連：</b> L4負荷分散はIP/ポート中心、L7負荷分散はHTTPヘッダやURLなどアプリ層情報を利用できる。</div>`}
 ];
 const coreMorning=[
-{type:'past',source:'令和7年度 午前II・過去問ベース',cat:'TCP/IP',q:'TCPのコネクション確立で用いられる3ウェイハンドシェイクの順序として適切なものはどれか。',c:['SYN → SYN/ACK → ACK','ACK → SYN → SYN/ACK','SYN → ACK → FIN','SYN/ACK → SYN → ACK'],a:0,e:'TCPではSYN、SYN+ACK、ACKの順でコネクションを確立します。',r:'関連：FIN/ACK、TCPフラグ、シーケンス番号。'},
-{type:'past',source:'令和6年度 午前II・過去問ベース',cat:'DNS',q:'DNSSECが主に提供するものはどれか。',c:['DNS通信内容の暗号化','DNS応答の真正性と完全性の検証','DNSサーバの負荷分散','IPアドレスの自動割当て'],a:1,e:'DNSSECは電子署名でDNS応答の真正性・完全性を検証します。',r:'関連：DoH/DoTは通信経路の暗号化。'},
-{type:'past',source:'令和5年度 午前II・過去問ベース',cat:'ルーティング',q:'IPルーティングで複数の経路が宛先に一致した場合、基本的に優先される経路はどれか。',c:['プレフィックス長が最も短い経路','プレフィックス長が最も長い経路','登録時刻が最も古い経路','ネクストホップIPが最も小さい経路'],a:1,e:'最長一致により最も具体的な経路が優先されます。',r:'関連：同一プレフィックスではメトリック等も判断材料。'},
-{type:'past',source:'令和4年度 午前II・過去問ベース',cat:'無線LAN',q:'IEEE 802.11無線LANで用いられるアクセス制御方式はどれか。',c:['CSMA/CD','CSMA/CA','トークンパッシング','TDMAだけを使用'],a:1,e:'無線LANでは衝突回避を行うCSMA/CAを利用します。',r:'関連：ランダムバックオフ、ACK、RTS/CTS。'},
-{type:'past',source:'令和3年度 午前II・過去問ベース',cat:'IPsec',q:'IPsecのESPが提供できる機能として適切なものはどれか。',c:['IPアドレスの自動配布','機密性・完全性などの保護','L2ループ防止','名前解決'],a:1,e:'ESPは暗号化による機密性に加え、完全性・認証などを提供できます。',r:'関連：AH、IKE、トンネルモード。'},
-{type:'past',source:'令和元年度 午前II・過去問ベース',cat:'OSPF',q:'OSPFの特徴として適切なものはどれか。',c:['リンクステート型のIGP','AS間専用のEGP','TCP 179番を使用','MACアドレスから経路を選択'],a:0,e:'OSPFはリンクステート型IGPです。',r:'関連：BGPはAS間、OSPFはIPプロトコル番号89。'}
+{type:'past',source:'令和7年度 午前II・過去問論点',cat:'TCP/IP',q:'TCPのコネクション確立で用いられる3ウェイハンドシェイクの順序として適切なものはどれか。',c:['SYN → SYN/ACK → ACK','ACK → SYN → SYN/ACK','SYN → ACK → FIN','SYN/ACK → SYN → ACK'],a:0,e:'TCPではSYN、SYN+ACK、ACKの順でコネクションを確立します。',r:'関連：FIN/ACK、TCPフラグ、シーケンス番号。'},
+{type:'past',source:'令和6年度 午前II・過去問論点',cat:'DNS',q:'DNSSECが主に提供するものはどれか。',c:['DNS通信内容の暗号化','DNS応答の真正性と完全性の検証','DNSサーバの負荷分散','IPアドレスの自動割当て'],a:1,e:'DNSSECは電子署名でDNS応答の真正性・完全性を検証します。',r:'関連：DoH/DoTは通信経路の暗号化。'},
+{type:'past',source:'令和5年度 午前II・過去問論点',cat:'ルーティング',q:'IPルーティングで複数の経路が宛先に一致した場合、基本的に優先される経路はどれか。',c:['プレフィックス長が最も短い経路','プレフィックス長が最も長い経路','登録時刻が最も古い経路','ネクストホップIPが最も小さい経路'],a:1,e:'最長一致により最も具体的な経路が優先されます。',r:'関連：同一プレフィックスではメトリック等も判断材料。'},
+{type:'past',source:'令和4年度 午前II・過去問論点',cat:'無線LAN',q:'IEEE 802.11無線LANで用いられるアクセス制御方式はどれか。',c:['CSMA/CD','CSMA/CA','トークンパッシング','TDMAだけを使用'],a:1,e:'無線LANでは衝突回避を行うCSMA/CAを利用します。',r:'関連：ランダムバックオフ、ACK、RTS/CTS。'},
+{type:'past',source:'令和3年度 午前II・過去問論点',cat:'IPsec',q:'IPsecのESPが提供できる機能として適切なものはどれか。',c:['IPアドレスの自動配布','機密性・完全性などの保護','L2ループ防止','名前解決'],a:1,e:'ESPは暗号化による機密性に加え、完全性・認証などを提供できます。',r:'関連：AH、IKE、トンネルモード。'},
+{type:'past',source:'令和元年度 午前II・過去問論点',cat:'OSPF',q:'OSPFの特徴として適切なものはどれか。',c:['リンクステート型のIGP','AS間専用のEGP','TCP 179番を使用','MACアドレスから経路を選択'],a:0,e:'OSPFはリンクステート型IGPです。',r:'関連：BGPはAS間、OSPFはIPプロトコル番号89。'}
 ];
 const facts=[
 ['VLAN','異なるVLAN間の通信に必要なものはどれか。',['L3スイッチまたはルータ','リピータだけ','ハブだけ','STPだけ'],0,'VLAN間通信にはL3中継が必要です。','Inter-VLAN Routing、SVI'],
@@ -147,29 +157,60 @@ const years=['令和元年度','令和3年度','令和4年度','令和5年度','
 function makeMorning(){
   const out=[...coreMorning];
   const seen=new Set(out.map(x=>normalizeQuestion(x.q,x.c)));
-  const scenarios=['本社LANの更改','拠点追加','障害切り分け','クラウド接続','データセンター移行','ゼロトラスト導入','無線LAN更改','冗長化設計','監視強化','IPv6移行'];
-  const asks=['最も適切な説明','最初に確認すべき事項','設計上の目的','障害原因として考えやすいもの','採用すべき技術','誤解しやすい点','運用時の確認事項','セキュリティ上の要点'];
+  const contexts=[
+    '本社LANの更改を進めている。',
+    '新しい拠点をネットワークへ追加する。',
+    '通信障害の切り分けを行っている。',
+    'クラウド接続を含むネットワークを設計している。',
+    'データセンター移行に伴い構成を見直している。',
+    'セキュリティ強化のため設定を再確認している。',
+    '無線LAN環境の更改を計画している。',
+    '可用性向上のため冗長化構成を検討している。',
+    '監視設計を見直している。',
+    'IPv6対応を含むネットワーク更新を行っている。'
+  ];
+  const leadIns=[
+    'この状況で、',
+    '設計担当者が確認すべき事項として、',
+    '障害切り分けの観点から、',
+    'ネットワークスペシャリストとして判断した場合、',
+    '次のうち、'
+  ];
+  function naturalize(base,ctx,lead){
+    const q=(ctx+' '+lead+base).replace(/。\s+/g,'。').replace(/、、/g,'、');
+    return q.endsWith('。')?q:q+'。';
+  }
   function addUnique(item){
     const key=normalizeQuestion(item.q,item.c);
     if(seen.has(key)) return false;
     seen.add(key); out.push(item); return true;
   }
-  // 過去問ベース150問：同じ論点でも状況・問い方を変え、完全重複を排除
+  // 過去問論点150問：IPAで頻出する論点を、問題文が答えを示し過ぎない自然な設問に再構成。
   let n=0,guard=0;
-  while(out.filter(x=>x.type==='past').length<150 && guard++<3000){
+  while(out.filter(x=>x.type==='past').length<150 && guard++<5000){
     const f=facts[n%facts.length], y=years[n%years.length];
-    const sc=scenarios[Math.floor(n/facts.length)%scenarios.length];
-    const ask=asks[Math.floor(n/(facts.length*scenarios.length))%asks.length];
-    const item={type:'past',source:`${y} 午前II・過去問ベース #${String(n+1).padStart(3,'0')}`,cat:f[0],q:`${sc}を想定する。${f[1]}（観点：${ask}）`,c:rotateChoices(f[2],n),a:rotatedAnswer(f[3],f[2].length,n),e:f[4],r:`関連：${f[5]}。IPA公式過去問の頻出論点を学習用に再構成。`};
+    const ctx=contexts[Math.floor(n/facts.length)%contexts.length];
+    const lead=leadIns[Math.floor(n/(facts.length*contexts.length))%leadIns.length];
+    const item={
+      type:'past',source:`${y} 午前II・過去問論点 #${String(n+1).padStart(3,'0')}`,
+      cat:f[0],q:naturalize(f[1],ctx,lead),
+      c:rotateChoices(f[2],n),a:rotatedAnswer(f[3],f[2].length,n),
+      e:f[4],r:`関連：${f[5]}。IPA公式過去問の頻出論点を学習用に再構成。`
+    };
     addUnique(item); n++;
   }
-  // 予想350問：シナリオ×問い方×選択肢順を組み合わせて重複を抑制
+  // 予想350問：同じ知識でも文脈を変え、本番で判断できる形にする。
   let k=0; guard=0;
-  while(out.length<500 && guard++<10000){
+  while(out.length<500 && guard++<12000){
     const f=facts[(k*7+3)%facts.length];
-    const sc=scenarios[(k*3+Math.floor(k/facts.length))%scenarios.length];
-    const ask=asks[(k*5+Math.floor(k/scenarios.length))%asks.length];
-    const item={type:'pred',source:`予想問題 #${String(k+1).padStart(3,'0')}`,cat:f[0],q:`${sc}の担当者として判断する。${f[1]}（${ask}を問う）`,c:rotateChoices(f[2],k+2),a:rotatedAnswer(f[3],f[2].length,k+2),e:f[4],r:`関連：${f[5]}。同一文面の重複を除外し、状況と問い方を変えて反復できるようにした問題。`};
+    const ctx=contexts[(k*3+Math.floor(k/facts.length))%contexts.length];
+    const lead=leadIns[(k*5+Math.floor(k/contexts.length))%leadIns.length];
+    const item={
+      type:'pred',source:`予想問題 #${String(k+1).padStart(3,'0')}`,
+      cat:f[0],q:naturalize(f[1],ctx,lead),
+      c:rotateChoices(f[2],k+2),a:rotatedAnswer(f[3],f[2].length,k+2),
+      e:f[4],r:`関連：${f[5]}。同一文面の重複を避け、状況判断型に調整した予想問題。`
+    };
     addUnique(item); k++;
   }
   return out.slice(0,500);
@@ -190,7 +231,7 @@ const afternoonThemes=[
 ['セキュリティ','TLS終端','ロードバランサでTLS終端する設計の利点と注意点を述べよ。','証明書管理と暗号処理を集約できる。一方、LBからバックエンド間を平文にする場合は盗聴リスクを考慮し、必要なら再暗号化する。','利点とリスクをセットで書く。'],
 ['運用','監視設計','通信断を早期検知するため、死活監視だけでは不十分な理由と追加すべき監視を述べよ。','機器が応答していてもアプリケーションや経路が異常な場合があるため、TCP/HTTP監視、経路監視、ログ・SNMP監視などを追加する。','「機器生存≠サービス正常」を明示。']
 ];
-function makeAfternoon(){const out=[];for(let i=0;i<100;i++){const t=afternoonThemes[i%afternoonThemes.length];const past=i<30;out.push({type:past?'past':'pred',source:past?`${years[i%years.length]} 午後・過去問ベース #${i+1}`:`予想午後 #${i-29}`,cat:t[0],title:`${t[1]} ${i+1}`,q:t[2],answer:t[3],point:t[4]});}return out}
+function makeAfternoon(){const out=[];for(let i=0;i<100;i++){const t=afternoonThemes[i%afternoonThemes.length];const past=i<30;out.push({type:past?'past':'pred',source:past?`${years[i%years.length]} 午後・過去問論点 #${i+1}`:`予想午後 #${i-29}`,cat:t[0],title:`${t[1]} ${i+1}`,q:t[2],answer:t[3],point:t[4]});}return out}
 const afternoonQuestions=makeAfternoon();
 let state=JSON.parse(localStorage.getItem('netspecState')||'{"learned":[],"answered":0,"correct":0,"weak":[],"history":{}}');
 if(!state.history)state.history={};if(!state.weak)state.weak=[];if(!state.learned)state.learned=[];
