@@ -26,6 +26,13 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 .memoryToolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 20px;padding:13px 14px;background:#0a1728;border:1px solid var(--line);border-radius:16px}.memoryWord{border-radius:5px;padding:0 3px;transition:.15s}.memoryWord.revealed{color:inherit!important;background:rgba(76,117,158,.28)!important;box-shadow:0 0 0 1px #3f628b inset}.memorySheetDock{position:fixed;right:14px;bottom:82px;z-index:40;display:none;gap:6px;align-items:center;padding:8px;background:rgba(8,18,31,.96);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px)}.memorySheetDock.show{display:flex}.sheetBtn{border:1px solid var(--line);background:#12243b;color:#eaf3ff;border-radius:11px;padding:9px 10px;font-size:12px;font-weight:700;cursor:pointer}.sheetBtn.active.red{background:#e44b60;border-color:#ff8293}.sheetBtn.active.green{background:#2f9f70;border-color:#74d5aa}.sheetBtn.active.both{background:linear-gradient(135deg,#e44b60 0 48%,#2f9f70 52% 100%);border-color:#b7cbdc}.sheetBtn.reveal{background:#213753}.article.sheet-red .memoryWord[data-sheet='red'],.article.sheet-both .memoryWord[data-sheet='red']{color:transparent!important;background:#e44b60;text-shadow:none;cursor:pointer;user-select:none}.article.sheet-green .memoryWord[data-sheet='green'],.article.sheet-both .memoryWord[data-sheet='green']{color:transparent!important;background:#2f9f70;text-shadow:none;cursor:pointer;user-select:none}.article.sheet-red .memoryWord[data-sheet='red'].revealed,.article.sheet-green .memoryWord[data-sheet='green'].revealed,.article.sheet-both .memoryWord.revealed{color:inherit!important;background:rgba(76,117,158,.28)!important}.memoryLegend{font-size:12px;color:var(--muted);line-height:1.7}.memoryLegend b{color:#fff}.memoryBadge{font-size:11px;padding:4px 7px;border-radius:999px;background:#3b1d27;color:#ffd0d8}@media(max-width:600px){.memorySheetDock{right:8px;left:8px;bottom:76px;justify-content:center}.sheetBtn{flex:1;padding:9px 5px}.memoryLegend{font-size:11px}}
 
 .qListControls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.qListControls input,.qListControls select{background:#0d1d31;color:#fff;border:1px solid var(--line);border-radius:12px;padding:11px}.qTableWrap{overflow:auto;border:1px solid var(--line);border-radius:16px}.qTable{width:100%;border-collapse:collapse;min-width:760px;background:#0b1829}.qTable th,.qTable td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}.qTable th{position:sticky;top:0;background:#12243b;z-index:1}.statusBadge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800;white-space:nowrap}.statusBadge.ok{background:#163c33;color:#bff5df}.statusBadge.ng{background:#3b1d27;color:#ffd1d9}.statusBadge.none{background:#17283d;color:#9fb2cc}.miniBtn{border:1px solid var(--line);background:#152a44;color:#fff;padding:7px 9px;border-radius:9px;cursor:pointer;font-size:12px}.optionReview{margin-top:12px;display:grid;gap:8px}.optionReview div{padding:10px 12px;border-radius:12px;background:#0a1728;border:1px solid var(--line);font-size:13px;line-height:1.6}.optionReview .isCorrect{border-color:#2e8569;background:#103027}.optionReview .isWrong{border-color:#57303a}.questionJump{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.questionJump input{width:90px;background:#0d1d31;color:#fff;border:1px solid var(--line);border-radius:10px;padding:9px}
+
+.officialPastCard{border-color:rgba(255,190,80,.38)!important;background:linear-gradient(180deg,rgba(255,176,55,.10),rgba(12,25,42,.94))!important}
+.officialNotice{padding:12px 14px;border:1px solid rgba(255,190,80,.35);border-radius:12px;background:rgba(255,176,55,.07);font-size:12px;line-height:1.7;margin-bottom:14px}
+.officialTabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.officialTabs [data-official-year]{flex:1 1 150px}
+.officialFrame{width:100%;height:78vh;min-height:620px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.officialSource{font-size:11px;color:var(--muted);line-height:1.7;margin-top:12px}
+@media(max-width:600px){.officialFrame{height:72vh;min-height:520px}}
 .featuredPractice{border-color:#61dafb!important;background:linear-gradient(180deg,rgba(97,218,251,.12),rgba(12,25,42,.94))!important}
 .practiceSetup{max-width:820px;margin:auto}.practiceStep{margin-top:20px}.practiceLabel{font-size:13px;font-weight:900;margin-bottom:10px}
 .practiceCountGrid,.practiceTypeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.practiceCount,.practiceType{display:block;cursor:pointer}
@@ -49,7 +56,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 </head>
 <body>
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.0.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.2.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト<br>試験対策</h1><p>午前II風500問・午後問題100題・基礎学習を1つに。問題を解くだけでなく、「なぜそうなるか」まで理解してネスペ合格を目指します。</p></div>
@@ -60,7 +67,8 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
     <button class="card bigbtn" onclick="showView('afternoon')"><div class="icon">🧠</div><h3>午後問題対策</h3><p>構成図・障害原因・設計意図を読み取る100題の記述演習。</p></button>
     <button class="card bigbtn" onclick="startQuiz('weak')"><div class="icon">🎯</div><h3>苦手だけ復習</h3><p>間違えた問題だけ再出題。正解できるまで重点的に復習。</p></button>
     <button class="card bigbtn" onclick="showView('questionList')"><div class="icon">📋</div><h3>全問題一覧</h3><p>午前500問を一覧表示。問題文をクリックしてその問題から演習できます。</p></button>
-    <button class="card bigbtn" onclick="showView('past')"><div class="icon">🗂️</div><h3>IPA公式 過去問</h3><p>令和元年度〜令和7年度を年度別に整理。問題・解答例・採点講評へすぐアクセス。</p></button>
+    <button class="card bigbtn officialPastCard" onclick="showView('officialPast')"><div class="icon">🏛️</div><h3>IPA公式過去問をそのまま解く</h3><p>令和元年度〜令和7年度のIPA公式午前Ⅱを年度別にそのまま演習。全6回・計150問。</p></button>
+    <button class="card bigbtn" onclick="showView('past')"><div class="icon">🗂️</div><h3>IPA公式 過去問資料</h3><p>令和元年度〜令和7年度を年度別に整理。問題・解答例・採点講評へすぐアクセス。</p></button>
   </div>
   <div class="sectionTitle"><h2>今日のおすすめ</h2><span class="pill">10〜20分</span></div>
   <div class="card"><h3>① VLAN → ② STP → ③ OSPF</h3><p>午後問題でも頻出のL2/L3境界をまとめて理解するルート。まずはこの3テーマから進めるのがおすすめ。</p><div class="btnRow" style="margin-top:14px"><button class="btn primary" onclick="openTopic('vlan')">VLANから始める</button><button class="btn" onclick="openPracticeSetup(10)">今日の10問</button></div></div>
@@ -122,6 +130,48 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
   </div>
 </section>
 
+
+
+<section id="officialPast" class="view hidden">
+  <div class="sectionTitle"><h2>🏛️ IPA公式過去問をそのまま解く</h2><span class="pill">午前Ⅱ 全150問</span></div>
+  <div class="card">
+    <div class="officialNotice">
+      <b>令和元年度〜令和7年度のネットワークスペシャリスト 午前Ⅱ</b><br>
+      IPA公式の問題冊子を年度別にそのまま表示します。各年度25問、全6回で計150問です。
+      <br><span style="color:var(--muted)">※令和2年度はネットワークスペシャリスト試験の実施がないため、令和元・3・4・5・6・7年度を収録しています。</span>
+    </div>
+
+    <div class="practiceLabel">① 年度を選択</div>
+    <div class="officialTabs" id="officialYearTabs">
+      <button class="btn" data-official-year="r1" onclick="selectOfficialYear('r1')">令和元年度 秋期</button>
+<button class="btn" data-official-year="r3" onclick="selectOfficialYear('r3')">令和3年度 春期</button>
+<button class="btn" data-official-year="r4" onclick="selectOfficialYear('r4')">令和4年度 春期</button>
+<button class="btn" data-official-year="r5" onclick="selectOfficialYear('r5')">令和5年度 春期</button>
+<button class="btn" data-official-year="r6" onclick="selectOfficialYear('r6')">令和6年度 春期</button>
+<button class="btn primary" data-official-year="r7" onclick="selectOfficialYear('r7')">令和7年度 春期</button>
+    </div>
+
+    <div class="practiceLabel" style="margin-top:16px">② 問題 / 解答</div>
+    <div class="officialTabs">
+      <button id="officialQuestionBtn" class="btn primary" onclick="showOfficialPdf('q')">📝 問題冊子（25問）</button>
+      <button id="officialAnswerBtn" class="btn" onclick="showOfficialPdf('a')">✅ 解答例</button>
+      <button class="btn" onclick="showView('past')">📚 午後問題・他資料</button>
+      <button class="btn" onclick="showView('home')">← トップ</button>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin:12px 0 8px">
+      <b id="officialYearTitle">令和7年度 春期 午前Ⅱ</b>
+      <span class="pill">25問</span>
+    </div>
+    <iframe id="officialPastFrame" class="officialFrame"
+      src="https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf"
+      title="ネットワークスペシャリスト 午前II 公式過去問"></iframe>
+    <p id="officialSource" class="officialSource">
+      出典：令和7年度 春期 ネットワークスペシャリスト試験 午前Ⅱ（独立行政法人情報処理推進機構）。
+      IPA公開PDFを改変せず表示しています。
+    </p>
+  </div>
+</section>
 <section id="past" class="view hidden">
   <div class="sectionTitle"><h2>IPA実過去問 演習</h2><span class="pill">公式問題そのまま</span></div>
   <div class="card article" style="margin-bottom:14px"><p>ここは再構成問題ではなく、<strong>IPAが公開しているNW午前IIの問題冊子そのもの</strong>です。令和元・3〜7年度は各25問、合計<strong>150問</strong>あります。</p><div class="callout"><b>令和2年度：</b>対象試験が中止されたためNWの実過去問はありません。</div></div>
@@ -156,7 +206,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </section>
 </main>
 
-<nav class="nav"><button data-v="home" class="active" onclick="showView('home')">🏠<br>ホーム</button><button data-v="learn" onclick="showView('learn')">📘<br>学習</button><button data-v="practiceSetup" onclick="openPracticeSetup()">✏️<br>問題</button><button data-v="past" onclick="showView('past')">🗂️<br>過去問</button><button data-v="progress" onclick="showView('progress')">📊<br>進捗</button></nav>
+<nav class="nav"><button data-v="home" class="active" onclick="showView('home')">🏠<br>ホーム</button><button data-v="learn" onclick="showView('learn')">📘<br>学習</button><button data-v="practiceSetup" onclick="openPracticeSetup()">✏️<br>問題</button><button data-v="officialPast" onclick="showView('officialPast')">🏛️<br>公式問</button><button data-v="progress" onclick="showView('progress')">📊<br>進捗</button></nav>
 <div id="memorySheetDock" class="memorySheetDock"><button id="sheetRedBtn" class="sheetBtn red" onclick="setSheetMode('red')">🟥 赤</button><button id="sheetGreenBtn" class="sheetBtn green" onclick="setSheetMode('green')">🟩 緑</button><button id="sheetBothBtn" class="sheetBtn both" onclick="setSheetMode('both')">◧ 両方</button><button class="sheetBtn reveal" onclick="revealAllMemory()">👁 表示</button></div>
 <script>
 const topics=[
@@ -357,6 +407,28 @@ function startPractice(){
  let pool=questions.filter(q=>cats.includes(q.cat));if(type==='past')pool=pool.filter(q=>q.type==='past');if(type==='pred')pool=pool.filter(q=>q.type==='pred');
  if(!pool.length){alert('選択条件に該当する問題がありません。');return}
  pool=[...pool].sort(()=>Math.random()-.5);quiz=count==='all'?pool:pool.slice(0,Math.min(Number(count),pool.length));qi=0;answered=false;showView('quiz');renderQuestion();
+}
+
+
+const officialPastYears={"r1": {"label": "令和元年度 秋期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_ans.pdf"}, "r3": {"label": "令和3年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_ans.pdf"}, "r4": {"label": "令和4年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_ans.pdf"}, "r5": {"label": "令和5年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_ans.pdf"}, "r6": {"label": "令和6年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_ans.pdf"}, "r7": {"label": "令和7年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_ans.pdf"}};
+let officialPastYear='r7';
+let officialPastMode='q';
+function selectOfficialYear(year){
+ officialPastYear=year;
+ document.querySelectorAll('[data-official-year]').forEach(b=>b.classList.toggle('primary',b.dataset.officialYear===year));
+ showOfficialPdf('q');
+}
+function showOfficialPdf(type){
+ officialPastMode=type;
+ const d=officialPastYears[officialPastYear];
+ const frame=document.getElementById('officialPastFrame');
+ if(frame)frame.src=type==='a'?d.a:d.q;
+ const title=document.getElementById('officialYearTitle');
+ if(title)title.textContent=d.label+' 午前Ⅱ';
+ const source=document.getElementById('officialSource');
+ if(source)source.textContent=`出典：${d.label} ネットワークスペシャリスト試験 午前Ⅱ（独立行政法人情報処理推進機構）。IPA公開PDFを改変せず表示しています。`;
+ document.getElementById('officialQuestionBtn')?.classList.toggle('primary',type==='q');
+ document.getElementById('officialAnswerBtn')?.classList.toggle('primary',type==='a');
 }
 
 function markLearned(id){if(!state.learned.includes(id))state.learned.push(id);save();openTopic(id)}
