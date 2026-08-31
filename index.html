@@ -56,7 +56,25 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 </head>
 <body>
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.2.0</div></div></div>
+<a href="https://orivector.jp/" class="orivector-home-link" aria-label="ORIVECTORトップへ">← ORIVECTORトップ</a>
+<style>
+.orivector-home-link{
+  position:fixed; top:12px; left:12px; z-index:9999;
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:9px 13px; border-radius:999px;
+  background:rgba(15,23,42,.90); color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  text-decoration:none; font-weight:800; font-size:13px;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  backdrop-filter:blur(10px);
+}
+.orivector-home-link:hover{transform:translateY(-1px)}
+@media(max-width:640px){
+  .orivector-home-link{top:8px;left:8px;padding:8px 11px;font-size:12px}
+}
+</style>
+
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.4.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト<br>試験対策</h1><p>午前II風500問・午後問題100題・基礎学習を1つに。問題を解くだけでなく、「なぜそうなるか」まで理解してネスペ合格を目指します。</p></div>
@@ -450,5 +468,60 @@ function renderProgress(){document.getElementById('progressLearn').textContent=`
 function resetData(){if(confirm('学習進捗をすべてリセットしますか？')){state={learned:[],answered:0,correct:0,weak:[],history:{}};save();renderProgress()}}
 renderTopics();updateStats();
 </script>
+
+<style>
+#officialInteractive{max-width:900px;margin:28px auto;padding:18px}
+.oi-card{background:var(--card,#fff);border:1px solid rgba(128,128,128,.22);border-radius:18px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.oi-years,.oi-answers{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+.oi-years button,.oi-answers button,#oiNext{border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}
+.oi-years button{background:#e8eefc;color:#16213e}.oi-years button.active{background:#2563eb;color:#fff}
+.oi-answers button{min-width:62px;background:#eef2f7;color:#111827;font-size:18px}
+.oi-answers button.correct{background:#dcfce7;color:#166534}.oi-answers button.wrong{background:#fee2e2;color:#991b1b}
+#oiNext{background:#2563eb;color:#fff;width:100%;margin-top:12px}
+.oi-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.oi-source{font-size:13px;opacity:.75;line-height:1.6}.oi-result{font-weight:900;margin:10px 0;min-height:26px}
+.oi-progress{height:8px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin:12px 0}.oi-progress>div{height:100%;background:#2563eb}
+</style>
+<section id="officialInteractive">
+<div class="oi-card">
+  <div class="oi-head"><div><b>🏛️ IPA公式 午前Ⅱ・解答トレーニング</b><div style="font-size:13px;opacity:.72">公式問題冊子を見ながら、サイト上でア・イ・ウ・エを選択して即判定</div></div><a href="https://orivector.jp/">← ORIVECTORトップ</a></div>
+  <div class="oi-years" id="oiYears"></div>
+  <div class="oi-progress"><div id="oiBar"></div></div>
+  <h3 id="oiTitle"></h3>
+  <p>問題文・選択肢は下の「IPA公式問題を開く」から確認してください。問題番号を合わせて解答します。</p>
+  <p><a id="oiPdf" target="_blank" rel="noopener">📄 IPA公式問題を開く</a></p>
+  <div class="oi-answers" id="oiAnswers"></div>
+  <div class="oi-result" id="oiResult"></div>
+  <button id="oiNext">次の問題へ →</button>
+  <p class="oi-source">出典：IPA（情報処理推進機構）ネットワークスペシャリスト試験 午前Ⅱ。問題本文は本ページへ複製せず、IPA公式問題冊子を参照する方式です。</p>
+</div></section>
+<script>
+const OI_KEYS={"R1": ["ア", "イ", "イ", "エ", "ア", "ア", "エ", "イ", "イ", "エ", "ウ", "イ", "ウ", "エ", "ウ", "エ", "ウ", "ア", "ウ", "ア", "ア", "エ", "ア", "ウ", "イ"], "R3": ["エ", "イ", "エ", "ウ", "ア", "ア", "ウ", "ア", "イ", "ウ", "エ", "ウ", "エ", "イ", "ウ", "イ", "イ", "ア", "ア", "イ", "イ", "イ", "ウ", "イ", "ア"], "R4": ["エ", "ア", "ア", "エ", "ア", "イ", "イ", "イ", "ウ", "ウ", "ウ", "イ", "イ", "イ", "イ", "エ", "イ", "ウ", "イ", "エ", "ア", "エ", "ア", "ア", "エ"], "R5": ["ウ", "ウ", "ア", "ア", "ウ", "エ", "イ", "エ", "ウ", "ウ", "イ", "ウ", "イ", "エ", "ウ", "イ", "ア", "エ", "ウ", "イ", "ア", "エ", "エ", "イ", "エ"], "R6": ["ウ", "ア", "イ", "イ", "エ", "イ", "エ", "エ", "ア", "エ", "ウ", "イ", "イ", "イ", "イ", "ア", "エ", "イ", "エ", "エ", "ア", "ア", "ア", "ア", "エ"], "R7": ["エ", "イ", "エ", "イ", "エ", "イ", "ア", "ウ", "エ", "エ", "ア", "ア", "ウ", "ウ", "ウ", "ウ", "イ", "ウ", "エ", "イ", "イ", "イ", "ア", "エ", "エ"]};
+const OI_LABELS={"R1": "令和元年度", "R3": "令和3年度", "R4": "令和4年度", "R5": "令和5年度", "R6": "令和6年度", "R7": "令和7年度"};
+const OI_PDFS={"R1": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_qs.pdf", "R3": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_qs.pdf", "R4": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_qs.pdf", "R5": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_qs.pdf", "R6": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_qs.pdf", "R7": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf"};
+let oiYear="R7",oiQ=0,oiLocked=false;
+function oiRenderYears(){
+ const box=document.getElementById("oiYears"); box.innerHTML="";
+ Object.keys(OI_KEYS).forEach(y=>{const b=document.createElement("button");b.textContent=OI_LABELS[y];b.className=y===oiYear?"active":"";b.onclick=()=>{oiYear=y;oiQ=0;oiLocked=false;oiRender()};box.appendChild(b)})
+}
+function oiRender(){
+ oiRenderYears(); oiLocked=false;
+ document.getElementById("oiTitle").textContent=`${OI_LABELS[oiYear]} 午前Ⅱ　問${oiQ+1} / 25`;
+ document.getElementById("oiPdf").href=OI_PDFS[oiYear];
+ document.getElementById("oiBar").style.width=((oiQ+1)/25*100)+"%";
+ document.getElementById("oiResult").textContent="";
+ const box=document.getElementById("oiAnswers");box.innerHTML="";
+ ["ア","イ","ウ","エ"].forEach(a=>{const b=document.createElement("button");b.textContent=a;b.onclick=()=>oiAnswer(a,b);box.appendChild(b)});
+ document.getElementById("oiNext").textContent=oiQ===24?"この年度を最初から":"次の問題へ →";
+}
+function oiAnswer(a,b){
+ if(oiLocked)return;oiLocked=true;const correct=OI_KEYS[oiYear][oiQ];
+ [...document.getElementById("oiAnswers").children].forEach(x=>{if(x.textContent===correct)x.classList.add("correct")});
+ if(a===correct){document.getElementById("oiResult").textContent="⭕ 正解！"}else{b.classList.add("wrong");document.getElementById("oiResult").textContent=`❌ 不正解　正解は「${correct}」`;}
+}
+document.getElementById("oiNext").onclick=()=>{oiQ=oiQ===24?0:oiQ+1;oiRender()};
+oiRender();
+</script>
+
 </body>
 </html>
