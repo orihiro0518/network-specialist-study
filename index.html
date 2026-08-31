@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>ネットワークスペシャリスト（ネスペ）無料問題集500問・午後対策｜ORIVECTOR</title>
-<meta name="description" content="ネットワークスペシャリスト試験（ネスペ）の無料学習サイト。午前II風500問、午後問題100題、基礎学習、苦手復習、IPA公式過去問リンクを収録。">
+<meta name="description" content="ネットワークスペシャリスト試験（ネスペ）の無料学習サイト。午前II風500問、午後問題100題、基礎学習、苦手復習、IPA公式過去問150問をサイト内演習。">
 <link rel="canonical" href="https://orivector.jp/network-specialist-study/">
 <meta name="robots" content="index,follow">
 <meta property="og:title" content="ネットワークスペシャリスト（ネスペ）無料問題集500問・午後対策｜ORIVECTOR">
@@ -54,27 +54,37 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 
 @media(max-width:600px){.progressRow{grid-template-columns:1fr}.hero{padding-top:20px}.card{border-radius:17px}.nav{bottom:8px}.article h2{font-size:24px}}
 </style>
-</head>
-<body>
-<a href="https://orivector.jp/" class="orivector-home-link" aria-label="ORIVECTORトップへ">← ORIVECTORトップ</a>
+
 <style>
-.orivector-home-link{
-  position:fixed; top:12px; left:12px; z-index:9999;
-  display:inline-flex; align-items:center; gap:.35rem;
-  padding:9px 13px; border-radius:999px;
-  background:rgba(15,23,42,.90); color:#fff;
-  border:1px solid rgba(255,255,255,.18);
-  text-decoration:none; font-weight:800; font-size:13px;
-  box-shadow:0 8px 24px rgba(0,0,0,.18);
-  backdrop-filter:blur(10px);
-}
-.orivector-home-link:hover{transform:translateY(-1px)}
-@media(max-width:640px){
-  .orivector-home-link{top:8px;left:8px;padding:8px 11px;font-size:12px}
-}
+.officialPdfShell{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.officialChoiceGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.officialChoiceGrid .choice{min-height:62px;font-size:20px;font-weight:900;text-align:center}
+.officialChoiceGrid .choice.correct{border-color:var(--ok)!important;background:rgba(68,212,155,.16)!important}
+.officialChoiceGrid .choice.wrong{border-color:var(--ng)!important;background:rgba(255,107,129,.16)!important}
+.officialChoiceGrid .choice:disabled{cursor:default}
+@media(max-width:560px){.officialChoiceGrid{grid-template-columns:1fr 1fr}.officialFrame{height:58vh!important}}
 </style>
 
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.4.0</div></div></div>
+<style>
+.officialQuestionPanel{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.officialPdfTools{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0 4px}
+.officialChoiceGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.officialChoiceGrid .choice{min-height:64px;margin:0!important;text-align:center;font-size:20px;font-weight:900}
+@media(max-width:600px){
+  .officialFrame{height:60vh!important;min-height:470px!important}
+  .officialTabs [data-official-year]{flex:1 1 calc(50% - 8px)}
+}
+</style>
+</head>
+<body>
+<style>
+.orivector-topbar{max-width:980px;margin:0 auto;padding:12px 16px 0}
+.orivector-topbar a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:900;font-size:13px;color:inherit;opacity:.86}
+.orivector-topbar a:hover{opacity:1}
+</style>
+<div class="orivector-topbar"><a href="https://orivector.jp/">← ORIVECTORトップへ</a></div>
+
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.6.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト<br>試験対策</h1><p>午前II風500問・午後問題100題・基礎学習を1つに。問題を解くだけでなく、「なぜそうなるか」まで理解してネスペ合格を目指します。</p></div>
@@ -150,72 +160,76 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 
 
 
+
+
 <section id="officialPast" class="view hidden">
-  <div class="sectionTitle"><h2>🏛️ IPA公式過去問をそのまま解く</h2><span class="pill">午前Ⅱ 全150問</span></div>
+  <div class="sectionTitle">
+    <h2>🏛️ IPA公式過去問</h2>
+    <span class="pill">午前Ⅱ 150問</span>
+  </div>
+
   <div class="card">
     <div class="officialNotice">
-      <b>令和元年度〜令和7年度のネットワークスペシャリスト 午前Ⅱ</b><br>
-      IPA公式の問題冊子を年度別にそのまま表示します。各年度25問、全6回で計150問です。
-      <br><span style="color:var(--muted)">※令和2年度はネットワークスペシャリスト試験の実施がないため、令和元・3・4・5・6・7年度を収録しています。</span>
+      <b>問題部分だけIPA公式PDFを使用</b><br>
+      問題は公式問題冊子を表示し、回答はほかの問題と同じようにこのページのボタンで行います。
+      正誤判定後、そのまま次の問題へ進めます。
     </div>
 
-    <div class="practiceLabel">① 年度を選択</div>
+    <div class="practiceLabel">① 年度</div>
     <div class="officialTabs" id="officialYearTabs">
-      <button class="btn" data-official-year="r1" onclick="selectOfficialYear('r1')">令和元年度 秋期</button>
-<button class="btn" data-official-year="r3" onclick="selectOfficialYear('r3')">令和3年度 春期</button>
-<button class="btn" data-official-year="r4" onclick="selectOfficialYear('r4')">令和4年度 春期</button>
-<button class="btn" data-official-year="r5" onclick="selectOfficialYear('r5')">令和5年度 春期</button>
-<button class="btn" data-official-year="r6" onclick="selectOfficialYear('r6')">令和6年度 春期</button>
-<button class="btn primary" data-official-year="r7" onclick="selectOfficialYear('r7')">令和7年度 春期</button>
+      <button class="btn" data-official-year="r1" onclick="selectOfficialYear('r1')">令和元年度</button>
+      <button class="btn" data-official-year="r3" onclick="selectOfficialYear('r3')">令和3年度</button>
+      <button class="btn" data-official-year="r4" onclick="selectOfficialYear('r4')">令和4年度</button>
+      <button class="btn" data-official-year="r5" onclick="selectOfficialYear('r5')">令和5年度</button>
+      <button class="btn" data-official-year="r6" onclick="selectOfficialYear('r6')">令和6年度</button>
+      <button class="btn primary" data-official-year="r7" onclick="selectOfficialYear('r7')">令和7年度</button>
     </div>
 
-    <div class="practiceLabel" style="margin-top:16px">② 問題 / 解答</div>
-    <div class="officialTabs">
-      <button id="officialQuestionBtn" class="btn primary" onclick="showOfficialPdf('q')">📝 問題冊子（25問）</button>
-      <button id="officialAnswerBtn" class="btn" onclick="showOfficialPdf('a')">✅ 解答例</button>
-      <button class="btn" onclick="showView('past')">📚 午後問題・他資料</button>
-      <button class="btn" onclick="showView('home')">← トップ</button>
+    <div class="quizTop" style="margin-top:18px">
+      <span class="tag" id="officialYearTitle">令和7年度 春期 午前Ⅱ</span>
+      <span class="pill" id="officialQuestionCount">問1 / 25</span>
+    </div>
+    <div class="quizProgressTrack"><div id="officialProgressBar" class="quizProgressBar" style="width:4%"></div></div>
+
+    <div class="practiceLabel">② 問題</div>
+    <div class="officialQuestionPanel">
+      <iframe id="officialPastFrame" class="officialFrame"
+        src="past-pdf/r7.pdf#page=3&zoom=page-width"
+        title="ネットワークスペシャリスト 午前II 公式過去問"></iframe>
+    </div>
+    <div class="officialPdfTools">
+      <span class="small">PDF内の <b id="officialQuestionGuide">問1</b> を解いてください。</span>
+      <a id="officialLocalPdfLink" class="miniBtn" href="past-pdf/r7.pdf#page=3" target="_blank" rel="noopener">PDFを別画面で開く</a>
     </div>
 
-    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin:12px 0 8px">
-      <b id="officialYearTitle">令和7年度 春期 午前Ⅱ</b>
-      <span class="pill">25問</span>
+    <div class="practiceLabel" style="margin-top:18px">③ 回答</div>
+    <div id="officialChoices" class="choices officialChoiceGrid">
+      <button class="choice" onclick="answerOfficial('ア')"><b>ア</b></button>
+      <button class="choice" onclick="answerOfficial('イ')"><b>イ</b></button>
+      <button class="choice" onclick="answerOfficial('ウ')"><b>ウ</b></button>
+      <button class="choice" onclick="answerOfficial('エ')"><b>エ</b></button>
     </div>
-    <iframe id="officialPastFrame" class="officialFrame"
-      src="https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf"
-      title="ネットワークスペシャリスト 午前II 公式過去問"></iframe>
+
+    <div id="officialResult" class="explain hidden" style="margin-top:14px"></div>
+
+    <div class="btnRow" style="margin-top:14px">
+      <button class="btn" onclick="previousOfficialQuestion()">← 前の問題</button>
+      <button id="officialNextBtn" class="btn primary" onclick="nextOfficialQuestion()">次の問題へ →</button>
+    </div>
+
     <p id="officialSource" class="officialSource">
       出典：令和7年度 春期 ネットワークスペシャリスト試験 午前Ⅱ（独立行政法人情報処理推進機構）。
-      IPA公開PDFを改変せず表示しています。
     </p>
   </div>
 </section>
+
+
 <section id="past" class="view hidden">
-  <div class="sectionTitle"><h2>IPA実過去問 演習</h2><span class="pill">公式問題そのまま</span></div>
-  <div class="card article" style="margin-bottom:14px"><p>ここは再構成問題ではなく、<strong>IPAが公開しているNW午前IIの問題冊子そのもの</strong>です。令和元・3〜7年度は各25問、合計<strong>150問</strong>あります。</p><div class="callout"><b>令和2年度：</b>対象試験が中止されたためNWの実過去問はありません。</div></div>
-  <div class="topics" style="margin-top:14px">
-    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和7年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_ans.pdf">正解</a></div></div>
-    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和6年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_ans.pdf">正解</a></div></div>
-    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和5年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_ans.pdf">正解</a></div></div>
-    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和4年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_ans.pdf">正解</a></div></div>
-    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和3年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_ans.pdf">正解</a></div></div>
-    <div class="card topic"><div class="tag">IPA実過去問</div><h3>令和元年度</h3><p>午前II 25問</p><div class="btnRow"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_qs.pdf">問題を解く</a><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_ans.pdf">正解</a></div></div>
-  </div>
-  <div class="sectionTitle" style="margin-top:24px"><h2>IPA公式 過去問アーカイブ</h2><span class="pill">午後I・IIも確認</span></div>
+  <div class="sectionTitle"><h2>IPA公式資料</h2><span class="pill">過去問</span></div>
   <div class="card article">
-    <p>IPAが公開しているネットワークスペシャリスト試験の公式過去問を年度別に整理しています。各年度ページから、午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱの<strong>問題冊子／解答例／午後の採点講評</strong>を確認できます。</p>
-    <div class="callout"><b>ポイント：</b> 令和2年度は新型コロナウイルス感染症拡大防止のため対象の春期試験が中止され、ネットワークスペシャリストの過去問はありません。</div>
+    <p>午前Ⅱの公式過去問は、上の「IPA公式過去問」画面で、問題冊子を見ながらサイト内の回答ボタンで解けます。</p>
+    <div class="btnRow"><button class="btn primary" onclick="showView('officialPast');selectOfficialYear('r7')">🏛️ 公式過去問を解く</button></div>
   </div>
-  <div class="topics" style="margin-top:14px">
-    <div class="card topic"><div class="tag">2019年度</div><h3>令和元年度</h3><p>午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱ／解答例／採点講評</p><div class="btnRow" style="margin-top:14px"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2019h31.html">IPA公式を開く</a></div></div>
-    <div class="card topic"><div class="tag">2020年度</div><h3>令和2年度</h3><p>NW対象の春期試験は中止。過去問なし。</p><div class="btnRow" style="margin-top:14px"><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2020r02.html">IPA公式の説明</a></div></div>
-    <div class="card topic"><div class="tag">2021年度</div><h3>令和3年度</h3><p>午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱ／解答例／採点講評</p><div class="btnRow" style="margin-top:14px"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2021r03.html">IPA公式を開く</a></div></div>
-    <div class="card topic"><div class="tag">2022年度</div><h3>令和4年度</h3><p>午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱ／解答例／採点講評</p><div class="btnRow" style="margin-top:14px"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2022r04.html">IPA公式を開く</a></div></div>
-    <div class="card topic"><div class="tag">2023年度</div><h3>令和5年度</h3><p>午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱ／解答例／採点講評</p><div class="btnRow" style="margin-top:14px"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2023r05.html">IPA公式を開く</a></div></div>
-    <div class="card topic"><div class="tag">2024年度</div><h3>令和6年度</h3><p>午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱ／解答例／採点講評</p><div class="btnRow" style="margin-top:14px"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2024r06.html">IPA公式を開く</a></div></div>
-    <div class="card topic"><div class="tag">2025年度・最新公開</div><h3>令和7年度</h3><p>午前Ⅰ・午前Ⅱ・午後Ⅰ・午後Ⅱ／解答例／採点講評</p><div class="btnRow" style="margin-top:14px"><a class="btn primary" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/mondai-kaiotu/2025r07.html">IPA公式を開く</a></div></div>
-  </div>
-  <div class="card" style="margin-top:14px"><h3>2026年度から試験方式が変更</h3><p class="small">IPAによると、2026年度のネットワークスペシャリスト試験はCBT方式・前期実施です。過去問演習に加えて、新方式の科目A-1／A-2／B-1／B-2を意識して学習しましょう。</p><div class="btnRow" style="margin-top:14px"><a class="btn" target="_blank" rel="noopener" href="https://www.ipa.go.jp/shiken/kubun/nw.html">現在の試験概要</a></div></div>
 </section>
 
 <section id="progress" class="view hidden">
@@ -428,26 +442,74 @@ function startPractice(){
 }
 
 
-const officialPastYears={"r1": {"label": "令和元年度 秋期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_ans.pdf"}, "r3": {"label": "令和3年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_ans.pdf"}, "r4": {"label": "令和4年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_ans.pdf"}, "r5": {"label": "令和5年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_ans.pdf"}, "r6": {"label": "令和6年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_ans.pdf"}, "r7": {"label": "令和7年度 春期", "q": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf", "a": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_ans.pdf"}};
+
+const officialPastYears={"r1": {"label": "令和元年度 秋期", "q": "past-pdf/r1.pdf", "pages": [3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 11]}, "r3": {"label": "令和3年度 春期", "q": "past-pdf/r3.pdf", "pages": [3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11]}, "r4": {"label": "令和4年度 春期", "q": "past-pdf/r4.pdf", "pages": [3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 9, 10, 10]}, "r5": {"label": "令和5年度 春期", "q": "past-pdf/r5.pdf", "pages": [3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12]}, "r6": {"label": "令和6年度 春期", "q": "past-pdf/r6.pdf", "pages": [3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12]}, "r7": {"label": "令和7年度 春期", "q": "past-pdf/r7.pdf", "pages": [3, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 11, 12]}};
+const officialPastAnswers={"r1": ["ア", "イ", "イ", "エ", "ア", "ア", "エ", "イ", "イ", "エ", "ウ", "イ", "ウ", "エ", "ウ", "エ", "ウ", "ア", "ウ", "ア", "ア", "エ", "ア", "ウ", "イ"], "r3": ["エ", "イ", "エ", "ウ", "ア", "ア", "ウ", "ア", "イ", "ウ", "エ", "ウ", "エ", "イ", "ウ", "イ", "イ", "ア", "ア", "イ", "イ", "イ", "ウ", "イ", "ア"], "r4": ["エ", "ア", "ア", "エ", "ア", "イ", "イ", "イ", "ウ", "ウ", "ウ", "イ", "イ", "イ", "イ", "エ", "イ", "ウ", "イ", "エ", "ア", "エ", "ア", "ア", "エ"], "r5": ["ウ", "ウ", "ア", "ア", "ウ", "エ", "イ", "エ", "ウ", "ウ", "イ", "ウ", "イ", "エ", "ウ", "イ", "ア", "エ", "ウ", "イ", "ア", "エ", "エ", "イ", "エ"], "r6": ["ウ", "ア", "イ", "イ", "エ", "イ", "エ", "エ", "ア", "エ", "ウ", "イ", "イ", "イ", "イ", "ア", "エ", "イ", "エ", "エ", "ア", "ア", "ア", "ア", "エ"], "r7": ["エ", "イ", "エ", "イ", "エ", "イ", "ア", "ウ", "エ", "エ", "ア", "ア", "ウ", "ウ", "ウ", "ウ", "イ", "ウ", "エ", "イ", "イ", "イ", "ア", "エ", "エ"]};
 let officialPastYear='r7';
-let officialPastMode='q';
+let officialQuestionIndex=0;
+let officialAnswered=false;
+
 function selectOfficialYear(year){
- officialPastYear=year;
- document.querySelectorAll('[data-official-year]').forEach(b=>b.classList.toggle('primary',b.dataset.officialYear===year));
- showOfficialPdf('q');
+  officialPastYear=year;
+  officialQuestionIndex=0;
+  officialAnswered=false;
+  document.querySelectorAll('[data-official-year]').forEach(b=>b.classList.toggle('primary',b.dataset.officialYear===year));
+  renderOfficialQuestion();
 }
-function showOfficialPdf(type){
- officialPastMode=type;
- const d=officialPastYears[officialPastYear];
- const frame=document.getElementById('officialPastFrame');
- if(frame)frame.src=type==='a'?d.a:d.q;
- const title=document.getElementById('officialYearTitle');
- if(title)title.textContent=d.label+' 午前Ⅱ';
- const source=document.getElementById('officialSource');
- if(source)source.textContent=`出典：${d.label} ネットワークスペシャリスト試験 午前Ⅱ（独立行政法人情報処理推進機構）。IPA公開PDFを改変せず表示しています。`;
- document.getElementById('officialQuestionBtn')?.classList.toggle('primary',type==='q');
- document.getElementById('officialAnswerBtn')?.classList.toggle('primary',type==='a');
+
+function renderOfficialQuestion(){
+  const d=officialPastYears[officialPastYear];
+  const n=officialQuestionIndex+1;
+  officialAnswered=false;
+  document.getElementById('officialYearTitle').textContent=d.label+' 午前Ⅱ';
+  document.getElementById('officialQuestionCount').textContent=`問${n} / 25`;
+  document.getElementById('officialQuestionGuide').textContent=`問${n}`;
+  document.getElementById('officialProgressBar').style.width=`${n/25*100}%`;
+  document.getElementById('officialSource').textContent=`出典：${d.label} ネットワークスペシャリスト試験 午前Ⅱ（独立行政法人情報処理推進機構）。`;
+  const page=d.pages[officialQuestionIndex];
+  const frame=document.getElementById('officialPastFrame');
+  const pdfUrl=`${d.q}#page=${page}&zoom=page-width`;
+  if(frame && frame.getAttribute('src')!==pdfUrl) frame.src=pdfUrl;
+  const pdfLink=document.getElementById('officialLocalPdfLink');
+  if(pdfLink) pdfLink.href=`${d.q}#page=${page}`;
+
+  const result=document.getElementById('officialResult');
+  result.classList.add('hidden');
+  result.innerHTML='';
+  document.querySelectorAll('#officialChoices .choice').forEach(b=>{
+    b.disabled=false;
+    b.classList.remove('correct','wrong');
+  });
+  document.getElementById('officialNextBtn').textContent=n===25?'年度の最初に戻る':'次の問題へ →';
 }
+
+function answerOfficial(choice){
+  if(officialAnswered) return;
+  officialAnswered=true;
+  const correct=officialPastAnswers[officialPastYear][officialQuestionIndex];
+  const buttons=[...document.querySelectorAll('#officialChoices .choice')];
+  buttons.forEach(b=>{
+    b.disabled=true;
+    if(b.textContent.trim()===correct) b.classList.add('correct');
+    if(b.textContent.trim()===choice && choice!==correct) b.classList.add('wrong');
+  });
+  const result=document.getElementById('officialResult');
+  result.classList.remove('hidden');
+  result.innerHTML=choice===correct
+    ? `<b style="color:var(--ok)">⭕ 正解！</b><p>正解は「${correct}」です。</p>`
+    : `<b style="color:var(--ng)">❌ 不正解</b><p>正解は「${correct}」です。</p>`;
+}
+
+function nextOfficialQuestion(){
+  officialQuestionIndex = officialQuestionIndex===24 ? 0 : officialQuestionIndex+1;
+  renderOfficialQuestion();
+}
+
+function previousOfficialQuestion(){
+  officialQuestionIndex = officialQuestionIndex===0 ? 24 : officialQuestionIndex-1;
+  renderOfficialQuestion();
+}
+
 
 function markLearned(id){if(!state.learned.includes(id))state.learned.push(id);save();openTopic(id)}
 function startQuiz(mode,cat=''){if(mode==='past'){quiz=questions.filter(q=>q.type==='past').sort(()=>Math.random()-.5)}else if(mode==='pred'){quiz=questions.filter(q=>q.type==='pred').sort(()=>Math.random()-.5)}else if(mode==='mix'){quiz=[...questions].sort(()=>Math.random()-.5)}else if(mode==='weak'){quiz=questions.filter((_,i)=>state.weak.includes(i));if(!quiz.length){alert('まだ苦手問題はありません。まず通常問題を解いてみましょう。');return}}else if(mode==='daily'){quiz=[...questions].sort(()=>Math.random()-.5).slice(0,10)}else if(mode==='category'){quiz=questions.filter(q=>cat.includes(q.cat)||q.cat.includes(cat.split(' ')[0]));if(!quiz.length)quiz=[...questions].sort(()=>Math.random()-.5).slice(0,5)}else if(mode!=='past'&&mode!=='pred'&&mode!=='mix') quiz=[...questions].sort(()=>Math.random()-.5);qi=0;answered=false;showView('quiz');renderQuestion()}
@@ -467,60 +529,6 @@ function updateStats(){document.getElementById('learnedStat').textContent=`${sta
 function renderProgress(){document.getElementById('progressLearn').textContent=`${state.learned.length} / ${topics.length}`;document.getElementById('progressQuiz').textContent=state.answered;document.getElementById('progressUnique').textContent=Object.keys(state.history||{}).length;document.getElementById('progressRate').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'0%';document.getElementById('progressWeak').textContent=state.weak.length}
 function resetData(){if(confirm('学習進捗をすべてリセットしますか？')){state={learned:[],answered:0,correct:0,weak:[],history:{}};save();renderProgress()}}
 renderTopics();updateStats();
-</script>
-
-<style>
-#officialInteractive{max-width:900px;margin:28px auto;padding:18px}
-.oi-card{background:var(--card,#fff);border:1px solid rgba(128,128,128,.22);border-radius:18px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
-.oi-years,.oi-answers{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
-.oi-years button,.oi-answers button,#oiNext{border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}
-.oi-years button{background:#e8eefc;color:#16213e}.oi-years button.active{background:#2563eb;color:#fff}
-.oi-answers button{min-width:62px;background:#eef2f7;color:#111827;font-size:18px}
-.oi-answers button.correct{background:#dcfce7;color:#166534}.oi-answers button.wrong{background:#fee2e2;color:#991b1b}
-#oiNext{background:#2563eb;color:#fff;width:100%;margin-top:12px}
-.oi-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
-.oi-source{font-size:13px;opacity:.75;line-height:1.6}.oi-result{font-weight:900;margin:10px 0;min-height:26px}
-.oi-progress{height:8px;background:#e5e7eb;border-radius:99px;overflow:hidden;margin:12px 0}.oi-progress>div{height:100%;background:#2563eb}
-</style>
-<section id="officialInteractive">
-<div class="oi-card">
-  <div class="oi-head"><div><b>🏛️ IPA公式 午前Ⅱ・解答トレーニング</b><div style="font-size:13px;opacity:.72">公式問題冊子を見ながら、サイト上でア・イ・ウ・エを選択して即判定</div></div><a href="https://orivector.jp/">← ORIVECTORトップ</a></div>
-  <div class="oi-years" id="oiYears"></div>
-  <div class="oi-progress"><div id="oiBar"></div></div>
-  <h3 id="oiTitle"></h3>
-  <p>問題文・選択肢は下の「IPA公式問題を開く」から確認してください。問題番号を合わせて解答します。</p>
-  <p><a id="oiPdf" target="_blank" rel="noopener">📄 IPA公式問題を開く</a></p>
-  <div class="oi-answers" id="oiAnswers"></div>
-  <div class="oi-result" id="oiResult"></div>
-  <button id="oiNext">次の問題へ →</button>
-  <p class="oi-source">出典：IPA（情報処理推進機構）ネットワークスペシャリスト試験 午前Ⅱ。問題本文は本ページへ複製せず、IPA公式問題冊子を参照する方式です。</p>
-</div></section>
-<script>
-const OI_KEYS={"R1": ["ア", "イ", "イ", "エ", "ア", "ア", "エ", "イ", "イ", "エ", "ウ", "イ", "ウ", "エ", "ウ", "エ", "ウ", "ア", "ウ", "ア", "ア", "エ", "ア", "ウ", "イ"], "R3": ["エ", "イ", "エ", "ウ", "ア", "ア", "ウ", "ア", "イ", "ウ", "エ", "ウ", "エ", "イ", "ウ", "イ", "イ", "ア", "ア", "イ", "イ", "イ", "ウ", "イ", "ア"], "R4": ["エ", "ア", "ア", "エ", "ア", "イ", "イ", "イ", "ウ", "ウ", "ウ", "イ", "イ", "イ", "イ", "エ", "イ", "ウ", "イ", "エ", "ア", "エ", "ア", "ア", "エ"], "R5": ["ウ", "ウ", "ア", "ア", "ウ", "エ", "イ", "エ", "ウ", "ウ", "イ", "ウ", "イ", "エ", "ウ", "イ", "ア", "エ", "ウ", "イ", "ア", "エ", "エ", "イ", "エ"], "R6": ["ウ", "ア", "イ", "イ", "エ", "イ", "エ", "エ", "ア", "エ", "ウ", "イ", "イ", "イ", "イ", "ア", "エ", "イ", "エ", "エ", "ア", "ア", "ア", "ア", "エ"], "R7": ["エ", "イ", "エ", "イ", "エ", "イ", "ア", "ウ", "エ", "エ", "ア", "ア", "ウ", "ウ", "ウ", "ウ", "イ", "ウ", "エ", "イ", "イ", "イ", "ア", "エ", "エ"]};
-const OI_LABELS={"R1": "令和元年度", "R3": "令和3年度", "R4": "令和4年度", "R5": "令和5年度", "R6": "令和6年度", "R7": "令和7年度"};
-const OI_PDFS={"R1": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000dict-att/2019r01a_nw_am2_qs.pdf", "R3": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt8000000d5ru-att/2021r03h_nw_am2_qs.pdf", "R4": "https://www.ipa.go.jp/shiken/mondai-kaiotu/gmcbt80000009sgk-att/2022r04h_nw_am2_qs.pdf", "R5": "https://www.ipa.go.jp/shiken/mondai-kaiotu/ps6vr70000010d6y-att/2023r05h_nw_am2_qs.pdf", "R6": "https://www.ipa.go.jp/shiken/mondai-kaiotu/m42obm000000afqx-att/2024r06h_nw_am2_qs.pdf", "R7": "https://www.ipa.go.jp/shiken/mondai-kaiotu/nl10bi0000009lh8-att/2025r07h_nw_am2_qs.pdf"};
-let oiYear="R7",oiQ=0,oiLocked=false;
-function oiRenderYears(){
- const box=document.getElementById("oiYears"); box.innerHTML="";
- Object.keys(OI_KEYS).forEach(y=>{const b=document.createElement("button");b.textContent=OI_LABELS[y];b.className=y===oiYear?"active":"";b.onclick=()=>{oiYear=y;oiQ=0;oiLocked=false;oiRender()};box.appendChild(b)})
-}
-function oiRender(){
- oiRenderYears(); oiLocked=false;
- document.getElementById("oiTitle").textContent=`${OI_LABELS[oiYear]} 午前Ⅱ　問${oiQ+1} / 25`;
- document.getElementById("oiPdf").href=OI_PDFS[oiYear];
- document.getElementById("oiBar").style.width=((oiQ+1)/25*100)+"%";
- document.getElementById("oiResult").textContent="";
- const box=document.getElementById("oiAnswers");box.innerHTML="";
- ["ア","イ","ウ","エ"].forEach(a=>{const b=document.createElement("button");b.textContent=a;b.onclick=()=>oiAnswer(a,b);box.appendChild(b)});
- document.getElementById("oiNext").textContent=oiQ===24?"この年度を最初から":"次の問題へ →";
-}
-function oiAnswer(a,b){
- if(oiLocked)return;oiLocked=true;const correct=OI_KEYS[oiYear][oiQ];
- [...document.getElementById("oiAnswers").children].forEach(x=>{if(x.textContent===correct)x.classList.add("correct")});
- if(a===correct){document.getElementById("oiResult").textContent="⭕ 正解！"}else{b.classList.add("wrong");document.getElementById("oiResult").textContent=`❌ 不正解　正解は「${correct}」`;}
-}
-document.getElementById("oiNext").onclick=()=>{oiQ=oiQ===24?0:oiQ+1;oiRender()};
-oiRender();
 </script>
 
 </body>
