@@ -106,7 +106,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 <div class="orivector-topbar"><a href="https://orivector.jp/">← ORIVECTORトップへ</a></div>
 
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.7.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.7.1</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト<br>試験対策</h1><p>午前II風500問・午後問題100題・基礎学習を1つに。問題を解くだけでなく、「なぜそうなるか」まで理解してネスペ合格を目指します。</p></div>
@@ -216,7 +216,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
     <div class="practiceLabel">② 問題</div>
     <div class="officialQuestionPanel singleQuestionPanel">
       <img id="officialQuestionImage" class="officialQuestionImage"
-           src="past-images/r7-q01.png"
+           src="past-pdf/r7-q01.png"
            alt="令和7年度 午前II 問1">
     </div>
     <div class="officialPdfTools">
@@ -464,7 +464,7 @@ function startPractice(){
 
 
 
-const officialPastYears={"r1": {"label": "令和元年度 秋期", "img": "past-images/r1-q"}, "r3": {"label": "令和3年度 春期", "img": "past-images/r3-q"}, "r4": {"label": "令和4年度 春期", "img": "past-images/r4-q"}, "r5": {"label": "令和5年度 春期", "img": "past-images/r5-q"}, "r6": {"label": "令和6年度 春期", "img": "past-images/r6-q"}, "r7": {"label": "令和7年度 春期", "img": "past-images/r7-q"}};
+const officialPastYears={"r1": {"label": "令和元年度 秋期", "img": "past-pdf/r1-q"}, "r3": {"label": "令和3年度 春期", "img": "past-pdf/r3-q"}, "r4": {"label": "令和4年度 春期", "img": "past-pdf/r4-q"}, "r5": {"label": "令和5年度 春期", "img": "past-pdf/r5-q"}, "r6": {"label": "令和6年度 春期", "img": "past-pdf/r6-q"}, "r7": {"label": "令和7年度 春期", "img": "past-pdf/r7-q"}};
 const officialPastAnswers={"r1": ["ア", "イ", "イ", "エ", "ア", "ア", "エ", "イ", "イ", "エ", "ウ", "イ", "ウ", "エ", "ウ", "エ", "ウ", "ア", "ウ", "ア", "ア", "エ", "ア", "ウ", "イ"], "r3": ["エ", "イ", "エ", "ウ", "ア", "ア", "ウ", "ア", "イ", "ウ", "エ", "ウ", "エ", "イ", "ウ", "イ", "イ", "ア", "ア", "イ", "イ", "イ", "ウ", "イ", "ア"], "r4": ["エ", "ア", "ア", "エ", "ア", "イ", "イ", "イ", "ウ", "ウ", "ウ", "イ", "イ", "イ", "イ", "エ", "イ", "ウ", "イ", "エ", "ア", "エ", "ア", "ア", "エ"], "r5": ["ウ", "ウ", "ア", "ア", "ウ", "エ", "イ", "エ", "ウ", "ウ", "イ", "ウ", "イ", "エ", "ウ", "イ", "ア", "エ", "ウ", "イ", "ア", "エ", "エ", "イ", "エ"], "r6": ["ウ", "ア", "イ", "イ", "エ", "イ", "エ", "エ", "ア", "エ", "ウ", "イ", "イ", "イ", "イ", "ア", "エ", "イ", "エ", "エ", "ア", "ア", "ア", "ア", "エ"], "r7": ["エ", "イ", "エ", "イ", "エ", "イ", "ア", "ウ", "エ", "エ", "ア", "ア", "ウ", "ウ", "ウ", "ウ", "イ", "ウ", "エ", "イ", "イ", "イ", "ア", "エ", "エ"]};
 let officialPastYear='r7';
 let officialQuestionIndex=0;
