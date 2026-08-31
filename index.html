@@ -75,6 +75,28 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
   .officialTabs [data-official-year]{flex:1 1 calc(50% - 8px)}
 }
 </style>
+<style>
+.singleQuestionPanel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:180px;
+}
+.officialQuestionImage{
+  display:block;
+  width:100%;
+  max-width:900px;
+  height:auto;
+  object-fit:contain;
+}
+@media(max-width:600px){
+  .singleQuestionPanel{padding:8px}
+}
+</style>
 </head>
 <body>
 <style>
@@ -84,7 +106,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 <div class="orivector-topbar"><a href="https://orivector.jp/">← ORIVECTORトップへ</a></div>
 
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.6.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.7.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト<br>試験対策</h1><p>午前II風500問・午後問題100題・基礎学習を1つに。問題を解くだけでなく、「なぜそうなるか」まで理解してネスペ合格を目指します。</p></div>
@@ -170,8 +192,8 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 
   <div class="card">
     <div class="officialNotice">
-      <b>問題部分だけIPA公式PDFを使用</b><br>
-      問題は公式問題冊子を表示し、回答はほかの問題と同じようにこのページのボタンで行います。
+      <b>回答対象の1問だけ表示</b><br>
+      IPA公式問題冊子から、いま回答する問題だけを表示します。回答はほかの問題と同じようにボタンで行います。
       正誤判定後、そのまま次の問題へ進めます。
     </div>
 
@@ -192,14 +214,13 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
     <div class="quizProgressTrack"><div id="officialProgressBar" class="quizProgressBar" style="width:4%"></div></div>
 
     <div class="practiceLabel">② 問題</div>
-    <div class="officialQuestionPanel">
-      <iframe id="officialPastFrame" class="officialFrame"
-        src="past-pdf/r7.pdf#page=3&zoom=page-width"
-        title="ネットワークスペシャリスト 午前II 公式過去問"></iframe>
+    <div class="officialQuestionPanel singleQuestionPanel">
+      <img id="officialQuestionImage" class="officialQuestionImage"
+           src="past-images/r7-q01.png"
+           alt="令和7年度 午前II 問1">
     </div>
     <div class="officialPdfTools">
-      <span class="small">PDF内の <b id="officialQuestionGuide">問1</b> を解いてください。</span>
-      <a id="officialLocalPdfLink" class="miniBtn" href="past-pdf/r7.pdf#page=3" target="_blank" rel="noopener">PDFを別画面で開く</a>
+      <span class="small">表示中：<b id="officialQuestionGuide">問1</b></span>
     </div>
 
     <div class="practiceLabel" style="margin-top:18px">③ 回答</div>
@@ -443,7 +464,7 @@ function startPractice(){
 
 
 
-const officialPastYears={"r1": {"label": "令和元年度 秋期", "q": "past-pdf/r1.pdf", "pages": [3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 11]}, "r3": {"label": "令和3年度 春期", "q": "past-pdf/r3.pdf", "pages": [3, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10, 10, 10, 11, 11]}, "r4": {"label": "令和4年度 春期", "q": "past-pdf/r4.pdf", "pages": [3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 9, 10, 10]}, "r5": {"label": "令和5年度 春期", "q": "past-pdf/r5.pdf", "pages": [3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 9, 10, 10, 11, 11, 12]}, "r6": {"label": "令和6年度 春期", "q": "past-pdf/r6.pdf", "pages": [3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12]}, "r7": {"label": "令和7年度 春期", "q": "past-pdf/r7.pdf", "pages": [3, 3, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 11, 12]}};
+const officialPastYears={"r1": {"label": "令和元年度 秋期", "img": "past-images/r1-q"}, "r3": {"label": "令和3年度 春期", "img": "past-images/r3-q"}, "r4": {"label": "令和4年度 春期", "img": "past-images/r4-q"}, "r5": {"label": "令和5年度 春期", "img": "past-images/r5-q"}, "r6": {"label": "令和6年度 春期", "img": "past-images/r6-q"}, "r7": {"label": "令和7年度 春期", "img": "past-images/r7-q"}};
 const officialPastAnswers={"r1": ["ア", "イ", "イ", "エ", "ア", "ア", "エ", "イ", "イ", "エ", "ウ", "イ", "ウ", "エ", "ウ", "エ", "ウ", "ア", "ウ", "ア", "ア", "エ", "ア", "ウ", "イ"], "r3": ["エ", "イ", "エ", "ウ", "ア", "ア", "ウ", "ア", "イ", "ウ", "エ", "ウ", "エ", "イ", "ウ", "イ", "イ", "ア", "ア", "イ", "イ", "イ", "ウ", "イ", "ア"], "r4": ["エ", "ア", "ア", "エ", "ア", "イ", "イ", "イ", "ウ", "ウ", "ウ", "イ", "イ", "イ", "イ", "エ", "イ", "ウ", "イ", "エ", "ア", "エ", "ア", "ア", "エ"], "r5": ["ウ", "ウ", "ア", "ア", "ウ", "エ", "イ", "エ", "ウ", "ウ", "イ", "ウ", "イ", "エ", "ウ", "イ", "ア", "エ", "ウ", "イ", "ア", "エ", "エ", "イ", "エ"], "r6": ["ウ", "ア", "イ", "イ", "エ", "イ", "エ", "エ", "ア", "エ", "ウ", "イ", "イ", "イ", "イ", "ア", "エ", "イ", "エ", "エ", "ア", "ア", "ア", "ア", "エ"], "r7": ["エ", "イ", "エ", "イ", "エ", "イ", "ア", "ウ", "エ", "エ", "ア", "ア", "ウ", "ウ", "ウ", "ウ", "イ", "ウ", "エ", "イ", "イ", "イ", "ア", "エ", "エ"]};
 let officialPastYear='r7';
 let officialQuestionIndex=0;
@@ -466,12 +487,12 @@ function renderOfficialQuestion(){
   document.getElementById('officialQuestionGuide').textContent=`問${n}`;
   document.getElementById('officialProgressBar').style.width=`${n/25*100}%`;
   document.getElementById('officialSource').textContent=`出典：${d.label} ネットワークスペシャリスト試験 午前Ⅱ（独立行政法人情報処理推進機構）。`;
-  const page=d.pages[officialQuestionIndex];
-  const frame=document.getElementById('officialPastFrame');
-  const pdfUrl=`${d.q}#page=${page}&zoom=page-width`;
-  if(frame && frame.getAttribute('src')!==pdfUrl) frame.src=pdfUrl;
-  const pdfLink=document.getElementById('officialLocalPdfLink');
-  if(pdfLink) pdfLink.href=`${d.q}#page=${page}`;
+  const qFile=String(n).padStart(2,'0');
+  const qImg=document.getElementById('officialQuestionImage');
+  if(qImg){
+    qImg.src=`${d.img}${qFile}.png`;
+    qImg.alt=`${d.label} 午前II 問${n}`;
+  }
 
   const result=document.getElementById('officialResult');
   result.classList.add('hidden');
