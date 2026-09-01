@@ -57,6 +57,9 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 @media(max-width:600px){.practiceCountGrid,.practiceTypeGrid{grid-template-columns:1fr}.practiceCount span{flex-direction:row;justify-content:space-between;align-items:center}}
 
 @media(max-width:600px){.progressRow{grid-template-columns:1fr}.hero{padding-top:20px}.card{border-radius:17px}.nav{bottom:8px}.article h2{font-size:24px}}
+.officialDetailExplain{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.officialDetailExplain h4{margin:0 0 8px;color:var(--accent)}
+.officialDetailExplain p{line-height:1.75}
 </style>
 
 <style>
@@ -110,7 +113,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 <div class="orivector-topbar"><a href="https://orivector.jp/">← ORIVECTORトップへ</a></div>
 
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.7.1</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.8.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト（ネスペ）<br>無料問題集・試験対策</h1><p>午前II風500問・午後問題100題・IPA公式過去問150問・基礎12テーマを1つに。ネットワークスペシャリスト試験を、問題演習と仕組みの理解の両方から対策できます。</p></div>
@@ -486,6 +489,8 @@ function startPractice(){
 
 
 const officialPastYears={"r1": {"label": "令和元年度 秋期", "img": "past-pdf/r1-q"}, "r3": {"label": "令和3年度 春期", "img": "past-pdf/r3-q"}, "r4": {"label": "令和4年度 春期", "img": "past-pdf/r4-q"}, "r5": {"label": "令和5年度 春期", "img": "past-pdf/r5-q"}, "r6": {"label": "令和6年度 春期", "img": "past-pdf/r6-q"}, "r7": {"label": "令和7年度 春期", "img": "past-pdf/r7-q"}};
+// ORIVECTOR_OFFICIAL_EXPLANATIONS_V1
+const officialPastExplanations={"r7": [{"topic": "呼量（アーラン）", "body": "1台あたり1時間20呼、180台で3,600呼。80秒×3,600÷3,600秒=80アーラン。", "tip": "時間単位をそろえる。"}, {"topic": "Ethernetフレーム長", "body": "データ1,400に宛先MAC6、送信元MAC6、タイプ/長さ2、FCS4を加え、1,418オクテット。", "tip": "何をフレーム長に含めるか確認。"}, {"topic": "ビット誤り率", "body": "200,000バイト=1,600,000ビット。10^-5を掛けると平均16ビットの誤り。", "tip": "バイト→ビットは×8。"}, {"topic": "10GBASE-T / Cat6A", "body": "Cat6Aを用いる10GBASE-Tは最大100m。Cat6では条件により55m程度。", "tip": "-Tはツイストペア。"}, {"topic": "CoAP", "body": "IoTなど制約の大きい機器向けの軽量REST型プロトコルで、一般にUDPを利用。", "tip": "CoAP=IoT・軽量・UDP。"}, {"topic": "HTTP GET / POST", "body": "GETは主に取得、POSTはデータ送信や処理開始。GETは安全・べき等として扱われる。", "tip": "GET=取得、POST=登録/処理。"}, {"topic": "IPヘッダとICMP", "body": "IPv4ではProtocolフィールドで上位プロトコルを識別し、ICMPは番号1。", "tip": "TCP/UDPのポート番号と混同しない。"}, {"topic": "サブネットアドレス", "body": "IPアドレスとサブネットマスクのAND演算でネットワークアドレスを求める。", "tip": "ホスト部を0にする。"}, {"topic": "PPP", "body": "ポイントツーポイント向け。LCPでリンク確立、NCPでネットワーク層設定、PAP/CHAPで認証。", "tip": "PPP=LCP/NCP/PAP/CHAP。"}, {"topic": "UDPを使うルーティング", "body": "RIPはUDP 520。BGPはTCP 179、OSPFはIPプロトコル89。", "tip": "RIP=UDP520、BGP=TCP179。"}, {"topic": "TCP 3ウェイハンドシェイク", "body": "接続確立はSYN→SYN/ACK→ACK。双方の初期シーケンス番号を確認する。", "tip": "切断時のFINも関連。"}, {"topic": "ICMPv6近隣探索", "body": "IPv6ではARPの代わりにNDPを利用。NS/NAで近隣ノード情報を確認する。", "tip": "IPv6ではARPではなくNDP。"}, {"topic": "OpenFlow", "body": "フロー未登録時はPacket-Inでコントローラへ通知し、Flow-Modなどでルールを追加する。", "tip": "SDN=制御と転送の分離。"}, {"topic": "FTPコマンド", "body": "RETRは取得、STORは送信、LISTは一覧取得。制御用とデータ用で別コネクションを使う。", "tip": "アクティブ/パッシブも頻出。"}, {"topic": "無線LAN周波数帯", "body": "2.4GHzは到達性が高いが干渉が多く、5GHzは利用可能チャネルが多い。Wi-Fi 6Eは6GHzも利用。", "tip": "規格と周波数帯を表で整理。"}, {"topic": "TLS", "body": "通信の機密性・完全性・相手認証を提供。ハンドシェイク後にアプリデータを保護する。", "tip": "HTTPS=HTTP over TLS。"}, {"topic": "テンペスト攻撃", "body": "機器から漏れる電磁波などを観測して情報を推測する。対策は電磁シールドなど。", "tip": "電磁的漏えいがキーワード。"}, {"topic": "DRDoS", "body": "第三者のリフレクタへ送信元IPを被害者に偽装して要求し、増幅応答を集中させる。", "tip": "反射+増幅。"}, {"topic": "無線LANセキュリティ", "body": "WPA2/WPA3や802.1X/EAPを利用し、WEPやSSID非公開だけに依存しない。", "tip": "WEPは脆弱。"}, {"topic": "DNSSEC", "body": "DNS応答の真正性・完全性を電子署名で検証する。通信経路の暗号化ではない。", "tip": "DNSSEC=署名、DoH/DoT=暗号化。"}, {"topic": "OP25B", "body": "外向きTCP/25を制限して迷惑メール送信を抑止。正規投稿は587などを使う。", "tip": "25=SMTPサーバ間、587=投稿。"}, {"topic": "キャッシュメモリ", "body": "ライトスルーは主記憶へ同時書込み、ライトバックは後で主記憶へ反映。", "tip": "整合性と性能の違いを整理。"}, {"topic": "MTTR", "body": "平均修復時間。監視、ログ、交換容易な構成、手順標準化などで短縮できる。", "tip": "MTTR短縮で可用性向上。"}, {"topic": "ブローカー", "body": "要求側と提供側の間でサービスを仲介し、疎結合化や位置透過を実現する。", "tip": "仲介・疎結合。"}, {"topic": "ステージング環境", "body": "本番公開前に本番に近い条件で最終確認する環境。リリース手順や設定差異も確認する。", "tip": "開発→テスト→ステージング→本番。"}]};
 const officialPastAnswers={"r1": ["ア", "イ", "イ", "エ", "ア", "ア", "エ", "イ", "イ", "エ", "ウ", "イ", "ウ", "エ", "ウ", "エ", "ウ", "ア", "ウ", "ア", "ア", "エ", "ア", "ウ", "イ"], "r3": ["エ", "イ", "エ", "ウ", "ア", "ア", "ウ", "ア", "イ", "ウ", "エ", "ウ", "エ", "イ", "ウ", "イ", "イ", "ア", "ア", "イ", "イ", "イ", "ウ", "イ", "ア"], "r4": ["エ", "ア", "ア", "エ", "ア", "イ", "イ", "イ", "ウ", "ウ", "ウ", "イ", "イ", "イ", "イ", "エ", "イ", "ウ", "イ", "エ", "ア", "エ", "ア", "ア", "エ"], "r5": ["ウ", "ウ", "ア", "ア", "ウ", "エ", "イ", "エ", "ウ", "ウ", "イ", "ウ", "イ", "エ", "ウ", "イ", "ア", "エ", "ウ", "イ", "ア", "エ", "エ", "イ", "エ"], "r6": ["ウ", "ア", "イ", "イ", "エ", "イ", "エ", "エ", "ア", "エ", "ウ", "イ", "イ", "イ", "イ", "ア", "エ", "イ", "エ", "エ", "ア", "ア", "ア", "ア", "エ"], "r7": ["エ", "イ", "エ", "イ", "エ", "イ", "ア", "ウ", "エ", "エ", "ア", "ア", "ウ", "ウ", "ウ", "ウ", "イ", "ウ", "エ", "イ", "イ", "イ", "ア", "エ", "エ"]};
 let officialPastYear='r7';
 let officialQuestionIndex=0;
@@ -537,9 +542,9 @@ function answerOfficial(choice){
   });
   const result=document.getElementById('officialResult');
   result.classList.remove('hidden');
-  result.innerHTML=choice===correct
-    ? `<b style="color:var(--ok)">⭕ 正解！</b><p>正解は「${correct}」です。</p>`
-    : `<b style="color:var(--ng)">❌ 不正解</b><p>正解は「${correct}」です。</p>`;
+  const ex=officialPastExplanations?.[officialPastYear]?.[officialQuestionIndex];
+  const base=choice===correct ? `<b style="color:var(--ok)">⭕ 正解！</b><p>正解は「${correct}」です。</p>` : `<b style="color:var(--ng)">❌ 不正解</b><p>正解は「${correct}」です。</p>`;
+  result.innerHTML=base+(ex ? `<div class="officialDetailExplain"><h4>📘 ORIVECTOR解説：${ex.topic}</h4><p>${ex.body}</p><div class="examtip"><b>試験ポイント：</b> ${ex.tip}</div></div>` : `<div class="officialDetailExplain"><h4>📘 解説</h4><p>この年度の詳細解説は順次追加中です。</p></div>`);
 }
 
 function nextOfficialQuestion(){
