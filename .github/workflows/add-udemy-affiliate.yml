@@ -1,0 +1,40 @@
+name: Add Udemy affiliate recommendation
+on:
+  push:
+    paths:
+      - '.github/workflows/add-udemy-affiliate.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add recommendation safely
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          marker='<section class="card" id="seo-guide"'
+          if 'id="udemy-recommend"' in s:
+              raise SystemExit(0)
+          if marker not in s:
+              raise SystemExit('SEO guide marker not found')
+          block='''<section class="card" id="udemy-recommend" style="margin-top:22px;border-color:rgba(168,85,247,.45)">\n  <div class="pill" style="display:inline-block;margin-bottom:10px">おすすめ学習教材</div>\n  <h2>動画講座でもネスペ対策を進める</h2>\n  <p>問題演習に加えて、ネットワーク分野を動画で体系的に復習したい場合はUdemyの講座も活用できます。TCP/IP、ルーティング、セキュリティなど苦手分野の補強にどうぞ。</p>\n  <div class="btnRow" style="margin-top:14px"><a class="btn primary" href="https://trk.udemy.com/c/7699504/3193860/39854" target="_blank" rel="sponsored noopener noreferrer">Udemyで関連講座を見る →</a></div>\n  <p class="small" style="margin-top:10px">※ このリンクはアフィリエイトリンクです。リンク経由の申込みによりORIVECTORが報酬を受け取る場合があります。</p>\n</section>\n'''
+          s=s.replace(marker,block+marker,1)
+          p.write_text(s)
+          PY
+      - name: Validate
+        run: |
+          grep -q 'id="udemy-recommend"' index.html
+          grep -q 'https://trk.udemy.com/c/7699504/3193860/39854' index.html
+      - name: Commit
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Add Udemy affiliate recommendation'
+          git push
