@@ -1,0 +1,102 @@
+name: Generate Network Specialist SEO Clusters v2
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/generate-seo-clusters-v2.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate SEO pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from html import escape
+          import json, re
+
+          base='https://orivector.jp/network-specialist-study'
+          topics=[
+            ('tcp-vs-udp','TCPとUDPの違い','TCPとUDPを信頼性、順序制御、再送、用途の違いからネスペ向けに整理。',[
+              ('結論','TCPはコネクション型で信頼性を重視し、UDPはコネクションレスで軽量・低遅延を重視します。'),
+              ('見分け方','Webやメールなど確実な配送が重要ならTCP、DNS問い合わせやリアルタイム通信など速度重視ならUDPが典型です。'),
+              ('午後対策','パケットロス時の再送、順序制御、3ウェイハンドシェイクの有無を構成図と合わせて説明できるようにします。')]),
+            ('vlan-vs-subnet','VLANとサブネットの違い','L2のVLANとL3のIPサブネットを混同しないための比較。',[
+              ('結論','VLANはL2のブロードキャストドメイン分割、サブネットはIPアドレス空間をL3で分割する考え方です。'),
+              ('見分け方','スイッチの論理分割はVLAN、IPアドレスとプレフィックス長の分割はサブネットです。'),
+              ('午後対策','VLAN間通信にはL3ルーティングが必要。タグVLAN、アクセスポート、トランクポートもセットで押さえます。')]),
+            ('ospf-vs-bgp','OSPFとBGPの違い','OSPFとBGPをIGP/EGP、経路選択、利用範囲で比較。',[
+              ('結論','OSPFはAS内部で使うリンクステート型IGP、BGPはAS間の経路交換で使うパスベクタ型プロトコルです。'),
+              ('見分け方','企業ネットワーク内部の動的ルーティングならOSPF、ISPや複数AS間ならBGPが基本です。'),
+              ('午後対策','OSPFのコスト、エリア、DR/BDRと、BGPのAS_PATHやポリシー制御を対比して整理します。')]),
+            ('l2-vs-l3-switch','L2スイッチとL3スイッチの違い','MACアドレス転送とIPルーティングの違いをネスペ向けに整理。',[
+              ('結論','L2スイッチはMACアドレスでフレーム転送、L3スイッチはIPアドレスを見てルーティングも行えます。'),
+              ('見分け方','同一VLAN内の転送はL2、VLAN間通信はL3機能が必要です。'),
+              ('午後対策','MACアドレステーブル、ARP、デフォルトゲートウェイの役割を通信順序で説明できるようにします。')]),
+            ('ipsec-vs-ssl-vpn','IPsec VPNとSSL-VPNの違い','拠点間VPNとリモートアクセスVPNで頻出のIPsec/SSL系を比較。',[
+              ('結論','IPsecはIP層で通信を保護し拠点間VPNでよく使われ、SSL/TLS VPNは主にリモートアクセスで使われます。'),
+              ('見分け方','ルータ同士でネットワーク全体を接続するならIPsec、ブラウザやクライアントから社内へ接続するならSSL/TLS VPNが典型です。'),
+              ('午後対策','トンネルモード、ESP、IKE、認証方式などを構成図上のどこで使うか確認します。')]),
+            ('dns-troubleshooting','DNS障害の切り分け方','名前解決トラブルをキャッシュ、権威DNS、再帰問い合わせの流れから整理。',[
+              ('切り分け','IP直打ちで通信できるか、DNSサーバーへ到達できるか、対象レコードが正しいかの順で確認します。'),
+              ('仕組み','スタブリゾルバ→キャッシュDNS→ルート/TLD/権威DNSという問い合わせの流れを把握します。'),
+              ('午後対策','A/AAAA/CNAME/MX、TTL、ネガティブキャッシュ、正引き/逆引きの違いが設問に絡みます。')]),
+            ('stp-vs-rstp','STPとRSTPの違い','L2ループ防止のSTPと高速収束するRSTPを比較。',[
+              ('結論','STPはループを防ぐため冗長リンクをブロックし、RSTPは状態遷移や役割を改善してより高速に収束します。'),
+              ('見分け方','BPDU、ルートブリッジ、ポート役割が出たらSTP系の設問です。'),
+              ('午後対策','障害時にどのポートが転送状態へ変わるかを構成図で追えるようにします。')]),
+            ('nat-vs-napt','NATとNAPTの違い','NATとNAPTを1対1/多対1、IPアドレスとポート変換の観点で比較。',[
+              ('結論','NATは主にIPアドレスを変換し、NAPTはIPアドレスに加えてポート番号も変換して複数端末を1つのグローバルIPへ集約できます。'),
+              ('見分け方','家庭や企業のインターネット出口で多数端末を1IPに共有するのはNAPTが典型です。'),
+              ('午後対策','変換テーブル、戻り通信、ポート枯渇、静的NATとの違いを押さえます。')]),
+            ('mtu-fragmentation','MTUとフラグメンテーション','MTU、IPフラグメンテーション、Path MTU Discoveryを試験向けに整理。',[
+              ('結論','MTUは1回に送れる最大フレーム/パケットサイズに関係し、経路途中のMTUより大きいIPパケットは分割や破棄の対象になります。'),
+              ('見分け方','VPN導入後だけ大きな通信が失敗する場合は、カプセル化による実効MTU低下を疑うことがあります。'),
+              ('午後対策','DFビット、ICMP、MSS調整との関係を障害切り分けで説明できるようにします。')]),
+            ('network-specialist-study-plan','ネットワークスペシャリスト勉強法','ネスペの午前II・午後を効率よく進める学習順序と復習方法を整理。',[
+              ('おすすめ順','①TCP/IP基礎 → ②L2/VLAN/STP → ③ルーティング → ④DNS/NAT/VPN → ⑤セキュリティ → ⑥午後問題の順が理解しやすいです。'),
+              ('午後のコツ','用語暗記より「どこからどこへ、何を見て転送されるか」を構成図上で追います。'),
+              ('仕上げ','間違えた問題をカテゴリ別に復習し、比較記事で曖昧な概念を潰してから過去問に戻ります。')])
+          ]
+
+          style='''body{margin:0;background:#08111f;color:#edf4ff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:900px;margin:auto;padding:24px 18px 70px}a{color:#72ddff}.crumb{font-size:13px;color:#9fb2cc;margin-bottom:22px}.hero{background:#101b2c;border:1px solid #213651;border-radius:20px;padding:24px}.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.2;margin:0 0 12px}.hero p{color:#b8c8da;line-height:1.8}.card{margin-top:18px;background:#101b2c;border:1px solid #213651;border-radius:18px;padding:20px}.card h2{color:#61dafb;margin-top:0}.card p{line-height:1.85;color:#d8e5f3}.cta{display:block;margin-top:22px;padding:16px;border-radius:14px;text-align:center;text-decoration:none;background:linear-gradient(135deg,#7c6cff,#4ea7ff);color:#fff;font-weight:900}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.links a{display:block;padding:12px;background:#0a1728;border:1px solid #213651;border-radius:12px;text-decoration:none}'''
+
+          def page(slug,title,desc,sections):
+            url=f'{base}/{slug}/'
+            schema={"@context":"https://schema.org","@graph":[{"@type":"Article","headline":title,"description":desc,"mainEntityOfPage":url,"author":{"@type":"Organization","name":"ORIVECTOR"},"publisher":{"@type":"Organization","name":"ORIVECTOR","url":"https://orivector.jp/"},"inLanguage":"ja"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ORIVECTOR","item":"https://orivector.jp/"},{"@type":"ListItem","position":2,"name":"ネットワークスペシャリスト","item":base+'/'},{"@type":"ListItem","position":3,"name":title,"item":url}]}]}
+            related=''.join(f'<a href="../{s}/">{escape(t)}</a>' for s,t,_,_ in topics if s!=slug)
+            body=''.join(f'<section class="card"><h2>{escape(h)}</h2><p>{escape(p)}</p></section>' for h,p in sections)
+            return f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(title)}｜ネスペ対策｜ORIVECTOR</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{url}"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="article"><meta property="og:site_name" content="ORIVECTOR"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script><style>{style}</style></head><body><main class="wrap"><div class="crumb"><a href="https://orivector.jp/">ORIVECTOR</a> › <a href="../">ネットワークスペシャリスト</a> › {escape(title)}</div><article class="hero"><p>ネスペ頻出テーマ</p><h1>{escape(title)}</h1><p>{escape(desc)}</p></article>{body}<section class="card"><h2>関連するネットワーク記事</h2><div class="links">{related}</div></section><a class="cta" href="../">無料問題集500問で確認する →</a></main></body></html>'''
+
+          for slug,title,desc,sections in topics:
+            d=Path(slug); d.mkdir(exist_ok=True); (d/'index.html').write_text(page(slug,title,desc,sections),encoding='utf-8')
+
+          hub=Path('comparisons'); hub.mkdir(exist_ok=True)
+          cards=''.join(f'<a href="../{s}/"><strong>{escape(t)}</strong><br><span>{escape(d)}</span></a>' for s,t,d,_ in topics)
+          (hub/'index.html').write_text(f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ネットワーク比較・障害対策記事一覧｜ネスペ対策｜ORIVECTOR</title><meta name="description" content="TCP/UDP、VLAN/サブネット、OSPF/BGP、NAT/NAPTなど、ネットワークスペシャリストで混同しやすいテーマを比較と障害切り分けで学べます。"><link rel="canonical" href="{base}/comparisons/"><meta name="robots" content="index,follow"><style>{style}.cards a{{display:block;margin:10px 0;padding:16px;background:#101b2c;border:1px solid #213651;border-radius:14px;text-decoration:none}}.cards span{{color:#b8c8da;line-height:1.6}}</style></head><body><main class="wrap"><div class="crumb"><a href="../">ネットワークスペシャリスト</a> › 比較・障害対策</div><div class="hero"><h1>ネットワーク比較・障害対策記事一覧</h1><p>午前IIだけでなく午後問題でも使える「違い」と「通信の流れ」を中心に整理しています。</p></div><div class="cards">{cards}</div><a class="cta" href="../">問題集500問へ戻る</a></main></body></html>''',encoding='utf-8')
+
+          sm=Path('sitemap.xml'); urls=[]
+          if sm.exists(): urls=re.findall(r'<loc>(.*?)</loc>',sm.read_text(encoding='utf-8'))
+          for u in [f'{base}/comparisons/']+[f'{base}/{s}/' for s,_,_,_ in topics]:
+            if u not in urls: urls.append(u)
+          sm.write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc></url>\n' for u in urls)+'</urlset>\n',encoding='utf-8')
+
+          p=Path('index.html'); text=p.read_text(encoding='utf-8'); marker='<!-- SEO-COMPARISON-CLUSTER-V2 -->'
+          if marker not in text:
+            block=f'''\n{marker}<section class="card" style="margin-top:22px"><div class="sectionTitle" style="margin-top:0"><h2>ネットワークの違いを比較で理解</h2><span class="pill">SEO GUIDE</span></div><p class="small">午後問題で迷いやすいテーマを、通信の流れと比較で復習できます。</p><div class="btnRow"><a class="btn" href="./tcp-vs-udp/">TCPとUDP</a><a class="btn" href="./vlan-vs-subnet/">VLANとサブネット</a><a class="btn" href="./ospf-vs-bgp/">OSPFとBGP</a><a class="btn primary" href="./comparisons/">比較記事をすべて見る</a></div></section>'''
+            text=text.replace('</section>\n\n<section id="learn"', '</section>'+block+'\n\n<section id="learn"',1)
+            p.write_text(text,encoding='utf-8')
+          PY
+      - name: Commit generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Add Network Specialist SEO content cluster v2"
+          git push
