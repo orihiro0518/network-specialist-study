@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://orivector.jp/network-specialist-study/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/articles/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/tcp-ip/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/subnetting/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/vlan/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/stp/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/routing/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/ospf/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/bgp/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/dns/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/dhcp/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/nat/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/vpn/</loc></url>
+<url><loc>https://orivector.jp/network-specialist-study/firewall/</loc></url>
 </urlset>
