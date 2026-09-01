@@ -1,0 +1,99 @@
+name: Add Official Past Explanations
+on:
+  push:
+    paths:
+      - '.github/workflows/add-official-past-explanations.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add explanations and article
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          explanations=[
+            {'topic':'呼量（アーラン）','body':'呼量は「単位時間内の呼数 × 1呼当たりの平均保留時間」で求めます。180台それぞれが3分に1回発呼するので、1時間では1台20回、全体で3,600回です。平均保留時間80秒を掛け、3,600秒で割ると80アーランになります。','tip':'計算問題は時間の単位をそろえるのが最重要。'},
+            {'topic':'Ethernetフレーム長','body':'MACクライアントデータ1,400オクテットに、宛先MAC 6、送信元MAC 6、タイプ/長さ2、FCS 4を加えます。したがって1,400+6+6+2+4=1,418オクテットです。','tip':'プリアンブルやSFDを「フレーム長」に含めるかは問題文の定義を確認。'},
+            {'topic':'ビット誤り率','body':'200,000バイトは1,600,000ビットです。平均ビット誤り率10^-5を掛けると、平均16ビットの誤りが発生します。電文数が十分多く誤りが一様に分布するとみなせるため、誤りを含む電文も平均16個と考えます。','tip':'バイト→ビットの8倍変換を忘れない。'},
+            {'topic':'10GBASE-T / Cat6A','body':'10GBASE-Tでカテゴリ6Aを使う場合、最大100mが基本です。カテゴリ6では条件により55m程度までに制限されるため、Cat6Aとの違いをセットで覚えると判断しやすいです。','tip':'「-T」はツイストペア。100mが頻出基準。'},
+            {'topic':'CoAP','body':'CoAPは制約の大きいIoT機器向けに設計された軽量なアプリケーション層プロトコルです。HTTPに似たREST型の操作を扱えますが、一般にUDPを利用してオーバーヘッドを抑えます。','tip':'CoAP=IoT・軽量・UDP、MQTT=Publish/Subscribe。'},
+            {'topic':'HTTP GET / POST','body':'GETは主にリソース取得に使い、同じ要求を繰り返しても同等の結果を期待できる「安全・べき等」な操作として扱われます。POSTはデータ送信や新規処理の開始などに使われ、通常はべき等ではありません。','tip':'GETは取得、POSTは処理依頼・登録という軸で整理。'},
+            {'topic':'IPヘッダとICMP','body':'IPv4ヘッダでは上位プロトコルをProtocolフィールドで識別します。ICMPはプロトコル番号1です。TCPやUDPのポート番号ではなく、IPヘッダ側の値で区別する点がポイントです。','tip':'IPv4: Protocol、IPv6: Next Header。'},
+            {'topic':'サブネットワークアドレス','body':'サブネットアドレスはIPアドレスとサブネットマスクのAND演算で求めます。ホスト部を0にした値がネットワークアドレスになります。','tip':'CIDRのプレフィックス長からネットワーク部とホスト部を即座に分ける練習が有効。'},
+            {'topic':'PPP','body':'PPPはポイントツーポイントリンクで利用されるデータリンク層プロトコルで、LCPによるリンク確立やNCPによるネットワーク層設定を行えます。認証にはPAPやCHAPも利用できます。','tip':'PPP=LCP/NCP/PAP/CHAPをひとまとまりで覚える。'},
+            {'topic':'UDPを使うルーティングプロトコル','body':'RIPはUDP（ポート520）を利用します。一方、BGPはTCP 179、OSPFはTCP/UDPではなくIPプロトコル番号89を直接利用します。','tip':'RIP=UDP520、BGP=TCP179、OSPF=IP89。'},
+            {'topic':'TCP 3ウェイハンドシェイク','body':'TCP接続確立はSYN → SYN/ACK → ACKの3段階です。双方の初期シーケンス番号を確認し、双方向通信の準備を整えます。','tip':'切断側はFIN/ACKの流れとTIME_WAITも関連論点。'},
+            {'topic':'ICMPv6近隣探索','body':'IPv6ではARPの代わりにICMPv6ベースのNeighbor Discoveryを使います。Neighbor Solicitation（NS）とNeighbor Advertisement（NA）で近隣ノードのリンク層アドレス確認などを行います。','tip':'IPv6ではARPではなくNDP。RS/RAも同じICMPv6系。'},
+            {'topic':'OpenFlow','body':'OpenFlowではコントローラとスイッチ間でフロー情報をやり取りします。パケットに一致するフローエントリがない場合、Packet-Inでコントローラへ通知し、必要に応じてFlow-Modでルールを追加します。','tip':'SDNは制御プレーンとデータプレーンの分離が核心。'},
+            {'topic':'FTPコマンド','body':'FTPは制御用とデータ転送用で別コネクションを使います。USER/PASSは認証、RETRは取得、STORは送信、LISTは一覧取得など、代表コマンドの役割を押さえます。','tip':'FTPはアクティブ/パッシブモードも頻出。'},
+            {'topic':'無線LAN周波数帯','body':'IEEE 802.11規格ごとに利用する周波数帯が異なります。2.4GHzは到達性が高い一方で干渉が多く、5GHzは利用可能チャネルが多いのが特徴です。Wi-Fi 6Eでは6GHz帯も利用します。','tip':'規格名と2.4/5/6GHzの対応を表で整理すると強い。'},
+            {'topic':'TLS','body':'TLSはTCP上などで通信の機密性・完全性・相手認証を提供します。ハンドシェイクで暗号スイートや鍵を合意し、その後のアプリケーションデータを保護します。','tip':'HTTPSはHTTP over TLS。TLSそのものはアプリの認証情報を必ず保証するわけではない。'},
+            {'topic':'テンペスト攻撃','body':'TEMPEST系の攻撃は機器から漏れる電磁波などの副次的な放射を観測して情報を推測します。対策は電磁シールド、距離の確保、漏えいを抑えた機器・施設設計などです。','tip':'ネットワーク上の盗聴ではなく「電磁的な漏えい」がキーワード。'},
+            {'topic':'DRDoS','body':'DRDoSは第三者のサーバをリフレクタとして悪用し、送信元IPを被害者に偽装した要求を大量送信して、増幅された応答を被害者へ集中させる攻撃です。DNSやNTPなどが悪用されることがあります。','tip':'Reflection（反射）とAmplification（増幅）の2語を覚える。'},
+            {'topic':'無線LANセキュリティ','body':'無線LANでは強固な暗号・認証方式を選び、不要な旧方式を避けることが重要です。WPA2/WPA3、802.1X/EAP、適切な鍵管理を組み合わせます。SSID非公開だけでは十分な防御になりません。','tip':'WEPは脆弱。SSIDステルスやMACフィルタだけに依存しない。'},
+            {'topic':'DNSSEC','body':'DNSSECはDNS応答に電子署名を付与し、データの真正性と完全性を検証できる仕組みです。DNS通信経路そのものを暗号化する技術ではありません。','tip':'DNSSEC=署名、DoH/DoT=通信経路の暗号化。'},
+            {'topic':'OP25B','body':'OP25B（Outbound Port 25 Blocking）は、ISP網から外部のメールサーバへ直接TCP/25で送信する通信を制限し、マルウェア感染端末などからの迷惑メール送信を抑止します。正規ユーザーはSubmission（587）などを利用します。','tip':'25=SMTPサーバ間、587=メール投稿。'},
+            {'topic':'キャッシュメモリ制御','body':'キャッシュ制御では、主記憶とキャッシュの整合性や書込み方式が重要です。ライトスルーはキャッシュと主記憶へ同時に書き、ライトバックはまずキャッシュへ書いて後で主記憶へ反映します。','tip':'ライトスルー=単純で整合性高め、ライトバック=高速だが管理が複雑。'},
+            {'topic':'MTTR','body':'MTTRは平均修復時間です。障害原因の特定や復旧作業を早める仕組み、例えば監視・ログ収集・交換容易な構成・手順標準化などがMTTR短縮に寄与します。','tip':'可用性≈MTBF/(MTBF+MTTR)。MTTRが短いほど可用性は上がる。'},
+            {'topic':'ブローカー','body':'ブローカーは要求側と提供側の間に入り、サービスの仲介や相互接続を行う役割です。分散システムでは利用者が提供先の詳細を意識せずサービスを使えるようにします。','tip':'「仲介・疎結合・位置透過」がキーワード。'},
+            {'topic':'ステージング環境','body':'ステージング環境は本番公開前に、本番とできるだけ近い条件で最終確認するための環境です。開発環境や単体テスト環境より本番に近く、リリース手順や設定差異の確認にも使います。','tip':'開発→テスト→ステージング→本番の位置付けを整理。'}
+          ]
+
+          marker='// ORIVECTOR_OFFICIAL_EXPLANATIONS_V1'
+          if marker not in s:
+              data='const officialPastExplanations='+json.dumps({'r7':explanations},ensure_ascii=False)+';\n'
+              s=s.replace('const officialPastAnswers=', marker+'\n'+data+'const officialPastAnswers=',1)
+
+          old="""  result.innerHTML=choice===correct
+    ? `<b style=\"color:var(--ok)\">⭕ 正解！</b><p>正解は「${correct}」です。</p>`
+    : `<b style=\"color:var(--ng)\">❌ 不正解</b><p>正解は「${correct}」です。</p>`;"""
+          new="""  const ex=officialPastExplanations?.[officialPastYear]?.[officialQuestionIndex];
+  const base=choice===correct
+    ? `<b style=\"color:var(--ok)\">⭕ 正解！</b><p>正解は「${correct}」です。</p>`
+    : `<b style=\"color:var(--ng)\">❌ 不正解</b><p>正解は「${correct}」です。</p>`;
+  result.innerHTML=base+(ex
+    ? `<div class=\"officialDetailExplain\"><h4>📘 ORIVECTOR解説：${ex.topic}</h4><p>${ex.body}</p><div class=\"examtip\"><b>試験ポイント：</b> ${ex.tip}</div></div>`
+    : `<div class=\"officialDetailExplain\"><h4>📘 解説</h4><p>この年度の詳細解説は順次追加中です。まず正答を確認し、関連する基礎学習テーマとセットで復習してください。</p></div>`);"""
+          if old in s:
+              s=s.replace(old,new,1)
+
+          if '.officialDetailExplain{' not in s:
+              s=s.replace('</style>','''.officialDetailExplain{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}\n.officialDetailExplain h4{margin:0 0 8px;color:var(--accent)}\n.officialDetailExplain p{line-height:1.75;margin:6px 0}\n</style>''',1)
+
+          s=s.replace('Ver 2.7.1','Ver 2.8.0')
+          p.write_text(s,encoding='utf-8')
+
+          # SEO article for the detailed latest-year explanations
+          out=Path('past-explanations/r7'); out.mkdir(parents=True,exist_ok=True)
+          cards=[]
+          answers=json.loads(re.search(r'const officialPastAnswers=(\{.*?\});',s,re.S).group(1))['r7']
+          for i,(e,a) in enumerate(zip(explanations,answers),1):
+              cards.append(f'''<section class="card"><h2>問{i}：{e['topic']}</h2><p><b>正解：{a}</b></p><p>{e['body']}</p><div class="tip"><b>試験ポイント：</b>{e['tip']}</div></section>''')
+          html='''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>令和7年度 ネットワークスペシャリスト午前II 過去問25問解説｜ORIVECTOR</title><meta name="description" content="令和7年度春期ネットワークスペシャリスト午前II 25問をORIVECTORが要点解説。呼量、Ethernet、CoAP、ICMPv6、TLS、DNSSECなど頻出論点を復習できます。"><link rel="canonical" href="https://orivector.jp/network-specialist-study/past-explanations/r7/"><meta name="robots" content="index,follow"><style>body{margin:0;background:#08111f;color:#edf4ff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:900px;margin:auto;padding:24px 16px 60px}a{color:#61dafb}.lead{color:#aebed2;line-height:1.8}.card{background:#101b2c;border:1px solid #213651;border-radius:16px;padding:18px;margin:14px 0}.card h2{font-size:19px;margin:0 0 9px}.card p{line-height:1.75}.tip{background:#0a1728;border-left:4px solid #61dafb;padding:11px 13px;border-radius:8px;line-height:1.65}</style><script type="application/ld+json">{"@context":"https://schema.org","@type":"LearningResource","name":"令和7年度 ネットワークスペシャリスト午前II 過去問解説","url":"https://orivector.jp/network-specialist-study/past-explanations/r7/","isAccessibleForFree":true,"inLanguage":"ja","learningResourceType":"過去問解説"}</script></head><body><main class="wrap"><p><a href="../../">← ネスペ問題集へ戻る</a></p><h1>令和7年度 ネットワークスペシャリスト 午前II 過去問解説</h1><p class="lead">公式問題を解いた後の復習用に、25問それぞれの核心だけをORIVECTOR独自の言葉で整理しています。問題文・選択肢はサイト内の公式過去問画面で確認できます。</p>'''+''.join(cards)+'''<p><a href="../../">問題集で演習する →</a></p></main></body></html>'''
+          (out/'index.html').write_text(html,encoding='utf-8')
+
+          # sitemap add
+          sm=Path('sitemap.xml')
+          if sm.exists():
+              x=sm.read_text(encoding='utf-8')
+              url='<url><loc>https://orivector.jp/network-specialist-study/past-explanations/r7/</loc></url>'
+              if url not in x:
+                  x=x.replace('</urlset>',url+'\n</urlset>')
+                  sm.write_text(x,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html past-explanations sitemap.xml
+          git diff --cached --quiet || git commit -m 'Add R7 official past question explanations'
+          git push
