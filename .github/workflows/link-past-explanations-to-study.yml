@@ -15,31 +15,22 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import json
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
           marker='// ORIVECTOR_OFFICIAL_STUDY_LINKS_V1'
+          routes={'呼量（アーラン）':['lb','負荷分散・冗長化'],'Ethernetフレーム長':['tcpip','TCP/IPとOSI参照モデル'],'ビット誤り率':['tcpip','TCP/IPとOSI参照モデル'],'10GBASE-T / Cat6A':['tcpip','TCP/IPとOSI参照モデル'],'CoAP':['tcpip','TCP/IPとOSI参照モデル'],'HTTP GET / POST':['tcpip','TCP/IPとOSI参照モデル'],'IPヘッダとICMP':['tcpip','TCP/IPとOSI参照モデル'],'サブネットワークアドレス':['routing','ルーティング基礎'],'PPP':['tcpip','TCP/IPとOSI参照モデル'],'UDPを使うルーティングプロトコル':['routing','ルーティング基礎'],'TCP 3ウェイハンドシェイク':['tcpip','TCP/IPとOSI参照モデル'],'ICMPv6近隣探索':['tcpip','TCP/IPとOSI参照モデル'],'OpenFlow':['routing','ルーティング基礎'],'FTPコマンド':['tcpip','TCP/IPとOSI参照モデル'],'無線LAN周波数帯':['wireless','無線LAN'],'TLS':['vpn','IPsec VPN・セキュリティ'],'テンペスト攻撃':['vpn','セキュリティ・VPN'],'DRDoS':['vpn','セキュリティ・VPN'],'無線LANセキュリティ':['wireless','無線LAN'],'DNSSEC':['dns','DNS'],'OP25B':['tcpip','TCP/IPとポート番号'],'キャッシュメモリ制御':['tcpip','基礎知識'],'MTTR':['lb','負荷分散・冗長化'],'ブローカー':['tcpip','基礎知識'],'ステージング環境':['lb','可用性・運用']}
           if marker not in s:
-              js=r'''// ORIVECTOR_OFFICIAL_STUDY_LINKS_V1
-const officialStudyRoutes={
-'呼量（アーラン）':['lb','負荷分散・冗長化'],'Ethernetフレーム長':['tcpip','TCP/IPとOSI参照モデル'],'ビット誤り率':['tcpip','TCP/IPとOSI参照モデル'],'10GBASE-T / Cat6A':['tcpip','TCP/IPとOSI参照モデル'],'CoAP':['tcpip','TCP/IPとOSI参照モデル'],'HTTP GET / POST':['tcpip','TCP/IPとOSI参照モデル'],'IPヘッダとICMP':['tcpip','TCP/IPとOSI参照モデル'],'サブネットワークアドレス':['routing','ルーティング基礎'],'PPP':['tcpip','TCP/IPとOSI参照モデル'],'UDPを使うルーティングプロトコル':['routing','ルーティング基礎'],'TCP 3ウェイハンドシェイク':['tcpip','TCP/IPとOSI参照モデル'],'ICMPv6近隣探索':['tcpip','TCP/IPとOSI参照モデル'],'OpenFlow':['routing','ルーティング基礎'],'FTPコマンド':['tcpip','TCP/IPとOSI参照モデル'],'無線LAN周波数帯':['wireless','無線LAN'],'TLS':['vpn','IPsec VPN・セキュリティ'],'テンペスト攻撃':['vpn','セキュリティ・VPN'],'DRDoS':['vpn','セキュリティ・VPN'],'無線LANセキュリティ':['wireless','無線LAN'],'DNSSEC':['dns','DNS'],'OP25B':['tcpip','TCP/IPとポート番号'],'キャッシュメモリ制御':['tcpip','基礎知識'],'MTTR':['lb','負荷分散・冗長化'],'ブローカー':['tcpip','基礎知識'],'ステージング環境':['lb','可用性・運用']};
-function officialStudyButton(ex){
-  if(!ex) return '';
-  const r=officialStudyRoutes[ex.topic];
-  if(!r) return '';
-  return `<div class="officialStudyLink"><button class="btn primary" onclick="openOfficialStudyTopic('${r[0]}')">📘 ${r[1]}を勉強する</button><span>解説で曖昧だった論点を基礎ページで復習できます。</span></div>`;
-}
-function openOfficialStudyTopic(id){
-  try{sessionStorage.setItem('orivectorOfficialReturn',JSON.stringify({year:officialPastYear,index:officialQuestionIndex}));}catch(e){}
-  openTopic(id);
-}
-'''
-              s=s.replace('function answerOfficial(choice){',js+'\nfunction answerOfficial(choice){',1)
+              route_json=json.dumps(routes,ensure_ascii=False,separators=(',',':'))
+              js=marker+'\nconst officialStudyRoutes='+route_json+';\nfunction officialStudyButton(ex){if(!ex)return "";const r=officialStudyRoutes[ex.topic];if(!r)return "";return `<div class="officialStudyLink"><button class="btn primary" onclick="openOfficialStudyTopic(\'${r[0]}\')">📘 ${r[1]}を勉強する</button><span>解説で曖昧だった論点を基礎ページで復習できます。</span></div>`;}\nfunction openOfficialStudyTopic(id){try{sessionStorage.setItem("orivectorOfficialReturn",JSON.stringify({year:officialPastYear,index:officialQuestionIndex}));}catch(e){} openTopic(id);}\n'
+              s=s.replace('function answerOfficial(choice){',js+'function answerOfficial(choice){',1)
           old='<div class="examtip"><b>試験ポイント：</b> ${ex.tip}</div></div>`
           new='<div class="examtip"><b>試験ポイント：</b> ${ex.tip}</div>${officialStudyButton(ex)}</div>'
-          if old in s and 'officialStudyButton(ex)</div>' not in s:
+          if old in s:
               s=s.replace(old,new,1)
           if '.officialStudyLink{' not in s:
-              s=s.replace('</style>','.officialStudyLink{margin-top:14px;padding:12px;border:1px solid rgba(97,218,251,.25);border-radius:14px;background:rgba(97,218,251,.06);display:flex;gap:10px;align-items:center;flex-wrap:wrap}.officialStudyLink span{font-size:12px;color:var(--muted)}\n</style>',1)
+              css='.officialStudyLink{margin-top:14px;padding:12px;border:1px solid rgba(97,218,251,.25);border-radius:14px;background:rgba(97,218,251,.06);display:flex;gap:10px;align-items:center;flex-wrap:wrap}.officialStudyLink span{font-size:12px;color:var(--muted)}\n'
+              s=s.replace('</style>',css+'</style>',1)
           s=s.replace('Ver 2.8.0','Ver 2.8.1')
           p.write_text(s,encoding='utf-8')
           PY
