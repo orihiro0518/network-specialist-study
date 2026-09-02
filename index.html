@@ -111,6 +111,8 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 .orivector-global-nav a{display:inline-flex;align-items:center;min-height:34px;padding:0 12px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.06);color:#eef5ff;text-decoration:none;font-size:13px;font-weight:900;letter-spacing:.02em}
 .orivector-global-nav a:hover{background:rgba(255,255,255,.11)}
 </style>
+<meta name="author" content="shun">
+<link rel="author" href="https://orivector.jp/about/">
 </head>
 <body><div class="orivector-global-nav"><a href="https://orivector.jp/" aria-label="ORIVECTORトップへ戻る">← ORIVECTOR</a></div>
 <style>
@@ -295,6 +297,11 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
   <div class="sectionTitle"><h2>学習進捗</h2><button class="btn ng" onclick="resetData()">進捗をリセット</button></div>
   <div class="dashboard"><div class="card"><h3>学習テーマ</h3><div id="progressLearn" style="font-size:30px;font-weight:900"></div><p>12テーマ中</p></div><div class="card"><h3>問題演習</h3><div id="progressQuiz" style="font-size:30px;font-weight:900"></div><p>累計解答数</p></div><div class="card"><h3>解いた問題</h3><div id="progressUnique" style="font-size:30px;font-weight:900"></div><p>500問中</p></div><div class="card"><h3>正答率</h3><div id="progressRate" style="font-size:30px;font-weight:900"></div><p>累計</p></div><div class="card"><h3>苦手</h3><div id="progressWeak" class="danger" style="font-size:30px;font-weight:900"></div><p>復習対象</p></div></div><div class="btnRow" style="margin-top:14px"><button class="btn" onclick="showView('questionList')">📋 全問題一覧を見る</button></div>
 </section>
+
+<aside class="orivector-author" style="width:min(900px,calc(100% - 32px));margin:28px auto;padding:16px 18px;border:1px solid #203552;border-radius:14px;background:#081527;color:#c5d3e5;font-size:13px;line-height:1.7">
+  <strong style="color:#fff">執筆・運営：<a href="https://orivector.jp/about/" rel="author" style="color:#8fc7ff">shun</a></strong><br>
+  SIerで法人向け金融システムのインフラを7年担当。公式情報・市販参考書・AIを活用し、内容を確認しながら学習コンテンツを改善しています。
+</aside>
 </main>
 
 <nav class="nav"><button data-v="home" class="active" onclick="showView('home')">🏠<br>ホーム</button><button data-v="learn" onclick="showView('learn')">📘<br>学習</button><button data-v="practiceSetup" onclick="openPracticeSetup()">✏️<br>問題</button><button data-v="officialPast" onclick="showView('officialPast')">🏛️<br>公式問</button><button data-v="progress" onclick="showView('progress')">📊<br>進捗</button></nav>
