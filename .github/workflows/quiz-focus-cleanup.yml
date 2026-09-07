@@ -1,0 +1,45 @@
+name: Apply Network Specialist focused quiz mode
+
+on:
+  push:
+    paths:
+      - '.github/workflows/quiz-focus-cleanup.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch only quiz focus behavior
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          pattern=r"function installLegacyUx\(w\)\{.*?\}function loadLegacy"
+          replacement="""function installLegacyUx(w){try{if(w.document.documentElement.dataset.orivectorQuizUx)return;w.document.documentElement.dataset.orivectorQuizUx='1';const style=w.document.createElement('style');style.id='orivectorQuizFocusStyle';style.textContent='body.orivector-quiz-focus .orivector-author{display:none!important}';w.document.head.appendChild(style);const syncFocus=()=>{const ids=['quiz','officialPast','afternoon'];const active=ids.some(id=>{const el=w.document.getElementById(id);return el&&!el.classList.contains('hidden')});w.document.body.classList.toggle('orivector-quiz-focus',active)};new w.MutationObserver(syncFocus).observe(w.document.body,{subtree:true,attributes:true,attributeFilter:['class']});syncFocus();w.document.addEventListener('click',e=>{if(e.target.closest('#quizActions .btn.primary,#officialNextBtn,#afActions .btn.primary'))setTimeout(()=>w.scrollTo({top:0,behavior:'smooth'}),50)})}catch(e){console.error(e)}}function loadLegacy"""
+          s2,n=re.subn(pattern,replacement,s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit(f'installLegacyUx replacement count={n}; refusing broad rewrite')
+
+          s2=s2.replace('Ver 3.0.3','Ver 3.0.4').replace("legacy.html?v=303&ts=", "legacy.html?v=304&ts=")
+          p.write_text(s2,encoding='utf-8')
+          PY
+      - name: Commit targeted changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          if git diff --cached --quiet; then
+            echo 'No changes needed.'
+          else
+            git commit -m 'Hide non-quiz content during Network Specialist practice'
+            git push
+          fi
