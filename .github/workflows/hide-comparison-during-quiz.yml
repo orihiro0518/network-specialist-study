@@ -21,8 +21,8 @@ jobs:
 
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          old = "style.textContent='body.orivector-quiz-focus .orivector-author{display:none!important}';const syncFocus=()=>{"
-          new = "style.textContent='body.orivector-quiz-focus .orivector-author,body.orivector-quiz-focus .orivector-comparison-cluster{display:none!important}';const comparison=[...w.document.querySelectorAll('section')].find(s=>s.querySelector('h2')?.textContent.includes('ネットワークの違いを比較で理解'));if(comparison)comparison.classList.add('orivector-comparison-cluster');const syncFocus=()=>{"
+          old = "style.textContent='body.orivector-quiz-focus .orivector-author{display:none!important}';w.document.head.appendChild(style);const syncFocus=()=>{"
+          new = "style.textContent='body.orivector-quiz-focus .orivector-author,body.orivector-quiz-focus .orivector-comparison-cluster{display:none!important}';w.document.head.appendChild(style);const comparison=[...w.document.querySelectorAll('section')].find(s=>s.querySelector('h2')?.textContent.includes('ネットワークの違いを比較で理解'));if(comparison)comparison.classList.add('orivector-comparison-cluster');const syncFocus=()=>{"
           if old not in s:
               raise SystemExit('Target quiz focus hook not found; refusing broad rewrite.')
           s = s.replace(old, new, 1)
