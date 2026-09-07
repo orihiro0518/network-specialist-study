@@ -1,0 +1,42 @@
+name: Polish Network quiz CSS
+
+on:
+  push:
+    paths:
+      - '.github/workflows/polish-network-quiz-css.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply visual-only quiz polish
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = "style.textContent='body.orivector-quiz-focus .orivector-author,body.orivector-quiz-focus .orivector-comparison-cluster{display:none!important}'"
+          css = "body.orivector-quiz-focus .orivector-author,body.orivector-quiz-focus .orivector-comparison-cluster{display:none!important}body.orivector-quiz-focus #quiz .quizBox>.card{padding:18px!important;border-radius:20px!important;background:rgba(16,29,49,.96)!important;border:1px solid #29425f!important;box-shadow:0 16px 42px #0005!important}body.orivector-quiz-focus #quiz .qmeta{margin:0 0 14px!important;padding:10px 12px!important;background:#0a1728!important;border:1px solid #29425f!important;border-radius:13px!important;color:#aebed1!important;font-size:12px!important;font-weight:800!important}body.orivector-quiz-focus #quiz .quizProgressTrack{height:8px!important;background:#07111f!important;border:1px solid #213651!important;border-radius:999px!important;overflow:hidden!important;margin:0 2px 14px!important}body.orivector-quiz-focus #quiz .quizProgressBar{background:#61dafb!important;border-radius:999px!important}body.orivector-quiz-focus #quiz .qtext{font-size:clamp(20px,4.8vw,25px)!important;line-height:1.65!important;margin:18px 2px 20px!important}body.orivector-quiz-focus #quiz #choices{display:grid!important;gap:10px!important}body.orivector-quiz-focus #quiz .choice{min-height:56px!important;padding:15px 16px!important;margin:0!important;border-radius:14px!important;background:#0d1c30!important;border:1px solid #2b4563!important;font-size:15px!important;line-height:1.55!important;box-shadow:none!important}body.orivector-quiz-focus #quiz .choice.correct{border-color:#44d49b!important;background:#103524!important}body.orivector-quiz-focus #quiz .choice.wrong{border-color:#ff6b81!important;background:#3a1822!important}body.orivector-quiz-focus #quiz .explain{margin-top:16px!important;padding:17px!important;background:#0b1728!important;border:1px solid #29425f!important;border-left:4px solid #61dafb!important;border-radius:14px!important;line-height:1.8!important}body.orivector-quiz-focus #quiz #quizActions .btn.primary{min-height:52px!important;border-radius:14px!important;font-size:15px!important;font-weight:900!important;box-shadow:0 10px 26px #0007!important}body.orivector-quiz-focus #officialPast .card,body.orivector-quiz-focus #afternoon .card{border-radius:20px!important;border-color:#29425f!important}body.orivector-quiz-focus #officialPast .choice,body.orivector-quiz-focus #afternoon .choice{min-height:56px!important;padding:15px 16px!important;border-radius:14px!important}"
+          new = "style.textContent='" + css + "'"
+          if old not in s:
+              raise SystemExit('Target focus CSS hook not found; refusing broad rewrite.')
+          s = s.replace(old, new, 1)
+          s = s.replace('Ver 3.0.5', 'Ver 3.0.6', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit visual-only change
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          if git diff --cached --quiet; then
+            echo 'No changes needed.'
+          else
+            git commit -m 'Polish Network quiz UI with CSS only'
+            git push
+          fi
