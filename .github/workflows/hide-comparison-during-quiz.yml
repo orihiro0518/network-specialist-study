@@ -1,0 +1,42 @@
+name: Hide Network comparison guide during quiz
+
+on:
+  push:
+    paths:
+      - '.github/workflows/hide-comparison-during-quiz.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Hide comparison guide only while answering questions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = "style.textContent='body.orivector-quiz-focus .orivector-author{display:none!important}';const syncFocus=()=>{"
+          new = "style.textContent='body.orivector-quiz-focus .orivector-author,body.orivector-quiz-focus .orivector-comparison-cluster{display:none!important}';const comparison=[...w.document.querySelectorAll('section')].find(s=>s.querySelector('h2')?.textContent.includes('ネットワークの違いを比較で理解'));if(comparison)comparison.classList.add('orivector-comparison-cluster');const syncFocus=()=>{"
+          if old not in s:
+              raise SystemExit('Target quiz focus hook not found; refusing broad rewrite.')
+          s = s.replace(old, new, 1)
+          s = s.replace('Ver 3.0.4', 'Ver 3.0.5', 1)
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit targeted UI fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          if git diff --cached --quiet; then
+            echo 'No changes needed.'
+          else
+            git commit -m 'Hide comparison guide during Network Specialist quiz'
+            git push
+          fi
