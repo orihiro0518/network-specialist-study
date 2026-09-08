@@ -131,7 +131,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
 </style>
 <div class="orivector-topbar"><a href="https://orivector.jp/">← ORIVECTORトップへ</a></div>
 
-<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.8.0</div></div></div>
+<div class="topbar"><div class="inner"><div class="brand" onclick="showView('home')"><span>ORIVECTOR</span> / ネスペ</div><div class="ver">Ver 2.9.0</div></div></div>
 <main class="wrap">
 <section id="home" class="view">
   <div class="hero"><div class="pill" style="display:inline-block;margin-bottom:12px">ORIVECTOR Learn</div><h1>ネットワークスペシャリスト（ネスペ）<br>無料問題集・試験対策</h1><p>午前II風500問・午後問題100題・IPA公式過去問150問・基礎12テーマを1つに。ネットワークスペシャリスト試験を、問題演習と仕組みの理解の両方から対策できます。</p></div>
@@ -142,7 +142,7 @@ button{font:inherit}.wrap{max-width:1080px;margin:auto;padding:18px 16px 88px}.t
     <button class="card bigbtn" onclick="showView('afternoon')"><div class="icon">🧠</div><h3>午後問題対策</h3><p>構成図・障害原因・設計意図を読み取る100題の記述演習。</p></button>
     <button class="card bigbtn" onclick="startQuiz('weak')"><div class="icon">🎯</div><h3>苦手だけ復習</h3><p>間違えた問題だけ再出題。正解できるまで重点的に復習。</p></button>
     <button class="card bigbtn" onclick="showView('questionList')"><div class="icon">📋</div><h3>全問題一覧</h3><p>午前500問を一覧表示。問題文をクリックしてその問題から演習できます。</p></button>
-    <button class="card bigbtn officialPastCard" onclick="showView('officialPast')"><div class="icon">🏛️</div><h3>IPA公式過去問をそのまま解く</h3><p>令和元年度〜令和7年度のIPA公式午前Ⅱを年度別にそのまま演習。全6回・計150問。</p></button>
+    <button class="card bigbtn officialPastCard" onclick="showView('officialPast')"><div class="icon">🏛️</div><h3>IPA公式過去問をそのまま解く</h3><p>令和元年度〜令和7年度のIPA公式午前Ⅱを、年度別またはカテゴリ別に演習。全6回・計150問。</p></button>
     <button class="card bigbtn" onclick="showView('past')"><div class="icon">🗂️</div><h3>IPA公式 過去問資料</h3><p>令和元年度〜令和7年度を年度別に整理。問題・解答例・採点講評へすぐアクセス。</p></button>
   </div>
 
@@ -608,5 +608,6 @@ function resetData(){if(confirm('学習進捗をすべてリセットします�
 renderTopics();updateStats();
 </script>
 
+<script src="official-category-filter.js?v=1"></script>
 </body>
 </html>
