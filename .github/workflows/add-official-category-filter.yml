@@ -1,0 +1,217 @@
+name: Add official past-question category drill
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-official-category-filter.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add category drill for IPA official questions
+        run: |
+          cat > official-category-filter.js <<'JS'
+          (() => {
+            if (window.__orivectorOfficialCategoryInstalled) return;
+            window.__orivectorOfficialCategoryInstalled = true;
+
+            const officialTopicMap = {
+              r7: [
+                '呼量は何アーランか','フレーム長は何オクテットになるか','誤りが発生する電文の個数','カテゴリ6Aの最大ケーブル長は何mか','CoAPの特徴はどれか','GETメソッド・POSTメソッド','ICMPを識別できるヘッダー情報','サブネットワークアドレス','PPP','UDPを用いるルーティングのプロトコル','3ウェイハンドシェイク','ICMPv6の近隣探索メッセージ','OpenFlowプロトコルのメッセージ','FTPのコマンド','無線LANの周波数帯域の組合せ','TLSに関する記述','テンペスト攻撃の説明とその対策','DRDoS攻撃に該当するものはどれか','無線LANの情報セキュリティ対策','DNSSECの機能はどれか','OP25Bの例はどれか','キャッシュメモリ制御方式','MTTRを短くするのに役立つもの','ブローカーの説明はどれか','ステージング環境の説明はどれか'
+              ],
+              r6: [
+                'BGP-4におけるASに関する記述','音声のペイロードは何バイトか','必要な回線数','OSPFだけに当てはまる特徴','スパニングツリー','IPv6でのMACアドレス解決プロトコル','マルチキャストアドレス','認証プロトコル','TCPのシーケンス番号と受信確認番号','TCPとUDP両方のヘッダーに存在するもの','ホストアドレスを求める式はどれか','CIDRを使用したスーパーネット化','ホストのIPアドレスとして有効なもの','OSPFとRIPのIPv6対応','IP電話の音声品質を表す指標','CDNの利用で軽減できる脅威','Right-to-Left Overrideを利用した手口','秘密情報を推定する攻撃はどれか','なりすましメール対策','ビヘイビア法を説明したもの','IPsec','PCI Express','ターンアラウンドタイムの算出','プログラムの設計方針','バグトラッキングシステム'
+              ],
+              r5: [
+                'IPv6でのMACアドレス解決プロトコル','干渉しないように配置する方式','OSPF','TCPの輻輳制御アルゴリズム','データの最大長は何オクテットか','誤りが発生する電文の個数','BGP-4の説明として適切なもの','CoAPの特徴はどれか','ESPトンネルモードの暗号化部分','スパニングツリープロトコル','VLANタグの挿入位置','IPアドレスの集約','WebDAVの特徴はどれか','ローカル5Gの特徴はどれか','無線LANの周波数帯域の組合せ','ポリモーフィック型マルウェア','NTPを使った増幅型のDDoS攻撃対策','シグネチャ型IPSの特徴はどれか','EAP','OP25Bの説明はどれか','IEEE802.1Xが定めているものはどれか','メモリインターリーブ','FaaSに関する記述','SysMLの説明はどれか','マッシュアップの例'
+              ],
+              r4: [
+                '呼量は何アーランか','光ファイバの伝送特性','AS間の経路制御プロトコル','スパニングツリープロトコル','DNSのリソースレコード','ICMPのメッセージ','IGMP','SMTPのセッション開始を表すコマンド','ネットワーク経路の集約','IPv4とIPv6によって異なるものはどれか','ダイナミックルーティングプロトコル','ホストのIPアドレスとして有効なもの','マルチキャストに関する記述','SNMPで管理装置にデータ送信する仕組み','IP電話の音声品質を表す指標','Right-to-Left Overrideを利用した手口','秘密情報を推定する攻撃はどれか','プライマリDNSサーバの設定','VLAN機能のセキュリティ効果','デジタルフォレンジックスに該当するもの','踏み台にされることを防止する対策','量子コンピュータ','通信回線の稼働率','フールプルーフ','ステージング環境の説明はどれか'
+              ],
+              r3: [
+                'Automatic MDI/MDI-X','DNSのMXレコードで指定するもの','無線LANで用いられる多重化方式','最大幾つの論理回線を使用できるか','CSMA方式のLAN制御','QoSのトラフィック制御方式','データの最大長は何オクテットか','自律システム間の経路制御プロトコル','ホスト名とIPアドレスの対応付け','サブネットワークアドレス','MPLSの説明として適切なもの','IoTで利用される通信プロトコル','TCPとUDP両方のヘッダーに存在するもの','ブロードキャストアドレスはどれか','無線LANの周波数帯域の組合せ','ポリモーフィック型マルウェア','リフレクタ攻撃に悪用されるサービス','前方秘匿性の性質はどれか','IEEE 802.1Xが定めているもの','OP25Bの例はどれか','OSコマンドインジェクション','命令実行時間の計算','M/M/1の待ち行列モデル','FTAの説明はどれか','リバースエンジニアリング'
+              ],
+              r1: [
+                'トンネリングを行えるプロトコルはどれか','OSPFコストとして適切な組合せ','OSPFだけに当てはまる特徴','スパニングツリープロトコル','BGP-4の説明として適切なもの','IPアドレスを効率的に割り当てる方式','リレーエージェントが必要になる機器','NSレコードに関する記述','SMTPのセッション開始を表すコマンド','障害を回避するプロトコル','ネットワークの制御に関する記述','OpenFlow','FTPのコマンド','WebDAV','IoT向け無線通信','SSL/TLSのダウングレード攻撃','Secure属性を付けたときの動作','想定できる攻撃はどれか','対象ポートの状態を判定する方法','ルートキットの特徴はどれか','踏み台にされることを防止する対策','フェッチされた命令の格納順序','ピアツーピアシステムの特徴','ユースケース図の説明はどれか','SDメモリカードの著作権保護技術'
+              ]
+            };
+
+            const categoryOrder = ['L2・Ethernet','ルーティング・IP','TCP/UDP・通信制御','DNS・アプリプロトコル','無線LAN・モバイル','セキュリティ','設計・QoS・運用','周辺知識'];
+
+            function officialCategoryOf(topic) {
+              if (/TLS|SSL|攻撃|マルウェア|IPS|EAP|802\.1X|802\.1x|OP25B|DNSSEC|IPsec|ESP|認証|Secure属性|ルートキット|フォレンジックス|踏み台|なりすまし|秘密情報|セキュリティ|対象ポート/.test(topic)) return 'セキュリティ';
+              if (/無線LAN|ローカル5G|無線通信|周波数帯域|多重化方式/.test(topic)) return '無線LAN・モバイル';
+              if (/OSPF|BGP|RIP|経路|ルーティング|サブネット|CIDR|IPアドレス|IPv4|IPv6|ICMP|IGMP|マルチキャスト|トンネリング|MPLS|リレーエージェント/.test(topic)) return 'ルーティング・IP';
+              if (/スパニング|VLAN|フレーム長|Ethernet|MDI|CSMA|光ファイバ|カテゴリ6A|LAN制御/.test(topic)) return 'L2・Ethernet';
+              if (/DNS|SMTP|FTP|HTTP|GETメソッド|POSTメソッド|WebDAV|CoAP|PPP|IoTで利用される通信プロトコル/.test(topic)) return 'DNS・アプリプロトコル';
+              if (/TCP|UDP|3ウェイ|輻輳制御|シーケンス番号|データの最大長/.test(topic)) return 'TCP/UDP・通信制御';
+              if (/OpenFlow|SNMP|ネットワークの制御|QoS|IP電話|呼量|回線数|音声のペイロード|誤りが発生|稼働率|MTTR|待ち行列|障害を回避/.test(topic)) return '設計・QoS・運用';
+              return '周辺知識';
+            }
+
+            const allOfficialItems = [];
+            Object.entries(officialTopicMap).forEach(([year, topics]) => {
+              topics.forEach((topic, index) => allOfficialItems.push({year, index, topic, category: officialCategoryOf(topic)}));
+            });
+
+            let categoryMode = null;
+            let categoryQueue = [];
+            let categoryPos = 0;
+            const originalSelectOfficialYear = selectOfficialYear;
+            const originalRenderOfficialQuestion = renderOfficialQuestion;
+            const originalNextOfficialQuestion = nextOfficialQuestion;
+            const originalPreviousOfficialQuestion = previousOfficialQuestion;
+
+            function shuffle(items) {
+              const out = [...items];
+              for (let i = out.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [out[i], out[j]] = [out[j], out[i]];
+              }
+              return out;
+            }
+
+            function setCategoryItem() {
+              if (!categoryMode || !categoryQueue.length) return;
+              const item = categoryQueue[categoryPos];
+              officialPastYear = item.year;
+              officialQuestionIndex = item.index;
+            }
+
+            function decorateCategoryQuestion() {
+              if (!categoryMode || !categoryQueue.length) return;
+              const item = categoryQueue[categoryPos];
+              const count = document.getElementById('officialQuestionCount');
+              const guide = document.getElementById('officialQuestionGuide');
+              const bar = document.getElementById('officialProgressBar');
+              const topic = document.getElementById('officialCategoryTopic');
+              if (count) count.textContent = `${categoryMode} ${categoryPos + 1} / ${categoryQueue.length}`;
+              if (guide) guide.textContent = `${officialPastYears[item.year].label}・問${item.index + 1}`;
+              if (bar) bar.style.width = `${((categoryPos + 1) / categoryQueue.length) * 100}%`;
+              if (topic) topic.innerHTML = `<b>${categoryMode}</b><span>${item.topic}</span>`;
+              document.querySelectorAll('[data-official-year]').forEach(b => b.classList.toggle('primary', b.dataset.officialYear === item.year));
+            }
+
+            function stopCategoryMode(renderYear = true) {
+              categoryMode = null;
+              categoryQueue = [];
+              categoryPos = 0;
+              const topic = document.getElementById('officialCategoryTopic');
+              if (topic) topic.innerHTML = '<b>年度別モード</b><span>上の年度ボタン、またはカテゴリを選んでください。</span>';
+              if (renderYear) originalRenderOfficialQuestion();
+            }
+
+            window.startOfficialCategory = function(category) {
+              const matched = allOfficialItems.filter(x => x.category === category);
+              const shuffleInput = document.getElementById('officialCategoryShuffle');
+              categoryQueue = shuffleInput && shuffleInput.checked ? shuffle(matched) : matched;
+              categoryMode = category;
+              categoryPos = 0;
+              setCategoryItem();
+              showView('officialPast');
+              renderOfficialQuestion();
+            };
+
+            window.stopOfficialCategory = function() {
+              stopCategoryMode(true);
+            };
+
+            selectOfficialYear = function(year) {
+              categoryMode = null;
+              categoryQueue = [];
+              categoryPos = 0;
+              const ret = originalSelectOfficialYear(year);
+              const topic = document.getElementById('officialCategoryTopic');
+              if (topic) topic.innerHTML = '<b>年度別モード</b><span>カテゴリ指定なしで25問を順番に解きます。</span>';
+              return ret;
+            };
+
+            renderOfficialQuestion = function() {
+              if (categoryMode) setCategoryItem();
+              originalRenderOfficialQuestion();
+              decorateCategoryQuestion();
+            };
+
+            nextOfficialQuestion = function() {
+              if (!categoryMode) return originalNextOfficialQuestion();
+              categoryPos = categoryPos >= categoryQueue.length - 1 ? 0 : categoryPos + 1;
+              setCategoryItem();
+              renderOfficialQuestion();
+            };
+
+            previousOfficialQuestion = function() {
+              if (!categoryMode) return originalPreviousOfficialQuestion();
+              categoryPos = categoryPos <= 0 ? categoryQueue.length - 1 : categoryPos - 1;
+              setCategoryItem();
+              renderOfficialQuestion();
+            };
+
+            const tabs = document.querySelector('#officialPast .officialTabs');
+            if (!tabs) return;
+            const counts = Object.fromEntries(categoryOrder.map(c => [c, allOfficialItems.filter(x => x.category === c).length]));
+            const box = document.createElement('div');
+            box.className = 'officialCategoryBox';
+            box.innerHTML = `
+              <div class="officialCategoryHead"><div><b>③ カテゴリで絞る</b><p>6年度・150問を横断して、選んだカテゴリだけ演習できます。</p></div><label><input id="officialCategoryShuffle" type="checkbox" checked> シャッフル</label></div>
+              <div class="officialCategoryGrid">${categoryOrder.map(c => `<button class="btn" onclick="startOfficialCategory('${c}')">${c}<small>${counts[c]}問</small></button>`).join('')}</div>
+              <button class="btn officialCategoryReset" onclick="stopOfficialCategory()">年度別25問に戻す</button>`;
+            tabs.insertAdjacentElement('afterend', box);
+
+            const questionPanel = document.querySelector('#officialPast .officialQuestionPanel');
+            if (questionPanel) {
+              const info = document.createElement('div');
+              info.id = 'officialCategoryTopic';
+              info.className = 'officialCategoryTopic';
+              info.innerHTML = '<b>年度別モード</b><span>カテゴリ指定なしで25問を順番に解きます。</span>';
+              questionPanel.insertAdjacentElement('beforebegin', info);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+              .officialCategoryBox{margin:14px 0 18px;padding:15px;border:1px solid #2b4563;border-radius:16px;background:#0a1728}
+              .officialCategoryHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.officialCategoryHead p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.6}.officialCategoryHead label{white-space:nowrap;font-size:12px;color:var(--muted)}
+              .officialCategoryGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.officialCategoryGrid .btn{display:flex;justify-content:space-between;align-items:center;text-align:left}.officialCategoryGrid small{color:var(--muted);font-size:11px;margin-left:8px}.officialCategoryReset{margin-top:10px;width:100%}
+              .officialCategoryTopic{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0;padding:10px 12px;border:1px solid #29425f;border-radius:12px;background:#0b1728}.officialCategoryTopic b{color:#61dafb}.officialCategoryTopic span{font-size:12px;color:var(--muted)}
+              @media(max-width:600px){.officialCategoryGrid{grid-template-columns:1fr}.officialCategoryHead{display:block}.officialCategoryHead label{display:block;margin-top:10px}}
+            `;
+            document.head.appendChild(style);
+          })();
+          JS
+
+          python - <<'PY'
+          from pathlib import Path
+
+          legacy = Path('legacy.html')
+          s = legacy.read_text(encoding='utf-8')
+          marker = '<script src="official-category-filter.js?v=1"></script>'
+          if marker not in s:
+              s = s.replace('</body>', marker + '\n</body>', 1)
+          s = s.replace('Ver 2.8.0', 'Ver 2.9.0', 1)
+          s = s.replace('令和元年度〜令和7年度のIPA公式午前Ⅱを年度別にそのまま演習。全6回・計150問。', '令和元年度〜令和7年度のIPA公式午前Ⅱを、年度別またはカテゴリ別に演習。全6回・計150問。', 1)
+          legacy.write_text(s, encoding='utf-8')
+
+          index = Path('index.html')
+          t = index.read_text(encoding='utf-8')
+          t = t.replace('Ver 3.0.6', 'Ver 3.0.7', 1)
+          t = t.replace('<h3>IPA公式過去問</h3><button class="btn" onclick="openLegacy(\'officialPast\')">公式過去問へ</button>', '<h3>IPA公式過去問</h3><button class="btn" onclick="openLegacy(\'officialPast\')">年度・カテゴリを選ぶ</button>', 1)
+          index.write_text(t, encoding='utf-8')
+          PY
+
+      - name: Commit feature
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add legacy.html index.html official-category-filter.js
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m 'Add category drill for IPA official past questions'
+            git push
+          fi
